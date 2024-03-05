@@ -1,0 +1,49 @@
+:root {
+    --primary-color: #000000;
+    --accent-color: #2e4283;
+    --alternate-color: #ffffff;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: var(--primary-color);
+}
+
+#header-div {
+    height: 10vmin;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#header-div section {
+    height: 100%;
+}
+
+img#logo {
+    overflow: hidden;
+    height: 100%;
+}
+
+.header-button {
+    height: 2em;
+    color: var(--alternate-color);
+    background-color: var(--accent-color);
+    border-radius: 12px;
+    border: none;
+    padding: 0 0.4em;
+    box-sizing: content-box;
+    font-size: 2vmin;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+nav ul li {
+    display: inline;
+    padding: 0 1em;
+}
+
