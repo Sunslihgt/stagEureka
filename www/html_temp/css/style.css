@@ -47,3 +47,34 @@ nav ul li {
     padding: 0 1em;
 }
 
+
+
+.container {
+    background-color: var(--accent-color);
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-bottom: 30px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: var(--alternate-color);
+}
+
+.Connexion {
+    border-radius: 50px;
+    padding: 15px;
+    border-color: var(--alternate-color);
+    background-color: #1251a3;
+    color: var(--alternate-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+#Email, #Mdp {
+    border-radius: 3px;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 50px;
+}
