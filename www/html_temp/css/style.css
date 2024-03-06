@@ -78,3 +78,24 @@ nav ul li {
 h1 {
     font-size: 50px;
 }
+
+.Message_erreur {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.Retour_accueil {
+    border-radius: 15px;
+    padding: 16px;
+    border-color: var(--alternate-color);
+    background-color: var(--accent-color);
+    color: var(--alternate-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+#Erreur {
+    font-size: 50px;
+    color: var(--accent-color);
+}
