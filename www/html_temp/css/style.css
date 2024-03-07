@@ -13,6 +13,11 @@ body {
     padding: 0;
     background-color: var(--background-color);
     color: var(--primary-color);
+    overflow: hidden;
+}
+
+header {
+    overflow: hidden;
 }
 
 #header-div {
@@ -23,6 +28,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     flex-direction: row;
+    /* background-color: var(--background-color); */
 }
 
 #header-div span {
@@ -31,30 +37,6 @@ body {
 
 #header-logo-section {
     height: 70px;
-}
-
-/* Petit écran */
-@media screen and (max-width: 500px) {
-    #header-div {
-        justify-content: center;
-        flex-direction: column;
-    }
-
-    #header-button-section {
-        justify-content: center;
-        margin: 4px 0;
-    }
-
-    .header-div span {
-        width: 16px;
-    }
-}
-
-/* Ecrans larges */
-@media (min-width: 2000px) {
-    #header-logo-section {
-        height: 90px;
-    }
 }
 
 img#logo {
@@ -179,6 +161,66 @@ input:checked~.slider {
     background-color: var(--secondary-color);
 }
 
+main {
+    position: absolute;
+    overflow-y: scroll;
+    top: 118.59px;
+    bottom: 0px;
+}
+
+/* Ecrans larges */
+@media (min-width: 2000px) {
+    #header-logo-section {
+        height: 90px;
+    }
+
+    main {
+        top: 138.59px;
+    }
+}
+
+/* Petit écran */
+@media (max-width: 600px) and (min-width: 280px) {
+    #header-div {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #header-button-section {
+        justify-content: center;
+        margin: 4px 0;
+    }
+
+    .header-div span {
+        width: 16px;
+    }
+
+    main {
+        top: 207.78px;
+    }
+}
+
+/* Ecran très fin */
+@media (max-width: 280px) {
+    #header-div {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #header-button-section {
+        justify-content: center;
+        margin: 4px 0;
+    }
+
+    .header-div span {
+        width: 16px;
+    }
+
+    main {
+        top: 258.88px;
+    }
+}
+
 nav {
     width: 100%;
 }
@@ -188,7 +230,6 @@ nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: var(--primary-color);
 }
 
@@ -216,7 +257,8 @@ nav a {
     text-decoration: none;
 }
 
-@media screen and (max-width: 600px) and (min-width: 280px) {
+/* Ecran peu large (téléphone) */
+@media (max-width: 600px) and (min-width: 280px) {
     /* Taille pour avoir 2 lien par ligne dans la barre de navigation */
     nav li {
         width: 50vw;
@@ -224,6 +266,7 @@ nav a {
         border-bottom: none;
     }
 
+    /* Bordure droite pour les cases de droite */
     nav li:nth-child(even) {
         border-right: 1px solid var(--primary-color);
     }
@@ -235,10 +278,22 @@ nav a {
     }
 }
 
-@media screen and (max-width: 280px) {
+/* Ecran extrèmement fin */
+@media (max-width: 280px) {
     /* Taille pour avoir 1 lien par ligne dans la barre de navigation */
     nav li {
         width: 100vw;
         padding: 0.2em 0;
+        border-bottom: none;
+    }
+    
+    /* Bordures de droite */
+    nav li:not(:last-child) {
+        border-right: 1px solid var(--primary-color);
+    }
+    
+    /* Bordure bas dernière case */
+    nav li:last-child {
+        border-bottom: 1px solid var(--primary-color);
     }
 }
