@@ -22,17 +22,39 @@ body {
     align-content: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    flex-direction: row;
 }
 
 #header-div span {
     width: 5vmin;
 }
 
-#header-div section {
-    height: 10vh;
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
+#header-logo-section {
+    height: 70px;
+}
+
+/* Petit écran */
+@media screen and (max-width: 500px) {
+    #header-div {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #header-button-section {
+        justify-content: center;
+        margin: 4px 0;
+    }
+
+    .header-div span {
+        width: 16px;
+    }
+}
+
+/* Ecrans larges */
+@media (min-width: 2000px) {
+    #header-logo-section {
+        height: 90px;
+    }
 }
 
 img#logo {
@@ -41,7 +63,10 @@ img#logo {
 }
 
 #header-button-section {
-    /* width: 40%; */
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     justify-content: flex-end;
     padding-right: 5vmin;
 }
@@ -52,16 +77,18 @@ img#logo {
     background-color: var(--accent-color-2);
     border-radius: 12px;
     border: none;
-    padding: 10px 15px;
+    padding: 6px 15px;
     box-sizing: content-box;
     font-weight: 500;
     font-size: large;
+    /* height: 2.6em; */
 }
 
-/* Todo change size for smaller screens */
-/* @media screen and (max-width: ) {
-    
-} */
+#div-switch {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
 
 .header-button:hover {
     background-color: var(--accent-color-1);
@@ -154,8 +181,6 @@ input:checked~.slider {
 
 nav {
     width: 100%;
-    /* margin: 0; */
-    /* margin: 0 1px; */
 }
 
 /* Liste à puce barre de navigation */
@@ -179,6 +204,11 @@ nav li {
     background-color: var(--background-color);
 }
 
+/* Retire les bordures de droite qui sont doublées */
+nav li:not(:last-child) {
+    border-right: none;
+}
+
 nav a {
     color: var(--primary-color);
     font-weight: 700;
@@ -186,23 +216,29 @@ nav a {
     text-decoration: none;
 }
 
-@media screen and (max-width: 600px) and (min-width: 400px) {
+@media screen and (max-width: 600px) and (min-width: 280px) {
     /* Taille pour avoir 2 lien par ligne dans la barre de navigation */
     nav li {
         width: 50vw;
+        padding: 0.3em 0;
+        border-bottom: none;
+    }
+
+    nav li:nth-child(even) {
+        border-right: 1px solid var(--primary-color);
     }
 
     /* Taille pour avoir 1 lien dans la dernière ligne de la barre de navigation */
     nav li:last-child {
         width: 100vw;
+        border: 1px solid var(--primary-color);
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 280px) {
     /* Taille pour avoir 1 lien par ligne dans la barre de navigation */
     nav li {
         width: 100vw;
+        padding: 0.2em 0;
     }
 }
-
-
