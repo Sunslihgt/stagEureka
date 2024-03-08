@@ -99,3 +99,141 @@ h1 {
     font-size: 50px;
     color: var(--accent-color);
 }
+
+.Creation_offre {
+    color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+}
+
+.rectangle-gris{
+    border-radius: 10px;
+    background-color: #efefef;
+    flex-direction: row;
+    margin-left: 150px;
+    margin-right: 150px; 
+}
+
+.Btn_creation_offre {
+    border-radius: 15px;
+    padding: 16px;
+    border-color: var(--alternate-color);
+    background-color: var(--accent-color);
+    color: var(--alternate-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn_offre {
+    display: flex;
+    justify-content: center;
+}
+
+.case_gene {
+    color:#ff0000;
+    border-color: #ff0000;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case_gene:active {
+    background-color: #ff0000;
+    color: var(--alternate-color);
+}
+
+.case_info {
+    color:#0077ff;
+    border-color: #0077ff;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case_info:active {
+    background-color: #0077ff;
+    color: var(--alternate-color);
+}
+
+.case_btp {
+    color: #ffa500;
+    border-color: #ffa500;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case_btp:active {
+    background-color: #ffa500;
+    color: var(--alternate-color);
+}
+
+.case_s3e {
+    color:#01a701;
+    border-color: #01a701;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case_s3e:active {
+    background-color: #01a701;
+    color: var(--alternate-color);
+}
+
+.categories {
+    display: flex;
+}
+
+.ligne1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colonne1, .colonne2, .colonne3 {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.espace_image {
+    padding: 160px;
+    margin-top: 10px;
+}
+
+.case_titre, .case_nom_ent, .case_localisation, .case_url, .case_competence {
+    width: 290px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
+
+.duree_remuneration {
+    display: flex;
+}
+
+.duree {
+    margin-right: 20px;
+}
+
+.case_duree, .case_remuneration, .case_place {
+    width: 55px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
+
+.case_description {
+    width: 98%;
+    border-radius: 5px; 
+    border-width: 0.5px;
+    padding: 10px;
+}
