@@ -114,7 +114,7 @@ h1 {
     margin-right: 150px; 
 }
 
-.Btn_creation_offre {
+.Btn-creation-offre {
     border-radius: 15px;
     padding: 16px;
     border-color: var(--alternate-color);
@@ -124,12 +124,12 @@ h1 {
     font-size: large;
 }
 
-.btn_offre {
+.btn-offre {
     display: flex;
     justify-content: center;
 }
 
-.case_gene {
+.case-gene {
     color:#ff0000;
     border-color: #ff0000;
     border-radius: 4px;
@@ -139,12 +139,12 @@ h1 {
     margin: 5px;
 }
 
-.case_gene:active {
+.case-gene:active {
     background-color: #ff0000;
     color: var(--alternate-color);
 }
 
-.case_info {
+.case-info {
     color:#0077ff;
     border-color: #0077ff;
     border-radius: 4px;
@@ -154,12 +154,12 @@ h1 {
     margin: 5px;
 }
 
-.case_info:active {
+.case-info:active {
     background-color: #0077ff;
     color: var(--alternate-color);
 }
 
-.case_btp {
+.case-btp {
     color: #ffa500;
     border-color: #ffa500;
     border-radius: 4px;
@@ -169,12 +169,12 @@ h1 {
     margin: 5px;
 }
 
-.case_btp:active {
+.case-btp:active {
     background-color: #ffa500;
     color: var(--alternate-color);
 }
 
-.case_s3e {
+.case-s3e {
     color:#01a701;
     border-color: #01a701;
     border-radius: 4px;
@@ -184,7 +184,7 @@ h1 {
     margin: 5px;
 }
 
-.case_s3e:active {
+.case-s3e:active {
     background-color: #01a701;
     color: var(--alternate-color);
 }
@@ -204,19 +204,19 @@ h1 {
     margin-right: 50px;
 }
 
-.espace_image {
+.espace-image {
     padding: 160px;
     margin-top: 10px;
 }
 
-.case_titre, .case_nom_ent, .case_localisation, .case_url, .case_competence {
+.case-titre, .case-nom-ent, .case-localisation, .case-url, .case-competence {
     width: 290px;
     border-radius: 5px;
     border-width: 0.5px;
     padding: 8px;
 }
 
-.duree_remuneration {
+.duree-remuneration {
     display: flex;
 }
 
@@ -224,14 +224,14 @@ h1 {
     margin-right: 20px;
 }
 
-.case_duree, .case_remuneration, .case_place {
+.case-duree, .case-remuneration, .case-place {
     width: 55px;
     border-radius: 5px;
     border-width: 0.5px;
     padding: 8px;
 }
 
-.case_description {
+.case-description {
     width: 98%;
     border-radius: 5px; 
     border-width: 0.5px;
