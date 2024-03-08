@@ -114,6 +114,11 @@ h1 {
     margin-right: 150px; 
 }
 
+#fleche-retour {
+    width: 90px;
+    margin-left: 10px;
+}
+
 .Btn-creation-offre {
     border-radius: 15px;
     padding: 16px;
