@@ -1,10 +1,14 @@
 :root {
+    /* Thème clair */
     --primary-color: #333333;
     --secondary-color: #cecece;
     --accent-color-1: #2e4283;
     --accent-color-2: #454acc;
     --alternate-color: #ffffff;
     --background-color: #ffffff;
+    
+    /* Thème sombre (voir theme.js) */
+
 }
 
 body {
@@ -35,16 +39,17 @@ header {
     width: 5vmin;
 }
 
-#header-logo-section {
+#header-logo-div {
     height: 70px;
+    padding-left: 10px;
 }
 
-img#logo {
+img.logo {
     overflow: hidden;
     height: 100%;
 }
 
-#header-button-section {
+#header-button-div {
     display: flex;
     align-content: center;
     align-items: center;
@@ -170,7 +175,7 @@ main {
 
 /* Ecrans larges */
 @media (min-width: 2000px) {
-    #header-logo-section {
+    #header-logo-div {
         height: 90px;
     }
 
@@ -186,7 +191,11 @@ main {
         flex-direction: column;
     }
 
-    #header-button-section {
+    #header-logo-div {
+        padding-left: 0;
+    }
+    
+    #header-button-div {
         justify-content: center;
         margin: 4px 0;
     }
@@ -207,7 +216,11 @@ main {
         flex-direction: column;
     }
 
-    #header-button-section {
+    #header-logo-div {
+        padding-left: 0;
+    }
+
+    #header-button-div {
         justify-content: center;
         margin: 4px 0;
     }
@@ -250,8 +263,18 @@ nav li:not(:last-child) {
     border-right: none;
 }
 
+nav li:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Couleur différente pour le bouton de navigation correspondant à la page actuelle */
+nav li.nav-selected:not(:hover) {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
 nav a {
-    color: var(--primary-color);
+    color: inherit;
     font-weight: 700;
     font-size: large;
     text-decoration: none;
@@ -278,7 +301,7 @@ nav a {
     }
 }
 
-/* Ecran extrèmement fin */
+/* Ecran extrèmement fin (support plus entièrement assuré si largeur <= 280) */
 @media (max-width: 280px) {
     /* Taille pour avoir 1 lien par ligne dans la barre de navigation */
     nav li {

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StagEureka</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js" defer></script>
 </head>
 <body>
     <header>
         <div id="header-div">
-            <section id="header-logo-section">
-                <img src="images/logo_complet.jpg" alt="Logo StagEureka" id="logo">
-            </section>
+            <div id="header-logo-div">
+                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light">
+                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark" hidden>
+            </div>
 
-            <section id="header-button-section">
+            <div id="header-button-div">
                 <button class="header-button">Connexion</button>
 
                 <span></span>
 
                 <div id="div-switch">
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="checkbox-theme">
                         <div class="slider"></div>
                         <div class="slider-card">
                             <div class="slider-card-face slider-card-front"></div>
@@ -28,20 +30,22 @@
                         </div>
                     </label>
                 </div>
-            </section>
+            </div>
         </div>
         <div>
             <nav>
                 <ul>
-                    <li><a href="accueil.html">Accueil</a></li>
-                    <li><a href="offres.html">Offres</a></li>
-                    <li><a href="entreprises.html">Entreprises</a></li>
-                    <li><a href="etudiants.html">Étudiants</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li id="nav-accueil"><a href="accueil.html">Accueil</a></li>
+                    <li id="nav-offres"><a href="offres.html">Offres</a></li>
+                    <li id="nav-entreprises"><a href="entreprises.html">Entreprises</a></li>
+                    <li id="nav-etudiants"><a href="etudiants.html">Étudiants</a></li>
+                    <li id="nav-contact"><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <script>document.getElementById("nav-accueil").classList.add("nav-selected");</script>
 
     <main>
         <h1>Bienvenue sur StagEureka !</h1>
@@ -83,6 +87,5 @@
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut neque aut nisi harum esse. Ex nostrum unde rem consequuntur temporibus veniam laudantium et quae minima ullam voluptatem, facere officiis inventore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius labore expedita ad est excepturi quam esse inventore consequuntur atque maiores eligendi, illum, a quasi odit vitae nemo consequatur? Doloribus, sunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quibusdam voluptates ab nulla itaque rem pariatur modi consequuntur laudantium, quidem, animi libero tempore aliquam harum facere repudiandae. Quis, optio voluptatem?
         </p>
     </main>
-
 </body>
 </html>
