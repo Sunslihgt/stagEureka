@@ -301,3 +301,41 @@ i {
 .case-visible, .case-non-visible {
     margin-left: 40px;
 }
+
+.Creation-entreprise {
+    color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+}
+
+.carre-gris{
+    border-radius: 10px;
+    background-color: #efefef;
+    flex-direction: row;
+    margin-left: 400px;
+    margin-right: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.Btn-creation-entreprise {
+    border-radius: 15px;
+    padding: 16px;
+    border-color: var(--alternate-color);
+    background-color: var(--accent-color);
+    color: var(--alternate-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn-entreprise {
+    display: flex;
+    justify-content: center;
+}
+
+.case-nom-ent, .case-localisation, .case-domaine {
+    width: 290px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
