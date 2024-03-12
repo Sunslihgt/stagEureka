@@ -2,7 +2,7 @@ const srcImageLight = "images/logo_complet_clair_compresse.jpg";
 const srcImageDark = "images/logo_complet_sombre_compresse.jpg";
 
 let theme = localStorage.getItem("theme");
-console.log("Theme au démarrage:", theme);
+// console.log("Theme au démarrage:", theme);
 if (theme == "light") {
     // console.log("Thème clair trouvé.");
     // changerTheme(true);
@@ -73,6 +73,11 @@ function changerTheme(light, logo) {
 function changerLogo(light) {
     const logoLight = document.getElementById("logo-light");
     const logoDark = document.getElementById("logo-dark");
+
+    if (logoLight === null || logoDark == null) {
+        return;
+    }
+
     if (light) {
         logoLight.style.display = "block";
         logoDark.style.display = "none";
@@ -80,5 +85,4 @@ function changerLogo(light) {
         logoLight.style.display = "none";
         logoDark.style.display = "block";
     }
-
 }

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StagEureka</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/theme.js" defer></script>
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/theme.js"></script>
+
 </head>
 <body>
     <header>
@@ -17,7 +19,9 @@
             </div>
 
             <div id="header-button-div">
-                <button class="header-button">Connexion</button>
+                <a href="connexion.html">
+                    <button class="header-button">Connexion</button>
+                </a>
 
                 <span></span>
 
@@ -26,12 +30,8 @@
                         <input type="checkbox" id="checkbox-theme">
                         <div class="slider"></div>
                         <div class="slider-carte">
-                            <div class="slider-carte-face slider-carte-gauche">
-                                <i class="fa-solid fa-sun icone-themes"></i>
-                            </div>
-                            <div class="slider-carte-face slider-carte-droite">
-                                <i class="fa-solid fa-moon icone-themes"></i>
-                            </div>
+                            <div class="slider-carte-face slider-carte-gauche"></div>
+                            <div class="slider-carte-face slider-carte-droite"></div>
                         </div>
                     </label>
                 </div>

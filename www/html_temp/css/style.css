@@ -133,18 +133,9 @@ img.logo {
     justify-content: center;
 }
 
-.icone-themes {
-    color: var(--secondary-color);
-}
-
 /* Cercle switch activé */
 .slider-carte-gauche {
     background-color: var(--primary-color);
-}
-
-/* Decalage vertical pour mieux aligner le symbole du thème clair */
-.slider-carte-gauche .icone-themes {
-    transform: translateY(-0.5px);
 }
 
 /* Cercle switch désactivé */
@@ -330,12 +321,6 @@ nav a {
     }
 }
 
-/*** FIN BARRE NAVIGATION ***/
-
-h1 {
-    font-size: 3em;
-}
-
 /*** PAGE D'ACCUEIL ***/
 
 #conteneur-accueil {
@@ -383,12 +368,14 @@ h1 {
     padding: 16px;
     border-style: none;
     background-color: var(--accent-color-1);
-    color: var(--background-color);
+    /* color: var(--primary-color); */
+    color: white;
     font-weight: bold;
     font-size: large;
     height: 60px;
     margin-top: 15px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .bouton-principal:hover {
@@ -396,9 +383,9 @@ h1 {
 }
 
 .bouton-principal:focus {
+    padding: 14px;
     background-color: var(--accent-color-2);
-    border-style: solid;
-    border-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 /*** FOOTER ***/
@@ -419,6 +406,7 @@ footer a {
     font-weight: 600;
 }
 
+/*** INFOS LEGALES / CONTACT ***/
 #conteneur-infos-legales {
     padding: 0 20px;
 }
@@ -431,3 +419,79 @@ footer a {
     color: var(--primary-color);
     font-weight: 600;
 }
+
+/*** ERREUR ***/
+.message-erreur {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-erreur span {
+    height: 80px;
+}
+
+#erreur {
+    font-size: 50px;
+    color: var(--accent-color);
+}
+
+/*** CONNEXION ***/
+main:has(.conteneur-connexion) {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding-top: 50px;
+}
+
+.conteneur-connexion {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: var(--accent-color-1);
+    color: var(--alternate-color);
+    min-width: max-content;
+    width: 30vw;
+    padding: 10px 20px 35px 20px;
+}
+
+.conteneur-connexion h1 {
+    font-size: 50px;
+}
+
+#email, #mdp {
+    margin-top: 4px;
+    border-radius: 6px;
+    border: none;
+    padding: 10px;
+    width: 30ch;
+}
+
+/* Mot de passe */
+#groupe-mdp i {
+    float: right;
+    transform: translateY(-275%);
+    color: var(--primary-color);
+    margin-right: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Bouton submit connexion */
+.connexion {
+    border-radius: 15px;
+    padding: 12px;
+    border: none;
+    background-color: var(--accent-color-2);
+    color: var(--alternate-color);
+    font-weight: bold;
+    font-size: large;
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 100%;
+}
+

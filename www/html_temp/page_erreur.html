@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="js/theme.js"></script>
 </head>
-
 <body>
     <header>
         <div id="header-div">
@@ -51,35 +49,26 @@
             </nav>
         </div>
         <!-- Surbrillance d'un des boutons de navigation en fonction de la page actuelle -->
-        <script>document.getElementById("nav-contact").classList.add("nav-selected");</script>
+        <!-- <script>document.getElementById("nav-contact").classList.add("nav-selected");</script> -->
     </header>
 
     <main>
-        <div id="conteneur-infos-legales">
-            <h3>Contact</h3>
-            <p>
-                Contact :<br>
-                cesi.sn.aks@protonmail.com
-            </p>
-            <br>
+        <div class="message-erreur">
+            <h1 id="erreur">Erreur</h1>
+            <label for="message-erreur">Une erreur inattendue est survenue</label> <br><br>
+            <span></span><!-- Espace vide pour aérer la page -->
 
-            <h3>Informations légales</h3>
+            <a href="accueil.html">
+                <input class="bouton-principal" type="submit" value="Retour à l'accueil">
+            </a>
 
-            <p>
-                StagEureka 2024<br>
-                Cookies fonctionnels uniquement
-            </p>
-        
-            <p>
-                Hébergement :<br>
-                <a href="https://www.alwaysdata.com">Alwaysdata</a>
-            </p>
         </div>
     </main>
-
+    
     <footer>
-        <a href="infos_legales.html">Informations légales</a>
+        <a href="infos_legales.html">
+            Informations légales
+        </a>
     </footer>
 </body>
-
 </html>
