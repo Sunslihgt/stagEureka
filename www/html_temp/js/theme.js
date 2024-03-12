@@ -56,6 +56,7 @@ function changerTheme(light, logo) {
         document.documentElement.style.setProperty("--accent-color-2", "#454acc");
         document.documentElement.style.setProperty("--alternate-color", "#ffffff");
         document.documentElement.style.setProperty("--background-color", "#ffffff");
+        document.documentElement.style.setProperty("--background-color-2", "#eeeeee");
     } else {
         document.documentElement.style.setProperty("--primary-color", "#ffffff");
         document.documentElement.style.setProperty("--secondary-color", "#bbbbbb");
@@ -63,6 +64,7 @@ function changerTheme(light, logo) {
         document.documentElement.style.setProperty("--accent-color-2", "#454acc");
         document.documentElement.style.setProperty("--alternate-color", "#ffffff");
         document.documentElement.style.setProperty("--background-color", "#0d0d0d");
+        document.documentElement.style.setProperty("--background-color-2", "#aaaaaa");
     }
 
     if (logo) {

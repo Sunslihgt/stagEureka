@@ -5,6 +5,8 @@
     --accent-color-1: #2e4283;
     --accent-color-2: #454acc;
     --alternate-color: #ffffff;
+    --background-color: #ffffff;
+    --background-color-2: #eeeeee;
     
     /* Thème sombre (voir theme.js) */
 
@@ -168,7 +170,7 @@ main {
     position: absolute;
     overflow-y: auto;
     top: 118.59px;
-    bottom: 0px;
+    bottom: 20px;
     left: 0px;
     right: 0px;
 }
@@ -482,7 +484,7 @@ main:has(.conteneur-connexion) {
 }
 
 /* Bouton submit connexion */
-.connexion {
+.btn-connexion {
     border-radius: 15px;
     padding: 12px;
     border: none;
@@ -494,4 +496,239 @@ main:has(.conteneur-connexion) {
     margin-top: 20px;
     width: 100%;
 }
+
+/*** CREATION ENTREPRISE ***/
+.conteneur-creation-entreprise {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteneur-creation-entreprise h1 {
+    color: var(--accent-color-1);
+}
+
+.carre-gris {
+    border-radius: 10px;
+    background-color: var(--background-color-2);
+    margin-left: 400px;
+    margin-right: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.case-nom-ent,
+.case-localisation,
+.case-domaine {
+    width: 290px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
+
+
+/*** CREATION OFFRE ***/
+.creation-offre {
+    color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+}
+
+.rectangle-gris{
+    border-radius: 10px;
+    background-color: #efefef;
+    flex-direction: row;
+    margin-left: 150px;
+    margin-right: 150px; 
+}
+
+#fleche-retour {
+    background-color: var(--alternate-color);
+    border: none;
+}
+
+i {
+   margin-left: 15px;
+   font-size: large;
+   color: var(--accent-color);
+}
+
+.btn-creation-offre {
+    border-radius: 15px;
+    padding: 16px;
+    border-color: var(--alternate-color);
+    background-color: var(--accent-color);
+    color: var(--alternate-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn-offre {
+    display: flex;
+    justify-content: center;
+}
+
+.case-gene {
+    color:#ff0000;
+    border-color: #ff0000;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case-gene:active {
+    background-color: #ff0000;
+    color: var(--alternate-color);
+}
+
+.case-info {
+    color:#0077ff;
+    border-color: #0077ff;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case-info:active {
+    background-color: #0077ff;
+    color: var(--alternate-color);
+}
+
+.case-btp {
+    color: #ffa500;
+    border-color: #ffa500;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case-btp:active {
+    background-color: #ffa500;
+    color: var(--alternate-color);
+}
+
+.case-s3e {
+    color:#01a701;
+    border-color: #01a701;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: bold;
+    width: 65px;
+    margin: 5px;
+}
+
+.case-s3e:active {
+    background-color: #01a701;
+    color: var(--alternate-color);
+}
+
+.categories {
+    display: flex;
+}
+
+.ligne1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colonne1, .colonne2, .colonne3 {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.espace-image {
+    padding: 160px;
+    margin-top: 10px;
+}
+
+.case-titre, .case-nom-ent, .case-localisation, .case-url, .case-competence {
+    width: 290px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
+
+.duree-remuneration {
+    display: flex;
+}
+
+.duree {
+    margin-right: 20px;
+}
+
+.case-duree, .case-remuneration, .case-place {
+    width: 55px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
+
+.case-description {
+    width: 98%;
+    border-radius: 5px; 
+    border-width: 0.5px;
+    padding: 10px;
+}
+
+
+.creation-entreprise {
+    color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+}
+
+.carre-gris{
+    border-radius: 10px;
+    background-color: #efefef;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+.btn-creation-entreprise {
+    border-radius: 15px;
+    padding: 16px;
+    border-color: var(--alternate-color);
+    background-color: var(--accent-color);
+    color: var(--alternate-color);
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn-entreprise {
+    display: flex;
+    justify-content: center;
+}
+
+.case-nom-ent, .case-localisation, .case-domaine {
+    width: 290px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
+
+.colonne1 {
+    display: grid; 
+    justify-content: center;
+    align-items: center;
+}
+
+.visibilite{
+    display: flex;
+}
+
+.case-visible, .case-non-visible {
+    margin-left: 40px;
+}
+
+
 

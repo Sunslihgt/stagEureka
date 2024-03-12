@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,25 @@
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="js/theme.js"></script>
-    <script src="js/password.js"></script>
 </head>
+
 <body>
     <header>
         <div id="header-div">
             <div id="header-logo-div">
-                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light">
+                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light"
+                    hidden>
                 <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark"
                     hidden>
             </div>
-    
+
             <div id="header-button-div">
                 <a href="connexion.html">
                     <button class="header-button">Connexion</button>
                 </a>
-    
+
                 <span></span>
-    
+
                 <div id="div-switch">
                     <label class="switch">
                         <input type="checkbox" id="checkbox-theme">
@@ -50,24 +52,40 @@
             </nav>
         </div>
         <!-- Surbrillance d'un des boutons de navigation en fonction de la page actuelle -->
-        <!-- <script>document.getElementById("nav-contact").classList.add("nav-selected");</script> -->
+        <script>document.getElementById("nav-entreprises").classList.add("nav-selected");</script>
     </header>
 
     <main>
-        <div class="conteneur-connexion">
-            <h1>Connexion</h1>
+        <button name="fleche-retour" id="fleche-retour" value="fleche-retour"><i class="fa-solid fa-arrow-left fa-3x" ></i></button>
+        
+        <div class="conteneur-creation-entreprise">
+            <h1>Création d'une entreprise</h1>
             
-            <form action="action.php">
-                <label for="email">Email :</label><br>
-                <input class="case" type="text" placeholder="mon.email@mail.fr" name="email" id="email" required ><br><br>
-                
-                <div id="groupe-mdp">
-                    <label for="mdp">Mot de passe :</label><br>
-                    <input class="case mdp" type="password" name="mdp" id="mdp" required ><br><br>
-                    <i class="icone-mdp fa-regular fa-eye"></i>
-                </div>
+            <form action="">
+                <fieldset class="carre-gris">
+                    <div class="entreprise">
+                        <label for="entreprise">Nom de l'entreprise :</label><br>
+                        <input class="case-nom-ent" type="text" name="entreprise" id="entreprise" required><br><br>
+                    </div>
                     
-                <input type="submit" class="btn-connexion" value="Se connecter">
+                    <div class="localisation">
+                        <label for="localisation">Localisation :</label><br>
+                        <input class="case-localisation" type="text" name="localisation" id="localisation" required><br><br>
+                    </div>
+                    <div class="domaine">
+                        <label for="domaine">Domaines :</label><br>
+                        <input class="case-domaine" type="text" name="domaine" id="domaine" required><br><br>
+                    </div>
+                    
+                    <div class="entreprise-visible-div">
+                        <label for="entreprise-visible-checkbox">Entreprise visible</label>
+                        <input type="checkbox" id="entreprise-visible-checkbox">
+                    </div>
+                </fieldset>
+                
+                <div class="btn-entreprise">
+                    <input class="bouton-principal" type="submit" value="Créer une entreprise">
+                </div>
             </form>
         </div>
     </main>
@@ -78,4 +96,5 @@
         </a>
     </footer>
 </body>
+
 </html>
