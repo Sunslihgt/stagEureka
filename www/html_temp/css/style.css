@@ -365,6 +365,12 @@ nav a {
     justify-content: center;
 }
 
+.conteneur-bouton-principal {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
 .bouton-principal {
     border-radius: 15px;
     padding: 16px;
@@ -498,59 +504,83 @@ main:has(.conteneur-connexion) {
 }
 
 /*** CREATION ENTREPRISE ***/
+#fleche-retour {
+    background-color: var(--alternate-color);
+    border: none;
+    position: absolute;
+    left: 10px;
+    top: 16px;
+    z-index: 99;
+}
+
 .conteneur-creation-entreprise {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.conteneur-creation-entreprise .rectangle-gris {
+    padding: 15px 50px 20px 50px;
+}
+
 .conteneur-creation-entreprise h1 {
     color: var(--accent-color-1);
 }
 
-.carre-gris {
-    border-radius: 10px;
-    background-color: var(--background-color-2);
-    margin-left: 400px;
-    margin-right: 400px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.case-nom-ent,
-.case-localisation,
-.case-domaine {
+/* Input de longueur standard */
+.case-standard {
     width: 290px;
     border-radius: 5px;
     border-width: 0.5px;
     padding: 8px;
 }
 
+/* Input de longueur courte */
+.case-court {
+    width: 70px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
 
 /*** CREATION OFFRE ***/
-.creation-offre {
-    color: var(--accent-color);
+.conteneur-creation-offre {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteneur-creation-offre h1 {
     display: flex;
     justify-content: center;
+    color: var(--accent-color-1);
 }
 
-.rectangle-gris{
+.rectangle-gris {
     border-radius: 10px;
-    background-color: #efefef;
+    background-color: var(--background-color-2);
+}
+
+.colonne {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 50px;
+    margin-bottom: auto;
+}
+
+.ligne {
+    display: flex;
     flex-direction: row;
-    margin-left: 150px;
-    margin-right: 150px; 
+    justify-content: center;
+    align-items: center;
 }
 
-#fleche-retour {
-    background-color: var(--alternate-color);
-    border: none;
-}
-
-i {
-   margin-left: 15px;
-   font-size: large;
-   color: var(--accent-color);
+/* Désactive le changement de la taille des textarea */
+textarea {
+    resize: none;
 }
 
 .btn-creation-offre {
@@ -568,167 +598,148 @@ i {
     justify-content: center;
 }
 
-.case-gene {
-    color:#ff0000;
-    border-color: #ff0000;
-    border-radius: 4px;
-    padding: 8px;
-    font-weight: bold;
-    width: 65px;
-    margin: 5px;
+.categories {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 17px;
 }
 
-.case-gene:active {
+.label-mineure {
+    width: 100%;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 2px solid;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.label-gene {
+    margin-left: 0;
+}
+
+.label-s3e {
+    margin-right: 0;
+}
+
+/* Permet de cacher un élément tout en permettant aux lecteurs d'écrans de pouvoir le lire */
+.accessibilite-invisible {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.case-mineure + .label-gene {
+    color:#ff0000;
+    border-color: #ff0000;
+}
+
+.case-mineure:checked + .label-gene {
     background-color: #ff0000;
     color: var(--alternate-color);
 }
 
-.case-info {
+.case-mineure + .label-info {
     color:#0077ff;
     border-color: #0077ff;
-    border-radius: 4px;
-    padding: 8px;
-    font-weight: bold;
-    width: 65px;
-    margin: 5px;
 }
 
-.case-info:active {
+.case-mineure:checked + .label-info {
     background-color: #0077ff;
     color: var(--alternate-color);
 }
 
-.case-btp {
+.case-mineure + .label-btp {
     color: #ffa500;
     border-color: #ffa500;
-    border-radius: 4px;
-    padding: 8px;
-    font-weight: bold;
-    width: 65px;
-    margin: 5px;
 }
 
-.case-btp:active {
+.case-mineure:checked + .label-btp {
     background-color: #ffa500;
     color: var(--alternate-color);
 }
 
-.case-s3e {
+.case-mineure + .label-s3e {
     color:#01a701;
     border-color: #01a701;
-    border-radius: 4px;
-    padding: 8px;
-    font-weight: bold;
-    width: 65px;
-    margin: 5px;
 }
 
-.case-s3e:active {
+.case-mineure:checked + .label-s3e {
     background-color: #01a701;
     color: var(--alternate-color);
 }
 
-.categories {
+.label-mineure:focus,
+.label-mineure:hover,
+.case-mineure:focus-within + .label-mineure {
+    outline: 2px solid var(--primary-color);
+    /* outline-offset: -1px; */
+    color: var(--primary-color);
+    /* border-width: 4px; */
+}
+
+#espace-image-offre {
     display: flex;
+    width: 280px;
+    height: 280px;
+    box-sizing: border-box;
 }
 
-.ligne1 {
+#image-offre {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Aligne sur une même ligne un label et son input en les collant aux extrémitées (label à gauche et input à droite) */
+.div-label-input-horizontal {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 19px;
 }
 
-.colonne1, .colonne2, .colonne3 {
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-.espace-image {
-    padding: 160px;
-    margin-top: 10px;
-}
-
-.case-titre, .case-nom-ent, .case-localisation, .case-url, .case-competence {
-    width: 290px;
-    border-radius: 5px;
-    border-width: 0.5px;
-    padding: 8px;
-}
-
-.duree-remuneration {
+.description {
     display: flex;
-}
-
-.duree {
-    margin-right: 20px;
-}
-
-.case-duree, .case-remuneration, .case-place {
-    width: 55px;
-    border-radius: 5px;
-    border-width: 0.5px;
-    padding: 8px;
+    flex-direction: column;
+    margin: 0 50px;
 }
 
 .case-description {
-    width: 98%;
     border-radius: 5px; 
     border-width: 0.5px;
     padding: 10px;
 }
 
+/* Ecran trop fin pour afficher le formulaire en colonnes */
+@media (max-width: 1320px) {
+    /* Tout mettre dans la même colonne */
+    .conteneur-creation-offre .ligne {
+        flex-direction: column;
+    }
 
-.creation-entreprise {
-    color: var(--accent-color);
-    display: flex;
-    justify-content: center;
+    /* Changer espacement colonnes et description */
+    .conteneur-creation-offre .colonne,
+    .conteneur-creation-offre .description {
+        margin: 19px 10px 0 10px;
+    }
+
+    /* Changer taille image */
+    #espace-image-offre {
+        width: 306px;
+        height: 306px;
+    }
 }
 
-.carre-gris{
-    border-radius: 10px;
-    background-color: #efefef;
-    flex-direction: row;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 500px;
-    margin-right: 500px;
-}
-
-.btn-creation-entreprise {
-    border-radius: 15px;
-    padding: 16px;
-    border-color: var(--alternate-color);
-    background-color: var(--accent-color);
-    color: var(--alternate-color);
-    font-weight: bold;
-    font-size: large;
-}
-
-.btn-entreprise {
-    display: flex;
-    justify-content: center;
-}
-
-.case-nom-ent, .case-localisation, .case-domaine {
+/* .case-nom-ent, .case-localisation, .case-domaine {
     width: 290px;
     border-radius: 5px;
     border-width: 0.5px;
     padding: 8px;
-}
-
-.colonne1 {
-    display: grid; 
-    justify-content: center;
-    align-items: center;
-}
-
-.visibilite{
-    display: flex;
-}
-
-.case-visible, .case-non-visible {
-    margin-left: 40px;
-}
-
-
-
+} */
