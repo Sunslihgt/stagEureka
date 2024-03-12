@@ -1,11 +1,10 @@
 :root {
-    /* Thème clair */
+    /* Thème clair (remplacé par theme.js) */
     --primary-color: #333333;
     --secondary-color: #cecece;
     --accent-color-1: #2e4283;
     --accent-color-2: #454acc;
     --alternate-color: #ffffff;
-    --background-color: #ffffff;
     
     /* Thème sombre (voir theme.js) */
 
@@ -25,14 +24,12 @@ header {
 }
 
 #header-div {
-    /* height: 10vh; */
     width: 100vw;
     display: flex;
     align-content: center;
     justify-content: space-between;
     flex-wrap: wrap;
     flex-direction: row;
-    /* background-color: var(--background-color); */
 }
 
 #header-div span {
@@ -59,8 +56,7 @@ img.logo {
 }
 
 .header-button {
-    /* margin-left: 10%; */
-    color: var(--alternate-color);
+    color: var(--background-color);
     background-color: var(--accent-color-2);
     border-radius: 12px;
     border: none;
@@ -68,7 +64,6 @@ img.logo {
     box-sizing: content-box;
     font-weight: 500;
     font-size: large;
-    /* height: 2.6em; */
 }
 
 #div-switch {
@@ -91,14 +86,14 @@ img.logo {
     height: 2em;
 }
 
-/* Hide default HTML checkbox */
+/* Cacher la checkbox pour changer de thème */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
+/* Element qui se déplace horizontalement pour le bouton thème */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -113,7 +108,7 @@ img.logo {
 }
 
 /* Arrière plan switch */
-.slider-card {
+.slider-carte {
     position: absolute;
     content: "";
     height: var(--circle-dim);
@@ -126,38 +121,50 @@ img.logo {
 }
 
 /* Conteneur du cercle du switch */
-.slider-card-face {
+.slider-carte-face {
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
     perspective: 1000px;
     border-radius: 50%;
     transition: 0.4s transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icone-themes {
+    color: var(--secondary-color);
 }
 
 /* Cercle switch activé */
-.slider-card-front {
+.slider-carte-gauche {
     background-color: var(--primary-color);
+}
+
+/* Decalage vertical pour mieux aligner le symbole du thème clair */
+.slider-carte-gauche .icone-themes {
+    transform: translateY(-0.5px);
 }
 
 /* Cercle switch désactivé */
-.slider-card-back {
-    background-color: var(--primary-color);
+.slider-carte-droite {
     transform: rotateY(180deg);
+    background-color: var(--primary-color);
 }
 
 /* Animation cercle du switch activé */
-input:checked~.slider-card .slider-card-back {
+input:checked~.slider-carte .slider-carte-droite {
     transform: rotateY(0);
 }
 
 /* Animation cercle du switch désactivé */
-input:checked~.slider-card .slider-card-front {
-    transform: rotateY(-180deg);
+input:checked~.slider-carte .slider-card-gauche {
+    transform: rotateY(180deg);
 }
 
 /* Déplacement horizontal du cercle du switch */
-input:checked~.slider-card {
+input:checked~.slider-carte {
     transform: translateX(1.5em);
 }
 
@@ -168,9 +175,11 @@ input:checked~.slider {
 
 main {
     position: absolute;
-    overflow-y: scroll;
+    overflow-y: auto;
     top: 118.59px;
     bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 /* Ecrans larges */
@@ -319,4 +328,106 @@ nav a {
     nav li:last-child {
         border-bottom: 1px solid var(--primary-color);
     }
+}
+
+/*** FIN BARRE NAVIGATION ***/
+
+h1 {
+    font-size: 3em;
+}
+
+/*** PAGE D'ACCUEIL ***/
+
+#conteneur-accueil {
+    display: flex;
+    margin: 0 5vw;
+    margin-top: 4em;
+    padding: 12px;
+    /* background-color: var(--secondary-color);
+    border-radius: 12px; */
+}
+
+#accueil-images-div {
+    display: flex;
+    align-items: center;
+}
+
+.image-accueil {
+    display: block;
+    max-width: 30vw;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+}
+
+/* Espace entre image et texte */
+#conteneur-accueil span {
+    width: max(8vw, 20px);
+}
+
+#conteneur-accueil h1 {
+    text-align: center;
+}
+
+#conteneur-accueil p {
+    text-align: justify;
+}
+
+#accueil-btn-div {
+    display: flex;
+    justify-content: center;
+}
+
+.bouton-principal {
+    border-radius: 15px;
+    padding: 16px;
+    border-style: none;
+    background-color: var(--accent-color-1);
+    color: var(--background-color);
+    font-weight: bold;
+    font-size: large;
+    height: 60px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.bouton-principal:hover {
+    background-color: var(--accent-color-2);
+}
+
+.bouton-principal:focus {
+    background-color: var(--accent-color-2);
+    border-style: solid;
+    border-color: var(--primary-color);
+}
+
+/*** FOOTER ***/
+footer {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--primary-color);
+    width: 100vw;
+    padding-top: 2px;
+    text-align: center;
+    
+}
+
+footer a {
+    margin: 6px 0;
+    color: var(--background-color);
+    font-size: medium;
+    font-weight: 600;
+}
+
+#conteneur-infos-legales {
+    padding: 0 20px;
+}
+
+#conteneur-infos-legales h3 {
+    font-size: 1.6em;
+}
+
+#conteneur-infos-legales a {
+    color: var(--primary-color);
+    font-weight: 600;
 }
