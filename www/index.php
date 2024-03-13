@@ -14,4 +14,4 @@
 //     afficher_accueil();
 // }
 
-header("Location: http_temp/accueil.html");
+header("Location: html_temp/accueil.html");
