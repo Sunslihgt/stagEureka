@@ -202,10 +202,6 @@ main {
         margin: 4px 0;
     }
 
-    .header-div span {
-        width: 16px;
-    }
-
     main {
         top: 207.78px;
     }
@@ -225,10 +221,6 @@ main {
     #header-button-div {
         justify-content: center;
         margin: 4px 0;
-    }
-
-    .header-div span {
-        width: 16px;
     }
 
     main {
@@ -590,21 +582,6 @@ main:has(.conteneur-connexion) {
 /* Désactive le changement de la taille des textarea */
 textarea {
     resize: none;
-}
-
-.btn-creation-offre {
-    border-radius: 15px;
-    padding: 16px;
-    border-color: var(--alternate-color);
-    background-color: var(--accent-color);
-    color: var(--alternate-color);
-    font-weight: bold;
-    font-size: large;
-}
-
-.btn-offre {
-    display: flex;
-    justify-content: center;
 }
 
 .categories {
