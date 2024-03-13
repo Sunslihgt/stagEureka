@@ -152,7 +152,7 @@ input:checked~.slider-carte .slider-carte-droite {
 }
 
 /* Animation cercle du switch désactivé */
-input:checked~.slider-carte .slider-card-gauche {
+input:checked~.slider-carte .slider-carte-gauche {
     transform: rotateY(180deg);
 }
 
@@ -543,6 +543,15 @@ main:has(.conteneur-connexion) {
     padding: 8px;
 }
 
+/* Aligne sur une même ligne un label et son input en les collant aux extrémitées (label à gauche et input à droite) */
+.div-label-input-horizontal {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 19px;
+}
+
 /*** CREATION OFFRE ***/
 .conteneur-creation-offre {
     display: flex;
@@ -696,15 +705,6 @@ textarea {
     max-height: 100%;
 }
 
-/* Aligne sur une même ligne un label et son input en les collant aux extrémitées (label à gauche et input à droite) */
-.div-label-input-horizontal {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 19px;
-}
-
 .description {
     display: flex;
     flex-direction: column;
@@ -736,10 +736,3 @@ textarea {
         height: 306px;
     }
 }
-
-/* .case-nom-ent, .case-localisation, .case-domaine {
-    width: 290px;
-    border-radius: 5px;
-    border-width: 0.5px;
-    padding: 8px;
-} */
