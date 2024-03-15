@@ -5,6 +5,8 @@
     --accent-color-1: #2e4283;
     --accent-color-2: #454acc;
     --alternate-color: #ffffff;
+    --background-color: #ffffff;
+    --background-color-2: #eeeeee;
     
     /* Thème sombre (voir theme.js) */
 
@@ -495,3 +497,37 @@ main:has(.conteneur-connexion) {
     width: 100%;
 }
 
+/*** CREATION D'UN ETUDIANT ***/
+.rectangle-gris {
+    border-radius: 10px;
+    background-color: var(--background-color-2);
+}
+
+.colonne {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 50px;
+    margin-bottom: auto;
+}
+
+.ligne {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteneur-creation-etudiant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteneur-creation-etudiant .rectangle-gris {
+    padding: 15px 50px 20px 50px;
+}
+
+.conteneur-creation-etudiant h1 {
+    color: var(--accent-color-1);
+}

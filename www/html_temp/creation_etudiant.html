@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StagEureka</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/theme.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div id="header-div">
+            <div id="header-logo-div">
+                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light"
+                    hidden>
+                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark"
+                    hidden>
+            </div>
+
+            <div id="header-button-div">
+                <a href="connexion.html">
+                    <button class="header-button">Connexion</button>
+                </a>
+
+                <span></span>
+
+                <div id="div-switch">
+                    <label class="switch">
+                        <input type="checkbox" id="checkbox-theme">
+                        <div class="slider"></div>
+                        <div class="slider-carte">
+                            <div class="slider-carte-face slider-carte-gauche"></div>
+                            <div class="slider-carte-face slider-carte-droite"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <nav>
+                <ul>
+                    <li id="nav-accueil"><a href="accueil.html">Accueil</a></li>
+                    <li id="nav-offres"><a href="offres.html">Offres</a></li>
+                    <li id="nav-entreprises"><a href="entreprises.html">Entreprises</a></li>
+                    <li id="nav-etudiants"><a href="etudiants.html">Étudiants</a></li>
+                    <li id="nav-contact"><a href="infos_legales.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Surbrillance d'un des boutons de navigation en fonction de la page actuelle -->
+        <script>document.getElementById("nav-accueil").classList.add("nav-selected");</script>
+    </header>
+
+
+    <main>
+        <button name="fleche-retour" id="fleche-retour" value="fleche-retour"><i
+                class="fa-solid fa-arrow-left fa-3x"></i></button>
+
+        <div class="conteneur-creation-etudiant">
+            <h1 class="creation-etudiant">Création d'un compte étudiant</h1>
+            <fieldset class="rectangle-gris">
+                <div class="ligne">
+                    <div class="colonne">
+                        <div class="nom-etudiant">
+                            <label for="nom-etudiant">Nom de l'étudiant :</label><br>
+                            <input class="case-nom-etud" type="text" name="nom-etudiant" id="nom-etudiant"
+                                required><br><br>
+                        </div>
+
+                        <div class="prenom-etudiant">
+                            <label for="prenom-etudiant">Prénom de l'étudiant :</label><br>
+                            <input class="case-prenom-etudiant" type="text" name="prenom-etudiant" id="prenom-etudiant"
+                                required><br><br>
+                        </div>
+                    </div>
+                    <div class="colonne">
+                        <div class="email-etudiant">
+                            <label for="email-etudiant">Email :</label><br>
+                            <input class="case-email-etudiant" type="text" name="email-etudiant" id="email-etudiant"
+                                required><br><br>
+                        </div>
+                        <div class="mdp-etudiant">
+                            <label for="mdp-etudiant">Mot de passe :</label><br>
+                            <input class="case-mdp-etudiant" type="text" name="mdp-etudiant" id="mdp-etudiant"
+                                required><br><br>
+                        </div>
+                    </div>
+                    <div class="colonne">
+                        <div class="classe-etudiant">
+                            <label for="classe-etudiant">Classe :</label><br>
+                            <input class="case-classe-etudiant" type="text" name="classe-etudiant" id="classe-etudiant"
+                                required><br><br>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <br>
+            <div class="conteneur-bouton-principal">
+                <input class="bouton-principal" type="submit" value="Créer un compte étudiant">
+            </div>
+            </br>
+        </div>
+
+    </main>
+
+
+    <footer>
+        <a href="infos_legales.html">
+            Informations légales
+        </a>
+    </footer>
+</body>
+
+</html>
