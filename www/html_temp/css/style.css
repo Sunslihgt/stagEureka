@@ -772,3 +772,24 @@ textarea {
         margin-top: 0;
     }
 }
+
+/*** MODIFICATION D'UN PILOTE ***/
+.conteneur-modification-pilote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteneur-modification-pilote h1 {
+    color: var(--accent-color-1);
+}
+
+@media (max-width: 1320px) {
+    .conteneur-modification-pilote .ligne {
+        flex-direction: column;
+    }
+
+    .conteneur-modification-pilote .colonne:not(:first-child) {
+        margin-top: 0;
+    }
+}
