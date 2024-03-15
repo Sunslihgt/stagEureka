@@ -751,3 +751,24 @@ textarea {
         margin-top: 0;
     }
 }
+
+/*** CREATION D'UN PILOTE ***/
+.conteneur-creation-pilote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteneur-creation-pilote h1 {
+    color: var(--accent-color-1);
+}
+
+@media (max-width: 1320px) {
+    .conteneur-creation-pilote .ligne {
+        flex-direction: column;
+    }
+
+    .conteneur-creation-pilote .colonne:not(:first-child) {
+        margin-top: 0;
+    }
+}

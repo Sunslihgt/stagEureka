@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Création étudiant - StagEureka</title>
+    <title>Création pilote - StagEureka</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="js/theme.js"></script>
+
 </head>
 
 <body>
@@ -50,43 +51,43 @@
             </nav>
         </div>
         <!-- Surbrillance d'un des boutons de navigation en fonction de la page actuelle -->
-        <script>document.getElementById("nav-etudiants").classList.add("nav-selected");</script>
+        <script>document.getElementById("nav-accueil").classList.add("nav-selected");</script>
     </header>
 
 
     <main>
-        <button name="fleche-retour" id="fleche-retour" value="fleche-retour"><i class="fa-solid fa-arrow-left fa-3x"></i></button>
+        <button name="fleche-retour" id="fleche-retour" value="fleche-retour"><i
+                class="fa-solid fa-arrow-left fa-3x"></i></button>
 
-        <div class="conteneur-creation-etudiant">
-            <h1>Création d'un compte étudiant</h1>
-            
+        <div class="conteneur-creation-pilote">
+            <h1 class="creation-etudiant">Création d'un compte pilote</h1>
             <fieldset class="rectangle-gris">
                 <div class="ligne">
                     <div class="colonne">
-                        <div class="nom-etudiant">
-                            <label for="nom-etudiant">Nom de l'étudiant :</label><br>
-                            <input class="case-standard" type="text" name="nom-etudiant" id="nom-etudiant" required><br><br>
+                        <div class="nom-pilote">
+                            <label for="nom-pilote">Nom du pilote :</label><br>
+                            <input class="case-standard" type="text" name="nom-pilote" id="nom-pilote" required><br><br>
                         </div>
 
-                        <div class="prenom-etudiant">
-                            <label for="prenom-etudiant">Prénom de l'étudiant :</label><br>
-                            <input class="case-standard" type="text" name="prenom-etudiant" id="prenom-etudiant" required><br><br>
+                        <div class="prenom-pilote">
+                            <label for="prenom-pilote">Prénom du pilote :</label><br>
+                            <input class="case-standard" type="text" name="prenom-pilote" id="prenom-pilote" required><br><br>
                         </div>
                     </div>
                     <div class="colonne">
-                        <div class="email-etudiant">
-                            <label for="email-etudiant">Email :</label><br>
-                            <input class="case-standard" type="text" name="email-etudiant" id="email-etudiant" required><br><br>
+                        <div class="email-pilote">
+                            <label for="email-pilote">Email :</label><br>
+                            <input class="case-standard" type="text" name="email-pilote" id="email-pilote" required><br><br>
                         </div>
-                        <div class="mdp-etudiant">
-                            <label for="mdp-etudiant">Mot de passe :</label><br>
-                            <input class="case-standard" type="text" name="mdp-etudiant" id="mdp-etudiant" required><br><br>
+                        <div class="mdp-pilote">
+                            <label for="mdp-pilote">Mot de passe :</label><br>
+                            <input class="case-standard" type="text" name="mdp-pilote" id="mdp-pilote" required><br><br>
                         </div>
                     </div>
                     <div class="colonne">
-                        <div class="classe-etudiant">
-                            <label for="classe-etudiant">Classe :</label><br>
-                            <input class="case-standard" type="text" name="classe-etudiant" id="classe-etudiant" required><br><br>
+                        <div class="classe-pilote">
+                            <label for="classe-pilote">Classes :</label><br>
+                            <input class="case-standard" type="text" name="classe-pilote" id="classe-pilote" required><br><br>
                         </div>
                     </div>
                 </div>
@@ -95,7 +96,7 @@
 
             <br>
             <div class="conteneur-bouton-principal">
-                <input class="bouton-principal" type="submit" value="Créer un compte étudiant">
+                <input class="bouton-principal" type="submit" value="Créer un compte pilote">
             </div>
             </br>
         </div>
