@@ -793,3 +793,24 @@ textarea {
         margin-top: 0;
     }
 }
+
+/*** MODIFICATION D'UN ETUDIANT ***/
+.conteneur-modification-etudiant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteneur-modification-etudiant h1 {
+    color: var(--accent-color-1);
+}
+
+@media (max-width: 1320px) {
+    .conteneur-modification-etudiant .ligne {
+        flex-direction: column;
+    }
+
+    .conteneur-modification-etudiant .colonne:not(:first-child) {
+        margin-top: 0;
+    }
+}
