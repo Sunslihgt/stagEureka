@@ -49,7 +49,7 @@ window.onload = () => {
 function changerTheme(light, logo) {
     // console.log("changerTheme, clair=", light)
     
-    if (light) {
+    if (light) {  // Thème clair
         document.documentElement.style.setProperty("--primary-color", "#333333");
         document.documentElement.style.setProperty("--secondary-color", "#cecece");
         document.documentElement.style.setProperty("--accent-color-1", "#2e4283");
@@ -57,14 +57,14 @@ function changerTheme(light, logo) {
         document.documentElement.style.setProperty("--alternate-color", "#ffffff");
         document.documentElement.style.setProperty("--background-color", "#ffffff");
         document.documentElement.style.setProperty("--background-color-2", "#eeeeee");
-    } else {
+    } else {  // Thème sombre
         document.documentElement.style.setProperty("--primary-color", "#ffffff");
         document.documentElement.style.setProperty("--secondary-color", "#bbbbbb");
-        document.documentElement.style.setProperty("--accent-color-1", "#2e4283");
-        document.documentElement.style.setProperty("--accent-color-2", "#454acc");
+        document.documentElement.style.setProperty("--accent-color-1", "#122f8f");
+        document.documentElement.style.setProperty("--accent-color-2", "#2028ff");
         document.documentElement.style.setProperty("--alternate-color", "#ffffff");
         document.documentElement.style.setProperty("--background-color", "#0d0d0d");
-        document.documentElement.style.setProperty("--background-color-2", "#aaaaaa");
+        document.documentElement.style.setProperty("--background-color-2", "#333333");
     }
 
     if (logo) {

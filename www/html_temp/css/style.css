@@ -58,7 +58,7 @@ img.logo {
 }
 
 .header-button {
-    color: var(--background-color);
+    color: #ffffff;  /* On veut que le bouton soit toujours blanc */
     background-color: var(--accent-color-2);
     border-radius: 12px;
     border: none;
@@ -497,12 +497,13 @@ main:has(.conteneur-connexion) {
 
 /*** CREATION ENTREPRISE ***/
 #fleche-retour {
-    background-color: var(--alternate-color);
+    background-color: unset;
     border: none;
     position: absolute;
     left: 10px;
     top: 16px;
     z-index: 99;
+    color: var(--primary-color);
 }
 
 .conteneur-creation-entreprise {
