@@ -10,7 +10,6 @@
     
     /* Thème sombre (voir theme.js) */
 
-    --cartes-color: #ebebeb;
 }
 
 body {
@@ -537,6 +536,14 @@ main:has(.conteneur-connexion) {
     padding: 8px;
 }
 
+/* Input de longueur standard pour un filtre de recherche */
+.case-recherche {
+    width: 180px;
+    border-radius: 5px;
+    border-width: 0.5px;
+    padding: 8px;
+}
+
 /* Aligne sur une même ligne un label et son input en les collant aux extrémitées (label à gauche et input à droite) */
 .div-label-input-horizontal {
     width: 100%;
@@ -815,29 +822,37 @@ textarea {
         margin-top: 0;
     }
 }
+
+/*** LISTE DES ENTREPRISES ***/
 .main-affichage {
     display: flex;
-    margin:20px;
-    margin-right: 10px;
+    /* margin: 20px; */
+    /* margin-right: 10px; */
+    padding: 20px;
 }
 
 .block-recherche {
     color: var(--background-color);
     background-color: var(--accent-color-1);
-    padding: 10px;
+    padding: 15px;
     font-weight: bold;
     text-align: center;
     border-radius: 10px;
-    margin-top: 110px;
+    margin-top: 97px;
 }
 
-#block-recherche-entreprises {
-    height: 420px;
+.block-recherche label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* #block-recherche-entreprises {
+    height: 400px;
 }
 
 #block-recherche-pilotes {
     height: 240px;
-}
+} */
 
 #block-options {
     margin-left: 55px;
@@ -880,10 +895,12 @@ input[name="options"] {
     margin-top: 50px;
     display: block;
     border: 1px solid var(--background-color);
+    background-color: var(--background-color);
     border-radius: 4px;
-    padding: 5px;
+    padding: 10px 25px;
     cursor: pointer;
     box-shadow: 0 0 3px;
+    font-size: 18px;
 }
 
 .bouton-filtrage:hover {
@@ -896,7 +913,7 @@ input[name="options"] {
     width: 100%; /*à inclure selon taille écran */
 }
 
-.haut-page {
+.haut-page-liste-resultats {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -905,20 +922,19 @@ input[name="options"] {
 #haut-h1 {
     color: var(--accent-color-1);
     font-size: 40px;
-    margin-left: 20px;
-    text-decoration: underline;
+    margin-left: 10px;
 }
 
 #haut-bouton {
-    border-radius: 15px;
+    height: 60px;
+    margin: auto 0;
     padding: 16px;
     border-color: var(--background-color);
     background-color: var(--accent-color-1);
     color: var(--background-color);
     font-weight: bold;
     font-size: large;
-    height: 60px;
-    margin-top: 30px;
+    border-radius: 15px;
     cursor: pointer;
 }
 
@@ -927,7 +943,7 @@ input[name="options"] {
 }
 
 .info-carte {
-    background-color: var(--cartes-color);
+    background-color: var(--background-color-2);
     border: 2px solid var(--primary-color);
     padding: 5px;
     border-radius: 8px;
@@ -1010,6 +1026,7 @@ input[name="options"] {
     display: flex;
     text-align: center;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .pagination-cartes {

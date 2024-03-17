@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Création pilote - StagEureka</title>
+    <title>Liste des entreprises - StagEureka</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/StagEureka-logo_200x200.jpg" type="image/jpeg">
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
     <script src="js/theme.js"></script>
@@ -45,10 +46,10 @@
             <nav>
                 <ul>
                     <li id="nav-accueil"><a href="accueil.html">Accueil</a></li>
-                    <li id="nav-offres"><a href="offres.html">Offres</a></li>
+                    <li id="nav-offres"><a href="liste_offres.html">Offres</a></li>
                     <li id="nav-entreprises"><a href="entreprises.html">Entreprises</a></li>
-                    <li id="nav-etudiants"><a href="etudiants.html">Étudiants</a></li>
-                    <li id="nav-contact"><a href="infos_legales.html">Contact</a></li>
+                    <li id="nav-etudiants"><a href="liste_etudiants.html">Étudiants</a></li>
+                    <li id="nav-pilotes"><a href="liste_pilotes.html">Pilotes</a></li>
                 </ul>
             </nav>
         </div>
@@ -62,11 +63,11 @@
                 <div class="barres-recherche">
                     <div class="element-recherche" id="entreprise-recherche">
                         <label for="nom-entreprise-filtre">Nom de l'entreprise :</label>
-                        <input type="text" placeholder="Recherche via l'entreprise" class="boite-recherche" id="nom-entreprise-filtre">
+                        <input type="text" placeholder="Recherche via l'entreprise" class="case-recherche" id="nom-entreprise-filtre">
                     </div>
                     <div class="element-recherche" id="localisation-recherche">
                         <label for="nom-localisation-filtre">Localisation :</label>
-                        <input type="text" placeholder="Recherche via localisation" class="boite-recherche" id="nom-localisation-filtre">
+                        <input type="text" placeholder="Recherche via localisation" class="case-recherche" id="nom-localisation-filtre">
                     </div>
                 </div>
                 <div class="recherche-etoiles">
@@ -91,18 +92,288 @@
                         </div>
                     </div>
                 </div>
+                <button type="submit" class="bouton-filtrage">Filtrer</button>
             </div>
-            <button type="submit" class="bouton-filtrage">Filtrer</button>
         </form>
 
         <div class="affichage-cartes">
-            <div class="haut-page">
+            <div class="haut-page-liste-resultats">
                 <h1 id="haut-h1">Liste des Entreprises</h1>
                 <button id="haut-bouton">Ajouter une Entreprise</button>
             </div>
 
             <div id="selection-entreprise">
-                <div class="carte" id="1">
+                <div class="carte" id="carte-entreprise-1">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'entreprise</p>
+                            <p class="element-carte-valeur">Aaaaa</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Localisation</p>
+                            <p class="element-carte-valeur">St Nazaire</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Domaines</p>
+                            <p class="element-carte-valeur">Naval</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Postulants</p>
+                            <p class="element-carte-valeur">42</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des pilotes</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des étudiants</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carte" id="carte-entreprise-1">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'entreprise</p>
+                            <p class="element-carte-valeur">Aaaaa</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Localisation</p>
+                            <p class="element-carte-valeur">St Nazaire</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Domaines</p>
+                            <p class="element-carte-valeur">Naval</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Postulants</p>
+                            <p class="element-carte-valeur">42</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des pilotes</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des étudiants</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carte" id="carte-entreprise-1">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'entreprise</p>
+                            <p class="element-carte-valeur">Aaaaa</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Localisation</p>
+                            <p class="element-carte-valeur">St Nazaire</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Domaines</p>
+                            <p class="element-carte-valeur">Naval</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Postulants</p>
+                            <p class="element-carte-valeur">42</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des pilotes</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des étudiants</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carte" id="carte-entreprise-1">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'entreprise</p>
+                            <p class="element-carte-valeur">Aaaaa</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Localisation</p>
+                            <p class="element-carte-valeur">St Nazaire</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Domaines</p>
+                            <p class="element-carte-valeur">Naval</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Postulants</p>
+                            <p class="element-carte-valeur">42</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des pilotes</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des étudiants</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carte" id="carte-entreprise-1">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'entreprise</p>
+                            <p class="element-carte-valeur">Aaaaa</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Localisation</p>
+                            <p class="element-carte-valeur">St Nazaire</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Domaines</p>
+                            <p class="element-carte-valeur">Naval</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Postulants</p>
+                            <p class="element-carte-valeur">42</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des pilotes</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des étudiants</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carte" id="carte-entreprise-1">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'entreprise</p>
+                            <p class="element-carte-valeur">Aaaaa</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Localisation</p>
+                            <p class="element-carte-valeur">St Nazaire</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Domaines</p>
+                            <p class="element-carte-valeur">Naval</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Postulants</p>
+                            <p class="element-carte-valeur">42</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des pilotes</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des étudiants</p>
+                            <p class="etoiles-bleues">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carte" id="carte-entreprise-1">
                     <div class="info-carte">
                         <div class="element-carte">
                             <p class="element-carte-titre">Nom de l'entreprise</p>
@@ -163,6 +434,12 @@
             </div>
         </div>
     </main>
+    
+    <footer>
+        <a href="infos_legales.html">
+            Informations légales
+        </a>
+    </footer>
 </body>
 
 </html>
