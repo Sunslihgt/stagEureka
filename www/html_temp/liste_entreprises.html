@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Samuel, Killian, Adélie">
+    <meta name="description" content="Liste des entreprises">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StagEureka</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/StagEureka-logo_200x200.jpg" type="image/jpeg">
+    <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <main class="main-affichage">
+        <div class="block-recherche" id="block-recherche-entreprises">
+            <div class="barres-recherche">
+                <div class="element-recherche" id="entreprise-recherche">
+                    <p>Nom de l'entreprise :</p>
+                    <input type="text" placeholder="Recherche via l'entreprise" class="boite-recherche">
+                </div>
+                <div class="element-recherche" id="localisation-recherche">
+                    <p>Localisation :</p>
+                    <input type="text" placeholder="Recherche via localisation" class="boite-recherche">
+                </div>
+            </div>
+            <div class="recherche-etoiles">
+                <div class="element-recherche" id="note-pilotes">
+                    <p id="titre-pilotes">Note des pilotes :</p>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                </div>
+                <div class="element-recherche" id="note-etudiants">
+                    <p id="titre-etudiants">Note des étudiants :</p>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                    <button class="etoile"><i class="fa-regular fa-star"></i></button>
+                </div>
+            </div>
+
+            <button class="bouton-filtrage">Filtrer</button>
+        </div>
+
+        <div class="affichage-cartes">
+            <div class="haut-page">
+                <h1 id="haut-h1">Liste des Entreprises</h1>
+                <button id="haut-bouton">Ajouter une Entreprise</button>
+            </div>
+
+            <div id="selection-entreprise">
+                <div class="carte" id="1">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'entreprise</p>
+                            <p class="element-carte-valeur">Aaaaa</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Localisation</p>
+                            <p class="element-carte-valeur">St Nazaire</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Domaines</p>
+                            <p class="element-carte-valeur">Naval</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Postulants</p>
+                            <p class="element-carte-valeur">42</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des pilotes</p>
+                            <p class="etoiles-bleues"><i class="fa-regular fa-star"></i><i
+                                    class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                                    class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Note des étudiants</p>
+                            <p class="etoiles-bleues"><i class="fa-solid fa-star"></i><i
+                                    class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                                    class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+                        </div>
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i
+                                    class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i
+                                    class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-cartes">
+                    <div class="nav-cartes" id="nav-entreprises">
+                        <button class="bouton-nav bouton-minimum"><i class="fa-solid fa-angles-left"></i></button>
+                        <button class="bouton-nav bouton-precedent"><i class="fa-solid fa-angle-left"></i></button>
+                        <button class="bouton-nav bouton-numero-precedent">1</button>
+                        <button class="bouton-nav bouton-numero-actuel">2</button>
+                        <button class="bouton-nav bouton-numero-suivant">99</button>
+                        <button class="bouton-nav bouton-suivant"><i class="fa-solid fa-angle-right"></i></button>
+                        <button class="bouton-nav bouton-extremum"><i class="fa-solid fa-angles-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Samuel, Killian, Adélie">
+    <meta name="description" content="Liste des Offres">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StagEureka</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/StagEureka-logo_200x200.jpg" type="image/jpeg">
+    <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <main class="main-affichage">
+        <div class="block-recherche" id="block-recherche-offres">
+            <div class="barres-recherche">
+                <div class="element-recherche" id="offre-recherche">
+                    <p>Nom de l'offre :</p>
+                    <input type="text" placeholder="Recherche via le nom" class="boite-recherche">
+                </div>
+                <div class="element-recherche" id="localisation-recherche">
+                    <p>Localisation :</p>
+                    <input type="text" placeholder="Recherche via le prénom" class="boite-recherche">
+                </div>
+                <div class="element-recherche" id="duree-recherche">
+                    <p>Durée :</p>
+                    <input type="range" min="2" max="20" id="slider-duree">
+                </div>
+                <div class="element-recherche" id="remuneration-recherche">
+                    <p>Rémunération :</p>
+                    <input type="range" min="650" max="2000" id="slider-duree">
+                </div>
+                <div class="element-recherche" id="wishlist">
+                    <p id="titre-wishlist">Wishlist</p>
+                    <label id="recherche-etoile" for="checkbox-wishlist"><i class="fa-regular fa-star"></i></label>
+                    <input type="checkbox" class="checkbox-invisible" id="checkbox-wishlist" name="wishlist-etoile">
+                </div>
+                <div class="element-recherche" id="options">
+                    <label for="Options">Options</label><br><br>
+
+                    <div id="block-options">
+                        <input type="checkbox" name="options" value="gene" id="gene">
+                        <label2 class="checkbox-options" for="gene">Géné</label2><br>
+                        <input type="checkbox" name="options" value="info" id="info">
+                        <label2 class="checkbox-options" for="info">Info</label2><br>
+                        <input type="checkbox" name="options" value="S3E" id="S3E">
+                        <label2 class="checkbox-options" for="S3E">S3E</label2><br>
+                        <input type="checkbox" name="options" value="BTP" id="BTP">
+                        <label2 class="checkbox-options" for="BTP">BTP</label2>
+                    </div>
+                </div>
+            </div>
+
+            <button class="bouton-filtrage">Filtrer</button>
+        </div>
+
+        <div class="affichage-cartes">
+            <div class="haut-page">
+                <h1 id="haut-h1">Liste des Offres</h1>
+                <button id="haut-bouton">Ajouter une Offre</button>
+            </div>
+
+            <div id="selection-entreprise">
+                <div class="carte" id="1">
+                    <div class="info-carte">
+                        <div class="element-partition">
+                            <div class="nom-offre-titre">Stage BLABLABLA test -&23</div>
+                            <!-- Image -->
+                            <img src=".jpg" alt="IMAGE">
+                        </div>
+
+                        <div class="element-partition">
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Nom du pilote</p>
+                                <p class="element-carte-valeur">AAAAA</p>
+                            </div>
+
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Nom du pilote</p>
+                                <p class="element-carte-valeur">AAAAA</p>
+                            </div>
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Localisation</p>
+                                <p class="element-carte-valeur">Bbbbb</p>
+                            </div>
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Durée </p>
+                                <p class="element-carte-valeur">Ccccc</p>
+                            </div>
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Rémunération</p>
+                                <p class="element-carte-valeur">1000$/mois</p>
+                            </div>
+                        </div>
+
+                        <div class="element-partition">
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Compétences attendues</p>
+                                <p class="element-carte-valeur">AAAAAAAAA - aaaaaa</p>
+                            </div>
+
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Catégories</p>
+                                <!-- Mettre les 4 boutons des spécialités ici  -->
+                            </div>
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Places disponibles</p>
+                                <p class="element-carte-valeur">AAAAAAAAA - aaaaaa</p>
+                            </div>
+                        </div>
+
+                        <div class="element-partition">
+                            <div class="boutons-carte">
+                                <div class="boutons-partition">
+                                    <p class="offre-date">10/10/1200</p>
+                                </div>
+
+                                <div class="boutons-partition">
+                                    <input type="checkbox" class="checkbox-invisible" id="bouton-wish"
+                                        name="wishlist-etoile">
+                                </div>
+                                
+                                <div class="boutons-partition">
+                                    <label class="bouton-carte bouton-wishlist" id="bouton-wish" for="bouton-wish"><i
+                                            class="fa-regular fa-star"></i></label>
+                                
+                                </div>
+                                <div class="boutons-partition">
+                                    <button class="bouton-carte bouton-modification"><i
+                                            class="fa-solid fa-pen"></i></button>
+                                
+                                    <button class="bouton-carte bouton-suppression"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-cartes">
+                    <div class="nav-cartes" id="nav-entreprises">
+                        <button class="bouton-nav bouton-minimum"><i class="fa-solid fa-angles-left"></i></button>
+                        <button class="bouton-nav bouton-precedent"><i class="fa-solid fa-angle-left"></i></button>
+                        <button class="bouton-nav bouton-numero-precedent">1</button>
+                        <button class="bouton-nav bouton-numero-actuel">2</button>
+                        <button class="bouton-nav bouton-numero-suivant">99</button>
+                        <button class="bouton-nav bouton-suivant"><i class="fa-solid fa-angle-right"></i></button>
+                        <button class="bouton-nav bouton-extremum"><i class="fa-solid fa-angles-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
