@@ -62,38 +62,56 @@
             <div class="block-recherche" id="block-recherche-offres">
                 <div class="barres-recherche">
                     <div class="element-recherche" id="offre-recherche">
-                        <p>Nom de l'offre :</p>
-                        <input type="text" placeholder="Recherche via le nom" class="case-recherche">
+                        <label for="filtre-nom-offre">Nom de l'offre :</label>
+                        <input type="text" placeholder="Recherche via le nom" class="case-recherche" id="filtre-nom-offre">
                     </div>
                     <div class="element-recherche" id="localisation-recherche">
-                        <p>Localisation :</p>
-                        <input type="text" placeholder="Recherche via le prénom" class="case-recherche">
+                        <label for="conteneur-localisation-filtre">Localisation :</label>
+                        <div id="conteneur-localisation-filtre">
+                            <input type="number" placeholder="Numéro" class="case-recherche" id="filtre-localisation-num">
+                            <input type="text" placeholder="Rue" class="case-recherche" id="filtre-localisation-rue">
+                            <input type="text" placeholder="Ville" class="case-recherche" id="filtre-localisation-ville">
+                        </div>
                     </div>
                     <div class="element-recherche" id="duree-recherche">
-                        <p>Durée :</p>
-                        <input type="range" min="2" max="20" id="slider-duree">
+                        <label for="conteneur-duree-filtre">Durée (mois) :</label>
+                        <div id="conteneur-duree-filtre">
+                            <input type="number" class="case-court" placeholder="Minimum">
+                            < <!-- Symbole plus "petit que" entre le minimum et maximum -->
+                            <input type="number" class="case-court" placeholder="Maximum">
+                        </div>
                     </div>
                     <div class="element-recherche" id="remuneration-recherche">
-                        <p>Rémunération :</p>
-                        <input type="range" min="650" max="2000" id="slider-duree">
+                        <label for="conteneur-remuneration-filtre">Rémunération (€/mois) :</label>
+                        <div id="conteneur-remuneration-filtre">
+                            <input type="number" class="case-court" placeholder="Minimum">
+                            < <!-- Symbole plus "petit que" entre le minimum et maximum -->
+                            <input type="number" class="case-court" placeholder="Maximum">
+                            <!-- <input type="range" min="650" max="2000" id="slider-duree"> -->
+                        </div>
                     </div>
                     <div class="element-recherche" id="wishlist">
-                        <p id="titre-wishlist">Wishlist</p>
-                        <label id="recherche-etoile" for="checkbox-wishlist"><i class="fa-regular fa-star"></i></label>
-                        <input type="checkbox" class="checkbox-invisible" id="checkbox-wishlist" name="wishlist-etoile">
+                        <label for="conteneur-wishlist-filtre">Wishlist</label>
+                        <div id="conteneur-wishlist-filtre">
+                            <input type="checkbox" name="wishlist" class="case-wishlist accessibilite-invisible" id="filtre-wishlist">
+                            <label class="label-wishlist" for="filtre-wishlist"><i class="fa-regular fa-star"></i></label>
+                        </div>
                     </div>
                     <div class="element-recherche" id="options">
-                        <label for="Options">Options</label><br><br>
+                        <label for="block-mineure">Mineure</label>
 
-                        <div id="block-options">
-                            <input type="checkbox" name="options" value="gene" id="gene">
-                            <label2 class="checkbox-options" for="gene">Géné</label2><br>
-                            <input type="checkbox" name="options" value="info" id="info">
-                            <label2 class="checkbox-options" for="info">Info</label2><br>
-                            <input type="checkbox" name="options" value="S3E" id="S3E">
-                            <label2 class="checkbox-options" for="S3E">S3E</label2><br>
-                            <input type="checkbox" name="options" value="BTP" id="BTP">
-                            <label2 class="checkbox-options" for="BTP">BTP</label2>
+                        <div id="block-mineure"><!-- Choix de mineure(s) (checkbox)-->
+                            <input type="checkbox" name="mineure" class="case-mineure accessibilite-invisible" id="gene" value="GENE" checked>
+                            <label class="label-mineure label-gene" for="gene">GENE</label>
+
+                            <input type="checkbox" name="mineur" class="case-mineure accessibilite-invisible" id="info" value="INFO" checked>
+                            <label class="label-mineure label-info" for="info">INFO</label>
+
+                            <input type="checkbox" name="mineur" class="case-mineure accessibilite-invisible" id="btp" value="BTP" checked>
+                            <label class="label-mineure label-btp" for="btp">BTP</label>
+
+                            <input type="checkbox" name="mineur" class="case-mineure accessibilite-invisible" id="s3e" value="S3E" checked>
+                            <label class="label-mineure label-s3e" for="s3e">S3E</label>
                         </div>
                     </div>
                 </div>
@@ -118,11 +136,6 @@
                         </div>
 
                         <div class="element-partition">
-                            <div class="element-carte">
-                                <p class="element-carte-titre">Nom du pilote</p>
-                                <p class="element-carte-valeur">AAAAA</p>
-                            </div>
-
                             <div class="element-carte">
                                 <p class="element-carte-titre">Nom du pilote</p>
                                 <p class="element-carte-valeur">AAAAA</p>
@@ -155,30 +168,32 @@
                                 <p class="element-carte-titre">Places disponibles</p>
                                 <p class="element-carte-valeur">AAAAAAAAA - aaaaaa</p>
                             </div>
+
+                            <div class="boutons-partition">
+                                <p class="offre-date">10/10/1200</p>
+                            </div>
                         </div>
 
                         <div class="element-partition">
                             <div class="boutons-carte">
                                 <div class="boutons-partition">
-                                    <p class="offre-date">10/10/1200</p>
-                                </div>
-
-                                <div class="boutons-partition">
-                                    <input type="checkbox" class="checkbox-invisible" id="bouton-wish"
-                                        name="wishlist-etoile">
-                                </div>
-                                
-                                <div class="boutons-partition">
-                                    <label class="bouton-carte bouton-wishlist" id="bouton-wish" for="bouton-wish"><i
-                                            class="fa-regular fa-star"></i></label>
-                                
+                                    <button class="bouton-carte bouton-wishlist">
+                                        <i class="fa-regular fa-star centrer-icone"></i>
+                                    </button>
+                                    <!-- <input type="checkbox" name="wishlist" class="case-wishlist accessibilite-invisible" id="wishlist-filtre" value="wishlist" disabled>
+                                    <label class="bouton-carte bouton-wishlist" for="wishlist-filtre">
+                                        <i class="fa-regular fa-star"></i>
+                                    </label> -->
                                 </div>
                                 <div class="boutons-partition">
-                                    <button class="bouton-carte bouton-modification"><i
-                                            class="fa-solid fa-pen"></i></button>
-                                
-                                    <button class="bouton-carte bouton-suppression"><i
-                                            class="fa-solid fa-trash"></i></button>
+                                    <button class="bouton-carte bouton-modification">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+                                </div>
+                                <div class="boutons-partition">
+                                    <button class="bouton-carte bouton-suppression">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>

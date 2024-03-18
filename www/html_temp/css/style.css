@@ -544,6 +544,18 @@ main:has(.conteneur-connexion) {
     padding: 8px;
 }
 
+/* Cache les flèches haut bas pour les input de type nombre */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
 /* Aligne sur une même ligne un label et son input en les collant aux extrémitées (label à gauche et input à droite) */
 .div-label-input-horizontal {
     width: 100%;
@@ -593,6 +605,17 @@ textarea {
     resize: none;
 }
 
+/* Permet de cacher un élément tout en permettant aux lecteurs d'écrans de pouvoir le lire */
+.accessibilite-invisible {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
 .categories {
     display: flex;
     justify-content: space-between;
@@ -611,23 +634,12 @@ textarea {
     cursor: pointer;
 }
 
-.label-gene {
+.categories .label-gene {
     margin-left: 0;
 }
 
-.label-s3e {
+.categories .label-s3e {
     margin-right: 0;
-}
-
-/* Permet de cacher un élément tout en permettant aux lecteurs d'écrans de pouvoir le lire */
-.accessibilite-invisible {
-    clip: rect(0 0 0 0);
-    clip-path: inset(100%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
 }
 
 .case-mineure + .label-gene {
@@ -674,9 +686,7 @@ textarea {
 .label-mineure:hover,
 .case-mineure:focus-within + .label-mineure {
     outline: 2px solid var(--primary-color);
-    /* outline-offset: -1px; */
     color: var(--primary-color);
-    /* border-width: 4px; */
 }
 
 #espace-image-offre {
@@ -854,40 +864,69 @@ textarea {
     height: 240px;
 } */
 
-#block-options {
-    margin-left: 55px;
+#block-mineure {
+    /* margin-left: 55px; */
     text-align: left;
+}
+
+#block-mineure label {
+    box-sizing: border-box;
+}
+
+#block-mineure .case-mineure:not(:checked) + .label-mineure {
+    background-color: #d6d6d6;
+    border-color: #d6d6d6;
+    color: var(--primary-color);
 }
 
 .element-recherche {
     margin-bottom: 25px;
 }
 
-.recherche-etoiles button {
-    color: var(--accent-color-2);
-    font-weight: bold;
-    justify-content: center;
-    border: 1px solid var(--background-color);
-    border-radius: 5px;
-    padding: 5px;
-    cursor: pointer;
-    box-shadow: 0 0 3px;
-}
-
-.recherche-etoiles button:hover {
-    color: var(--background-color);
-    background: var(--accent-color-2);
-}
-
-input[name="options"] {
-    cursor: pointer;
-}
-  
 #recherche-etoile {
     cursor: pointer;
     padding-left: 25px;
 }
 
+.recherche-etoiles button {
+    color: var(--accent-color-2);
+    font-weight: bold;
+    justify-content: center;
+    border: none;
+    background: none;
+    /* border: 1px solid var(--background-color); */
+    /* border-radius: 5px; */
+    padding: 5px;
+    cursor: pointer;
+    /* box-shadow: 0 0 3px; */
+}
+
+/* .recherche-etoiles button:hover {
+    color: var(--background-color);
+    background: var(--accent-color-2);
+} */
+
+.label-wishlist {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 4px;
+    color: var(--accent-color-2);
+    background-color: var(--background-color);
+    cursor: pointer;
+}
+
+#conteneur-localisation-filtre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#conteneur-localisation-filtre input {
+    margin-bottom: 3px;
+}
+
+/* Bouton de validation des filtres */
 .bouton-filtrage {
     font-weight: bold;
     justify-content: center;
@@ -976,6 +1015,14 @@ input[name="options"] {
     font-weight: bold;
 }
 
+.champ-etoiles {
+    background-color: white;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 3px 5px;
+    border-radius: 4px;
+}
+
 .etoiles-bleues {
     color: var(--accent-color-1);
 }
@@ -1037,7 +1084,7 @@ input[name="options"] {
     border-radius: 8px;
     column-gap: 12px;
     background: var(--background-color);
-    box-shadow: 0 0 3px;
+    /* box-shadow: 0 0 3px; */
     height: 30px;
     width: 300px;
 }
@@ -1065,6 +1112,6 @@ input[name="options"] {
   background: var(--accent-color-2);
 }
 
-.checkbox-invisible {
-    opacity: 10%;
+.centrer-icone {
+    transform: translate(0, -4%);
 }

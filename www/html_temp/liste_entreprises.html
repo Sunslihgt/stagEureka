@@ -73,35 +73,37 @@
                 <div class="recherche-etoiles">
                     <div class="element-recherche" id="note-pilotes">
                         <label for="etoiles-pilote-filtre">Note des pilotes :</label>
-                        <div id="etoiles-pilote-filtre">
+                        <div class="champ-etoiles" id="etoiles-pilote-filtre">
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                         </div>
+                        <input type="hidden" name="note-pilote" id="note-pilote" value="0">
                     </div>
                     <div class="element-recherche" id="note-etudiants">
                         <label for="etoiles-etudiant-filtre">Note des étudiants :</label>
-                        <div id="etoiles-etudiant-filtre">
+                        <div class="champ-etoiles" id="etoiles-etudiant-filtre">
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                             <button class="etoile"><i class="fa-regular fa-star"></i></button>
                         </div>
+                        <input type="hidden" name="note-etudiant" id="note-etudiant" value="0">
                     </div>
                 </div>
                 <button type="submit" class="bouton-filtrage">Filtrer</button>
             </div>
         </form>
-
+        
         <div class="affichage-cartes">
             <div class="haut-page-liste-resultats">
                 <h1 id="haut-h1">Liste des Entreprises</h1>
                 <button id="haut-bouton">Ajouter une Entreprise</button>
             </div>
-
+            
             <div id="selection-entreprise">
                 <div class="carte" id="carte-entreprise-1">
                     <div class="info-carte">
