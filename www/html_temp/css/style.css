@@ -54,7 +54,7 @@ img.logo {
     align-items: center;
     flex-wrap: wrap;
     justify-content: flex-end;
-    padding-right: 5vmin;
+    padding-right: 20px;
 }
 
 .header-button {
@@ -200,8 +200,9 @@ main {
     #header-button-div {
         justify-content: center;
         margin: 4px 0;
+        padding-right: 0px;
     }
-
+    
     main {
         top: 207.78px;
     }
@@ -213,7 +214,7 @@ main {
         justify-content: center;
         flex-direction: column;
     }
-
+    
     #header-logo-div {
         padding-left: 0;
     }
@@ -221,6 +222,7 @@ main {
     #header-button-div {
         justify-content: center;
         margin: 4px 0;
+        padding-right: 0px;
     }
 
     main {
@@ -833,7 +835,7 @@ textarea {
     }
 }
 
-/*** LISTE DES ENTREPRISES ***/
+/*** LISTE DES ENTREPRISES/OFFRES/PILOTES/ETUDIANTS ***/
 .main-affichage {
     display: flex;
     /* margin: 20px; */
@@ -871,6 +873,7 @@ textarea {
 
 #block-mineure label {
     box-sizing: border-box;
+    margin: 5px 0;
 }
 
 #block-mineure .case-mineure:not(:checked) + .label-mineure {
@@ -889,22 +892,21 @@ textarea {
 }
 
 .recherche-etoiles button {
+    margin-left: -2px;
+    margin-right: -2px;
+    padding: 5px 7px;
     color: var(--accent-color-2);
-    font-weight: bold;
-    justify-content: center;
-    border: none;
     background: none;
-    /* border: 1px solid var(--background-color); */
-    /* border-radius: 5px; */
-    padding: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
     cursor: pointer;
     /* box-shadow: 0 0 3px; */
 }
 
-/* .recherche-etoiles button:hover {
-    color: var(--background-color);
-    background: var(--accent-color-2);
-} */
+.recherche-etoiles button:hover {
+    background-color: var(--secondary-color);
+}
 
 .label-wishlist {
     width: fit-content;
@@ -965,7 +967,8 @@ textarea {
 }
 
 #haut-bouton {
-    height: 60px;
+    min-height: 60px;
+    height: fit-content;
     margin: auto 0;
     padding: 16px;
     border-color: var(--background-color);
@@ -1027,18 +1030,20 @@ textarea {
     color: var(--accent-color-1);
 }
 
-.boutons-carte span {
-    margin: 3px
-}
-
+/* Boutons modification et supression d'une des cartes de résultat */
 .boutons-carte {
+    display: flex;
     margin-right: 5px;
-    display: block;
     text-align: center;
     align-items: center;
     flex-wrap: wrap;
     align-content: center;
-    justify-content:center;
+    justify-content: center;
+}
+
+/* Ecart entre les boutons des cartes */
+.boutons-carte span {
+    margin: 6px
 }
 
 .boutons-partition {
@@ -1114,4 +1119,156 @@ textarea {
 
 .centrer-icone {
     transform: translate(0, -4%);
+}
+
+/* Titre et bouton ajouter élément en 2 lignes */
+@media (max-width: 480px) {
+    .haut-page-liste-resultats {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .haut-page-liste-resultats #haut-h1,
+    .haut-page-liste-resultats #haut-bouton {
+        margin-bottom: 10px;
+    }
+}
+
+/* LISTE ENTREPRISES */
+
+/* Filtres en 2 colonnes */
+@media (max-width: 900px) {
+    /* Aligne verticalement les filtres et le contenu */
+    #main-liste-entreprises {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Place les filtres en haut */
+    #main-liste-entreprises .block-recherche {
+        margin-top: 0;
+        width: fit-content;
+    }
+
+    /* Supprime le décalage gauche du contenu principal (encadré du titre et des cartes d'entreprise) */
+    #main-liste-entreprises .affichage-cartes {
+        margin-left: 0;
+    }
+
+    /* Filtres en 2 colonnes pour chaque ligne */
+    #main-liste-entreprises .barres-recherche,
+    #main-liste-entreprises .recherche-etoiles {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #main-liste-entreprises span {
+        margin: 12px;
+    }
+    
+    .block-recherche label {
+        margin-bottom: 1px;
+    }
+
+    #main-liste-entreprises button[type="submit"] {
+        margin-top: 15px;
+    }
+}
+
+/* Filtres en 1 colonne */
+@media (max-width: 530px) {
+    /* Filtres en 2 colonnes pour chaque ligne */
+    #main-liste-entreprises .barres-recherche,
+    #main-liste-entreprises .recherche-etoiles {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #block-recherche-entreprises span {
+        margin: 0;
+    }
+}
+
+/* Cache certains des champs des résultats pour gagner de la place */
+@media (max-width: 1110px) and (min-width: 700px) {
+    .carte-entreprise #div-carte-domaine,
+    .carte-entreprise #div-carte-places {
+        display: none;
+    }
+}
+
+/* Cache plus de champs pour gagner de la place */
+@media (max-width: 700px) {
+    .carte-entreprise #div-carte-domaine,
+    .carte-entreprise #div-carte-places,
+    .carte-entreprise #div-carte-note-pilote,
+    .carte-entreprise #div-carte-note-etudiant {
+        display: none;
+    }
+}
+
+/* LISTE PILOTES */
+
+/* Filtres en 1 colonne */
+@media (max-width: 900px) {
+    /* Aligne verticalement les filtres et le contenu */
+    #main-liste-pilotes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Place les filtres en haut */
+    #main-liste-pilotes .block-recherche {
+        margin-top: 0;
+        width: fit-content;
+    }
+
+    /* Supprime le décalage gauche du contenu principal (encadré du titre et des cartes d'entreprise) */
+    #main-liste-pilotes .affichage-cartes {
+        margin-left: 0;
+    }
+}
+
+/* LISTE ETUDIANTS */
+
+/* Filtres en 2 colonnes */
+@media (max-width: 900px) {
+    /* Aligne verticalement les filtres et le contenu */
+    #main-liste-etudiants {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Place les filtres en haut */
+    #main-liste-etudiants .block-recherche {
+        margin-top: 0;
+        width: fit-content;
+    }
+
+    /* Supprime le décalage gauche du contenu principal (encadré du titre et des cartes d'entreprise) */
+    #main-liste-etudiants .affichage-cartes {
+        margin-left: 0;
+    }
+
+    /* Filtres en 2 colonnes pour chaque ligne */
+    #main-liste-etudiants .barres-recherche {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #main-liste-etudiants span {
+        margin: 0;
+    }
+
+    #main-liste-etudiants .block-recherche label {
+        margin-bottom: 1px;
+    }
+
+    #main-liste-etudiants button[type="submit"] {
+        margin-top: 15px;
+    }
 }
