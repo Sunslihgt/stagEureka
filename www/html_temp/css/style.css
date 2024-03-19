@@ -35,7 +35,7 @@ header {
 }
 
 #header-div span {
-    width: 5vmin;
+    width: 20px;
 }
 
 #header-logo-div {
@@ -324,8 +324,6 @@ nav a {
     margin: 0 5vw;
     margin-top: 4em;
     padding: 12px;
-    /* background-color: var(--secondary-color);
-    border-radius: 12px; */
 }
 
 #accueil-images-div {
@@ -370,7 +368,6 @@ nav a {
     padding: 16px;
     border-style: none;
     background-color: var(--accent-color-1);
-    /* color: var(--primary-color); */
     color: white;
     font-weight: bold;
     font-size: large;
@@ -835,11 +832,9 @@ textarea {
     }
 }
 
-/*** LISTE DES ENTREPRISES/OFFRES/PILOTES/ETUDIANTS ***/
+/*** LISTE DES ENTREPRISES/OFFRES/PILOTES/ETUDIANTS (CODE COMMUN) ***/
 .main-affichage {
     display: flex;
-    /* margin: 20px; */
-    /* margin-right: 10px; */
     padding: 20px;
 }
 
@@ -858,16 +853,11 @@ textarea {
     margin-bottom: 5px;
 }
 
-/* #block-recherche-entreprises {
-    height: 400px;
+#block-recherche-offres {
+    margin-bottom: 20px;
 }
 
-#block-recherche-pilotes {
-    height: 240px;
-} */
-
 #block-mineure {
-    /* margin-left: 55px; */
     text-align: left;
 }
 
@@ -924,7 +914,8 @@ textarea {
     align-items: center;
 }
 
-#conteneur-localisation-filtre input {
+/* Espace vertical entre les 3 champs horizontaux pour l'adresse */
+#conteneur-localisation-filtre input:not(:last-child) {
     margin-bottom: 3px;
 }
 
@@ -951,7 +942,7 @@ textarea {
 
 .affichage-cartes {
     margin-left: 20px;
-    width: 100%; /*à inclure selon taille écran */
+    width: 100%; /* à inclure selon taille écran */
 }
 
 .haut-page-liste-resultats {
@@ -1006,16 +997,6 @@ textarea {
 .element-carte-titre {
     font-weight: bold;
     font-size: large;
-}
-
-.nom-offre-titre {
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 40px;
-}
-
-.element-carte-titre {
-    font-weight: bold;
 }
 
 .champ-etoiles {
@@ -1234,7 +1215,7 @@ textarea {
 
 /* LISTE ETUDIANTS */
 
-/* Filtres en 2 colonnes */
+/* Filtres en 1 colonne */
 @media (max-width: 900px) {
     /* Aligne verticalement les filtres et le contenu */
     #main-liste-etudiants {
@@ -1253,15 +1234,11 @@ textarea {
         margin-left: 0;
     }
 
-    /* Filtres en 2 colonnes pour chaque ligne */
+    /* Filtres en 1 colonne */
     #main-liste-etudiants .barres-recherche {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-    }
-
-    #main-liste-etudiants span {
-        margin: 0;
     }
 
     #main-liste-etudiants .block-recherche label {
@@ -1270,5 +1247,122 @@ textarea {
 
     #main-liste-etudiants button[type="submit"] {
         margin-top: 15px;
+    }
+}
+
+/* Cache plus de champs pour gagner de la place */
+@media (max-width: 480px) {
+    .carte-etudiant #div-carte-campus {
+        display: none;
+    }
+}
+
+/* LISTE OFFRES */
+
+/* Titre offre */
+.nom-offre-titre {
+    font-weight: bold;
+    /* text-decoration: underline; */
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+/* Titre de l'offre */
+.element-carte-titre {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 4px;
+}
+
+.element-carte-valeur {
+    margin-top: 0;
+}
+
+/* Cadre image liste offres */
+.fieldset-image-offre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* height: 280px; */
+    /* aspect-ratio: 1; */
+    padding: 1px;
+    box-sizing: border-box;
+}
+
+.fieldset-image-offre:has(.image-offre-liste[hidden]) {
+    display: none;
+}
+
+/* Image liste offres */
+.image-offre-liste {
+    max-width: 100%;
+    max-height: 100%;
+    height: fit-content;
+}
+
+/* Centre la mineure de l'offre */
+.carte-mineure-offre {
+    display: flex;
+    justify-content: center;
+    margin-top: -4px;
+}
+
+/* Taille de l'étiquette de la mineure */
+.label-mineure-offre {
+    display: block;
+    padding: 6px 10px;
+    width: 6ch;
+}
+
+/* Filtres en 2 colonnes */
+@media (max-width: 900px) {
+
+    /* Aligne verticalement les filtres et le contenu */
+    #main-liste-offres {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Place les filtres en haut */
+    #main-liste-offres .block-recherche {
+        margin-top: 0;
+        width: fit-content;
+    }
+
+    /* Supprime le décalage gauche du contenu principal (encadré du titre et des cartes d'entreprise) */
+    #main-liste-offres .affichage-cartes {
+        margin-left: 0;
+    }
+
+    /* Filtres en 2 colonnes pour chaque ligne */
+    #main-liste-offres .barres-recherche {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    #main-liste-offres span {
+        margin: 12px;
+    }
+    
+    #main-liste-offres .block-recherche label {
+        margin-bottom: 1px;
+    }
+    
+    #main-liste-offres button[type="submit"] {
+        margin-top: 15px;
+    }
+}
+
+/* Filtres en 1 colonne */
+@media (max-width: 540px) {
+    /* Filtres en 1 colonne */
+    #main-liste-offres .barres-recherche {
+        flex-direction: column;
+    }
+
+    #main-liste-offres span {
+        margin: 0;
     }
 }
