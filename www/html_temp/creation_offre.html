@@ -7,6 +7,7 @@
     <meta name="description" content="Page de création d'offre du site StagEureka">
     <title>Création offre - StagEureka</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/StagEureka-logo_200x200.jpg" type="image/jpeg">
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="js/theme.js"></script>
@@ -22,21 +23,19 @@
             </div>
 
             <div id="header-button-div">
-                <a href="connexion.html">
-                    <button class="header-button">Connexion</button>
-                </a>
+                <a class="header-button" href="connexion.html">Connexion</a>
 
                 <span></span>
 
                 <div id="div-switch">
-                    <label class="switch">
+                    <div class="switch">
                         <input type="checkbox" id="checkbox-theme">
-                        <div class="slider"></div>
+                        <label class="slider" for="checkbox-theme"></label>
                         <div class="slider-carte">
                             <div class="slider-carte-face slider-carte-gauche"></div>
                             <div class="slider-carte-face slider-carte-droite"></div>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +59,7 @@
 
         <div class="conteneur-creation-offre">
             <h1>Création d'une offre</h1>
-            <form action="" method="get">
+            <form action="wip_creation_offre.php" method="get">
                 <fieldset class="rectangle-gris">
                 
                 <div class="ligne">
@@ -92,7 +91,7 @@
                     </div>
 
                     <div class="colonne">
-                        <label for="categories">Catégories :</label>
+                        <h3>Catégorie :</h3>
                         <div class="categories">
                             <input type="radio" name="mineure-offre" class="case-mineure accessibilite-invisible" id="gene" value="GENE" required checked>
                             <label class="label-mineure label-gene" for="gene">GENE</label>
@@ -113,19 +112,19 @@
                         </div>
 
                         <div class="url">
-                            <label for="URL">URL de l'image :</label><br>
+                            <h3>URL de l'image :</h3><br>
                             <input type="text" name="URL" class="case-standard" id="url-image" required><br><br>
                         </div>
 
                         <div class="competences">
                             <label for="competences">Compétences attendues :</label><br>
-                            <textarea class="case-standard" type="text" name="competences" id="competences" rows="3"></textarea><br><br>
+                            <textarea class="case-standard" name="competences" id="competences" rows="3"></textarea><br><br>
                         </div>
                     </div>
 
                     <div class="colonne">
                         <fieldset id="espace-image-offre">
-                            <img id="image-offre" alt="Image de l'offre" hidden>
+                            <img id="image-offre" alt="Image de l'offre" src="images/logo_simple_clair_grand.png" hidden>
                         </fieldset>
                     </div>
                 </div>
@@ -144,9 +143,7 @@
     </main>
 
     <footer>
-        <a href="infos_legales.html">
-            Informations légales
-        </a>
+        <a href="infos_legales.html">Informations légales</a>
     </footer>
 </body>
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StagEureka</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/StagEureka-logo_200x200.jpg" type="image/jpeg">
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -17,28 +18,24 @@
     <header>
         <div id="header-div">
             <div id="header-logo-div">
-                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light"
-                    hidden>
-                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark"
-                    hidden>
+                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light" hidden>
+                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark" hidden>
             </div>
 
             <div id="header-button-div">
-                <a href="connexion.html">
-                    <button class="header-button">Connexion</button>
-                </a>
+                <a class="header-button" href="connexion.html">Connexion</a>
 
                 <span></span>
 
                 <div id="div-switch">
-                    <label class="switch">
+                    <div class="switch">
                         <input type="checkbox" id="checkbox-theme">
-                        <div class="slider"></div>
+                        <label class="slider" for="checkbox-theme"></label>
                         <div class="slider-carte">
                             <div class="slider-carte-face slider-carte-gauche"></div>
                             <div class="slider-carte-face slider-carte-droite"></div>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,8 +56,7 @@
 
 
     <main>
-        <button name="fleche-retour" id="fleche-retour" value="fleche-retour"><i
-                class="fa-solid fa-arrow-left fa-3x"></i></button>
+        <button name="fleche-retour" id="fleche-retour" value="fleche-retour"><i class="fa-solid fa-arrow-left fa-3x"></i></button>
 
         <div class="conteneur-modification-pilote">
             <h1 class="modification-pilote">Modification d'un compte pilote</h1>
@@ -69,33 +65,28 @@
                     <div class="colonne">
                         <div class="nom-pilote">
                             <label for="nom-pilote">Nom du pilote :</label><br>
-                            <input class="case-nom-pilote" type="text" name="nom-pilote" id="nom-pilote"
-                                required><br><br>
+                            <input class="case-standard case-nom-pilote" type="text" name="nom-pilote" id="nom-pilote" required><br><br>
                         </div>
 
                         <div class="prenom-pilote">
                             <label for="prenom-pilote">Prénom du pilote :</label><br>
-                            <input class="case-prenom-pilote" type="text" name="prenom-pilote" id="prenom-pilote"
-                                required><br><br>
+                            <input class="case-standard case-prenom-pilote" type="text" name="prenom-pilote" id="prenom-pilote" required><br><br>
                         </div>
                     </div>
                     <div class="colonne">
                         <div class="email-pilote">
                             <label for="email-pilote">Email :</label><br>
-                            <input class="case-email-pilote" type="text" name="email-pilote" id="email-pilote"
-                                required><br><br>
+                            <input class="case-standard case-email-pilote" type="text" name="email-pilote" id="email-pilote" required><br><br>
                         </div>
                         <div class="mdp-pilote">
                             <label for="mdp-pilote">Mot de passe :</label><br>
-                            <input class="case-mdp-pilote" type="text" name="mdp-pilote" id="mdp-pilote"
-                                required><br><br>
+                            <input class="case-standard case-mdp-pilote" type="text" name="mdp-pilote" id="mdp-pilote" required><br><br>
                         </div>
                     </div>
                     <div class="colonne">
                         <div class="classe-pilote">
                             <label for="classe-pilote">Classes :</label><br>
-                            <input class="case-classe-pilote" type="text" name="classe-pilote" id="classe-pilote"
-                                required><br><br>
+                            <input class="case-standard case-classe-pilote" type="text" name="classe-pilote" id="classe-pilote" required><br><br>
                         </div>
                     </div>
                 </div>
@@ -106,16 +97,13 @@
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Modifier le compte pilote">
             </div>
-            </br>
         </div>
 
     </main>
 
 
     <footer>
-        <a href="infos_legales.html">
-            Informations légales
-        </a>
+        <a href="infos_legales.html">Informations légales</a>
     </footer>
 </body>
 

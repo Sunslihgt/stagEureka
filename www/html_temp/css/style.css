@@ -66,6 +66,7 @@ img.logo {
     box-sizing: content-box;
     font-weight: 500;
     font-size: large;
+    text-decoration: none;
 }
 
 #div-switch {
@@ -377,6 +378,13 @@ nav a {
     box-sizing: border-box;
 }
 
+/* Retire le souligné et aligne verticalement les boutons principaux qui sont des liens */
+a.bouton-principal {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
 .bouton-principal:hover {
     background-color: var(--accent-color-2);
 }
@@ -641,41 +649,49 @@ textarea {
     margin-right: 0;
 }
 
+.carte-gene,
 .case-mineure + .label-gene {
     color:#ff0000;
     border-color: #ff0000;
 }
 
+.carte-gene,
 .case-mineure:checked + .label-gene {
     background-color: #ff0000;
     color: var(--alternate-color);
 }
 
+.carte-info,
 .case-mineure + .label-info {
     color:#0077ff;
     border-color: #0077ff;
 }
 
+.carte-info,
 .case-mineure:checked + .label-info {
     background-color: #0077ff;
     color: var(--alternate-color);
 }
 
+.carte-btp,
 .case-mineure + .label-btp {
     color: #ffa500;
     border-color: #ffa500;
 }
 
+.carte-btp,
 .case-mineure:checked + .label-btp {
     background-color: #ffa500;
     color: var(--alternate-color);
 }
 
+.carte-s3e,
 .case-mineure + .label-s3e {
     color:#01a701;
     border-color: #01a701;
 }
 
+.carte-s3e,
 .case-mineure:checked + .label-s3e {
     background-color: #01a701;
     color: var(--alternate-color);
@@ -686,6 +702,14 @@ textarea {
 .case-mineure:focus-within + .label-mineure {
     outline: 2px solid var(--primary-color);
     color: var(--primary-color);
+}
+
+.rectangle-gris label,
+.rectangle-gris h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #espace-image-offre {
@@ -848,9 +872,12 @@ textarea {
     margin-top: 97px;
 }
 
-.block-recherche label {
+.block-recherche label,
+.block-recherche h3 {
     display: block;
+    margin-top: 0;
     margin-bottom: 5px;
+    font-size: 18px;
 }
 
 #block-recherche-offres {
@@ -988,12 +1015,17 @@ textarea {
 .element-partition {
     margin: 5px;
     width: 100%;
-    min-width: fit-content;
+    /* min-width: fit-content; */
+    max-width: 100%;
 }
 
 .element-partition .element-carte {
     margin-left: 0;
     margin-right: 0;
+}
+
+.carte-offre .colonne {
+    margin: 0;
 }
 
 .element-carte {
@@ -1157,7 +1189,8 @@ textarea {
         margin: 12px;
     }
     
-    .block-recherche label {
+    .block-recherche label,
+    .block-recherche h3 {
         margin-bottom: 1px;
     }
 
@@ -1183,18 +1216,18 @@ textarea {
 
 /* Cache certains des champs des résultats pour gagner de la place */
 @media (max-width: 1110px) and (min-width: 700px) {
-    .carte-entreprise #div-carte-domaine,
-    .carte-entreprise #div-carte-places {
+    .carte-entreprise .div-carte-domaine,
+    .carte-entreprise .div-carte-places {
         display: none;
     }
 }
 
 /* Cache plus de champs pour gagner de la place */
 @media (max-width: 700px) {
-    .carte-entreprise #div-carte-domaine,
-    .carte-entreprise #div-carte-places,
-    .carte-entreprise #div-carte-note-pilote,
-    .carte-entreprise #div-carte-note-etudiant {
+    .carte-entreprise .div-carte-domaine,
+    .carte-entreprise .div-carte-places,
+    .carte-entreprise .div-carte-note-pilote,
+    .carte-entreprise .div-carte-note-etudiant {
         display: none;
     }
 }
@@ -1249,7 +1282,8 @@ textarea {
         justify-content: space-around;
     }
 
-    #main-liste-etudiants .block-recherche label {
+    #main-liste-etudiants .block-recherche label,
+    #main-liste-etudiants .block-recherche h3 {
         margin-bottom: 1px;
     }
 
@@ -1259,8 +1293,8 @@ textarea {
 }
 
 /* Cache plus de champs pour gagner de la place */
-@media (max-width: 480px) {
-    .carte-etudiant #div-carte-campus {
+@media (max-width: 560px) {
+    .carte-etudiant .div-carte-campus {
         display: none;
     }
 }
@@ -1272,7 +1306,6 @@ textarea {
     font-weight: bold;
     /* text-decoration: underline; */
     font-size: 32px;
-    max-width: 30vw;
     margin: 0 auto;
     margin-bottom: 12px;
 }
@@ -1286,6 +1319,12 @@ textarea {
 
 .element-carte-valeur {
     margin-top: 0;
+}
+
+.titre-image-offre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Cadre image liste offres */
@@ -1331,8 +1370,7 @@ textarea {
 
 .contenu-offre {
     display: flex;
-    flex-direction: row;
-    /* margin: 0 50px; */
+    width: 100%;
 }
 
 /* Filtres en 2 colonnes */
@@ -1366,7 +1404,8 @@ textarea {
         margin: 12px;
     }
     
-    #main-liste-offres .block-recherche label {
+    #main-liste-offres .block-recherche label,
+    #main-liste-offres .block-recherche h3 {
         margin-bottom: 1px;
     }
     
@@ -1398,10 +1437,10 @@ textarea {
         width: auto;
         /* word-break: break-all; */
         font-size: 26px;
-        background-color: red;
+        margin-bottom: 0;
     }
 
-    .info-carte {
+    #main-liste-offres .info-carte {
         flex-direction: column;
     }
 }

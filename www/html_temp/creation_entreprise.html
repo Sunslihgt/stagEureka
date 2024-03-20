@@ -7,6 +7,7 @@
     <meta name="description" content="Page de création d'entreprise du site StagEureka">
     <title>Création entreprise - StagEureka</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/StagEureka-logo_200x200.jpg" type="image/jpeg">
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="js/theme.js"></script>
@@ -21,21 +22,19 @@
             </div>
 
             <div id="header-button-div">
-                <a href="connexion.html">
-                    <button class="header-button">Connexion</button>
-                </a>
+                <a class="header-button" href="connexion.html">Connexion</a>
 
                 <span></span>
 
                 <div id="div-switch">
-                    <label class="switch">
+                    <div class="switch">
                         <input type="checkbox" id="checkbox-theme">
-                        <div class="slider"></div>
+                        <label class="slider" for="checkbox-theme"></label>
                         <div class="slider-carte">
                             <div class="slider-carte-face slider-carte-gauche"></div>
                             <div class="slider-carte-face slider-carte-droite"></div>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +59,7 @@
         <div class="conteneur-creation-entreprise">
             <h1>Création d'une entreprise</h1>
             
-            <form action="">
+            <form action="wip_creation_entreprise.php">
                 <fieldset class="rectangle-gris">
                     <div class="entreprise">
                         <label for="entreprise">Nom de l'entreprise :</label><br>
@@ -90,9 +89,7 @@
     </main>
 
     <footer>
-        <a href="infos_legales.html">
-            Informations légales
-        </a>
+        <a href="infos_legales.html">Informations légales</a>
     </footer>
 </body>
 

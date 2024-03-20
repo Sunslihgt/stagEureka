@@ -17,28 +17,24 @@
     <header>
         <div id="header-div">
             <div id="header-logo-div">
-                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light"
-                    hidden>
-                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark"
-                    hidden>
+                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light" hidden>
+                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark" hidden>
             </div>
 
             <div id="header-button-div">
-                <a href="connexion.html">
-                    <button class="header-button">Connexion</button>
-                </a>
+                <a class="header-button" href="connexion.html">Connexion</a>
 
                 <span></span>
 
                 <div id="div-switch">
-                    <label class="switch">
+                    <div class="switch">
                         <input type="checkbox" id="checkbox-theme">
-                        <div class="slider"></div>
+                        <label class="slider" for="checkbox-theme"></label>
                         <div class="slider-carte">
                             <div class="slider-carte-face slider-carte-gauche"></div>
                             <div class="slider-carte-face slider-carte-droite"></div>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,11 +58,11 @@
             <div class="block-recherche" id="block-recherche-pilotes">
                 <div class="barres-recherche">
                     <div class="element-recherche" id="pilote-recherche">
-                        <label for="nom-pilote-filtre">Nom du pilote :</label>
+                        <label for="nom-pilote-filtre">Nom du pilote</label>
                         <input type="text" placeholder="Recherche via le nom" class="case-recherche" id="nom-pilote-filtre">
                     </div>
                     <div class="element-recherche" id="localisation-recherche">
-                        <label for="prenom-pilote-filtre">Prénom du pilote :</label>
+                        <label for="prenom-pilote-filtre">Prénom du pilote</label>
                         <input type="text" placeholder="Recherche via le prénom" class="case-recherche" id="prenom-pilote-filtre">
                     </div>
                 </div>
@@ -82,7 +78,7 @@
             </div>
 
             <div id="selection-pilote">
-                <div class="carte" id="1">
+                <div class="carte carte-pilote" id="carte-pilote-1">
                     <div class="info-carte">
                         <div class="element-carte">
                             <p class="element-carte-titre">Nom du pilote</p>
@@ -98,11 +94,32 @@
                         </div>
 
                         <div class="boutons-carte">
-                            <button class="bouton-carte bouton-modification"><i
-                                    class="fa-solid fa-pen"></i></button>
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
                             <span></span>
-                            <button class="bouton-carte bouton-suppression"><i
-                                    class="fa-solid fa-trash"></i></button>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carte carte-pilote" id="carte-pilote-2">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom du pilote</p>
+                            <p class="element-carte-valeur">AAAAA</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Prénom du pilote</p>
+                            <p class="element-carte-valeur">Bbbbb</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Classes</p>
+                            <p class="element-carte-valeur">Ccccc</p>
+                        </div>
+                
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 </div>
@@ -124,9 +141,7 @@
     </main>
 
     <footer>
-        <a href="infos_legales.html">
-            Informations légales
-        </a>
+        <a href="infos_legales.html">Informations légales</a>
     </footer>
 </body>
 

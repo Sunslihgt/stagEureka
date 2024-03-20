@@ -16,28 +16,24 @@
     <header>
         <div id="header-div">
             <div id="header-logo-div">
-                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light"
-                    hidden>
-                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark"
-                    hidden>
+                <img src="images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light" hidden>
+                <img src="images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark" hidden>
             </div>
 
             <div id="header-button-div">
-                <a href="connexion.html">
-                    <button class="header-button">Connexion</button>
-                </a>
+                <a class="header-button" href="connexion.html">Connexion</a>
 
                 <span></span>
 
                 <div id="div-switch">
-                    <label class="switch">
+                    <div class="switch">
                         <input type="checkbox" id="checkbox-theme">
-                        <div class="slider"></div>
+                        <label class="slider" for="checkbox-theme"></label>
                         <div class="slider-carte">
                             <div class="slider-carte-face slider-carte-gauche"></div>
                             <div class="slider-carte-face slider-carte-droite"></div>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,20 +56,20 @@
         <form action="wip_liste_etudiant_filtre.php" method="post">
             <div class="block-recherche" id="block-recherche-etudiants">
                 <div class="barres-recherche">
-                    <div class="element-recherche" id="titre-recherche">
-                        <label for="nom-etudiant-filtre">Nom de l'étudiant :</label>
+                    <div class="element-recherche">
+                        <label for="nom-etudiant-filtre">Nom de l'étudiant</label>
                         <input type="text" placeholder="Recherche via le nom" class="case-recherche" id="nom-etudiant-filtre">
                     </div>
-                    <div class="element-recherche" id="localisation-recherche">
-                        <label for="prenom-etudiant-filtre">Prénom de l'étudiant :</label>
+                    <div class="element-recherche">
+                        <label for="prenom-etudiant-filtre">Prénom de l'étudiant</label>
                         <input type="text" placeholder="Recherche via le prénom" class="case-recherche"  id="prenom-etudiant-filtre">
                     </div>
-                    <div class="element-recherche" id="localisation-recherche">
-                        <label for="campus-etudiant-filtre">Campus de l'étudiant :</label>
+                    <div class="element-recherche">
+                        <label for="campus-etudiant-filtre">Campus de l'étudiant</label>
                         <input type="text" placeholder="Recherche via le campus" class="case-recherche" id="campus-etudiant-filtre">
                     </div>
-                    <div class="element-recherche" id="localisation-recherche">
-                        <label for="classe-etudiant-filtre">Classe de l'étudiant :</label>
+                    <div class="element-recherche">
+                        <label for="classe-etudiant-filtre">Classe de l'étudiant</label>
                         <input type="text" placeholder="Recherche via la classe" class="case-recherche" id="classe-etudiant-filtre">
                     </div>
                 </div>
@@ -95,11 +91,11 @@
                             <p class="element-carte-titre">Nom de l'étudiant</p>
                             <p class="element-carte-valeur">AAAAA</p>
                         </div>
-                        <div class="element-carte" id="div-carte-campus">
+                        <div class="element-carte">
                             <p class="element-carte-titre">Prénom de l'étudiant</p>
                             <p class="element-carte-valeur">Bbbbb</p>
                         </div>
-                        <div class="element-carte">
+                        <div class="element-carte div-carte-campus">
                             <p class="element-carte-titre">Campus</p>
                             <p class="element-carte-valeur">Ccccc</p>
                         </div>
@@ -109,11 +105,36 @@
                         </div>
 
                         <div class="boutons-carte">
-                            <button class="bouton-carte bouton-modification"><i
-                                    class="fa-solid fa-pen"></i></button>
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
                             <span></span>
-                            <button class="bouton-carte bouton-suppression"><i
-                                    class="fa-solid fa-trash"></i></button>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carte carte-etudiant" id="carte-etudiant-2">
+                    <div class="info-carte">
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Nom de l'étudiant</p>
+                            <p class="element-carte-valeur">AAAAA</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Prénom de l'étudiant</p>
+                            <p class="element-carte-valeur">Bbbbb</p>
+                        </div>
+                        <div class="element-carte div-carte-campus">
+                            <p class="element-carte-titre">Campus</p>
+                            <p class="element-carte-valeur">Ccccc</p>
+                        </div>
+                        <div class="element-carte">
+                            <p class="element-carte-titre">Classe</p>
+                            <p class="element-carte-valeur">Ddddd</p>
+                        </div>
+                
+                        <div class="boutons-carte">
+                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <span></span>
+                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 </div>
@@ -135,9 +156,7 @@
     </main>
 
     <footer>
-        <a href="infos_legales.html">
-            Informations légales
-        </a>
+        <a href="infos_legales.html">Informations légales</a>
     </footer>
 </body>
 
