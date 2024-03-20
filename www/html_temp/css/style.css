@@ -987,6 +987,13 @@ textarea {
 
 .element-partition {
     margin: 5px;
+    width: 100%;
+    min-width: fit-content;
+}
+
+.element-partition .element-carte {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .element-carte {
@@ -1020,6 +1027,7 @@ textarea {
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 /* Ecart entre les boutons des cartes */
@@ -1264,6 +1272,8 @@ textarea {
     font-weight: bold;
     /* text-decoration: underline; */
     font-size: 32px;
+    max-width: 30vw;
+    margin: 0 auto;
     margin-bottom: 12px;
 }
 
@@ -1283,22 +1293,26 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    /* width: 100%; */
+    width: fit-content;
     /* height: 280px; */
     /* aspect-ratio: 1; */
     padding: 1px;
+    margin: 0;
     box-sizing: border-box;
 }
 
+/* Si le fieldset ne contient pas d'image (image invisible)  */
 .fieldset-image-offre:has(.image-offre-liste[hidden]) {
     display: none;
 }
 
 /* Image liste offres */
 .image-offre-liste {
-    max-width: 100%;
+    /* max-width: 100%; */
+    max-width: 40vw;
     max-height: 100%;
-    height: fit-content;
+    /* height: fit-content; */
 }
 
 /* Centre la mineure de l'offre */
@@ -1315,8 +1329,14 @@ textarea {
     width: 6ch;
 }
 
+.contenu-offre {
+    display: flex;
+    flex-direction: row;
+    /* margin: 0 50px; */
+}
+
 /* Filtres en 2 colonnes */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
     /* Aligne verticalement les filtres et le contenu */
     #main-liste-offres {
@@ -1366,3 +1386,23 @@ textarea {
         margin: 0;
     }
 }
+
+/* Image cachée */
+@media (max-width: 700px) {
+    /* Filtres en 1 colonne */
+    #main-liste-offres .fieldset-image-offre {
+        display: none;
+    }
+
+    .nom-offre-titre {
+        width: auto;
+        /* word-break: break-all; */
+        font-size: 26px;
+        background-color: red;
+    }
+
+    .info-carte {
+        flex-direction: column;
+    }
+}
+
