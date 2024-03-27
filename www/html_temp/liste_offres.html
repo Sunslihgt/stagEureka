@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/StagEureka-logo_200x200.jpg" type="image/jpeg">
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/filtre_wishlist.js"></script>
     <script src="js/theme.js"></script>
 
 </head>
@@ -90,11 +91,10 @@
                             </div>
                         </div>
                         <div class="element-recherche" id="wishlist">
-                            <!-- TODO: Fix bouton wishlist -->
                             <h3>Wishlist</h3>
                             <div id="conteneur-wishlist-filtre">
                                 <input type="checkbox" name="wishlist" class="case-wishlist accessibilite-invisible" id="filtre-wishlist">
-                                <label class="label-wishlist" for="filtre-wishlist"><i class="fa-regular fa-star"></i></label>
+                                <label class="label-wishlist" for="filtre-wishlist"><i class="fa-regular fa-star" id="icone-wishlist-filtre"></i></label>
                             </div>
                         </div>
                     </div>
