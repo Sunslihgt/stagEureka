@@ -1,0 +1,8 @@
+# Permet de rediriger les requêtes vers index.php avec une url https://stageureka.alwaysdata.net/index.php?url=nom-controleur/nom-action/param1
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^.*\/ressources\/
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+ErrorDocument 404 /erreur/404
