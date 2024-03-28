@@ -1,77 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// include_once "config.php";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Page d'erreur du site StagEureka">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Erreur <?= $codeErreur ?> - StagEureka</title>
-    <link rel="stylesheet" href="../vue/css/style.css">
-    <link rel="icon" href="../vue/ressources/images/StagEureka-logo_200x200.jpg" type="image/jpeg">
-    <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="../vue/js/theme.js"></script>
-</head>
+// Démarre la temporisation de sortie
+// (Permet de stocker le contenu html suivant dans une variable php)
+ob_start();
+?>
 
-<body>
-    <header>
-        <div id="header-div">
-            <div id="header-logo-div">
-                <a href="accueil.html">
-                    <img src="../vue/ressources/images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light" hidden>
-                    <img src="../vue/ressources/images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark" hidden>
-                </a>
-            </div>
+<main>
+    <div class="message-erreur">
+        <h1 id="erreur">Erreur <?= $codeErreur ?></h1>
+        <?php if (isset($messageErreur)) { ?>
+            <h3><?= $messageErreur ?></h3>
+        <?php } else { ?>
+            <h3>Une erreur inattendue est survenue</h3>
+        <?php } ?>
+        <span></span><!-- Espace vide pour aérer la page -->
+        <a href="accueil.html" class="bouton-principal">Retour à l'accueil</a>
+    </div>
+</main>
 
-            <div id="header-button-div">
-                <a class="header-button" href="connexion.html">Connexion</a>
+<?php
+// Stocke le contenu html généré dans une variable php et efface l'html généré précédemment
+$contenu = ob_get_clean();
 
-                <span></span>
+// Déclaration des variables pour la mise en page
+$titreOnglet = "Erreur " . $codeErreur . " StagEureka - Trouvez votre stage";
+$metaDescription = "Page d'erreur " . $codeErreur . " du site StagEureka";
+// $navigationSelectionee = "";
 
-                <div id="div-switch">
-                    <div class="switch">
-                        <input type="checkbox" id="checkbox-theme">
-                        <label class="slider" for="checkbox-theme"></label>
-                        <div class="slider-carte">
-                            <div class="slider-carte-face slider-carte-gauche"></div>
-                            <div class="slider-carte-face slider-carte-droite"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <nav>
-                <ul>
-                    <li id="nav-accueil"><a href="accueil.html">Accueil</a></li>
-                    <li id="nav-offres"><a href="liste_offres.html">Offres</a></li>
-                    <li id="nav-entreprises"><a href="liste_entreprises.html">Entreprises</a></li>
-                    <li id="nav-etudiants"><a href="liste_etudiants.html">Étudiants</a></li>
-                    <li id="nav-pilotes"><a href="liste_pilotes.html">Pilotes</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- Surbrillance d'un des boutons de navigation en fonction de la page actuelle -->
-        <!-- <script>document.getElementById("nav-accueil").classList.add("nav-selected");</script> -->
-    </header>
+// Inclut le template de mise en page
+// (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
+include "vue/php/mise_en_page.php";
 
-    <main>
-        <div class="message-erreur">
-            <h1 id="erreur">Erreur <?= $codeErreur ?></h1>
-            <?php if (isset($messageErreur)) { ?>
-                <h3><?= $messageErreur ?></h3>
-            <?php } else { ?>
-                <h3>Une erreur inattendue est survenue</h3>
-            <?php } ?>
-            <span></span><!-- Espace vide pour aérer la page -->
-            <a href="accueil.html" class="bouton-principal">Retour à l'accueil</a>
-        </div>
-    </main>
-
-    <footer>
-        <a href="infos_legales.html">Informations légales</a>
-    </footer>
-</body>
-
-</html>
+?>

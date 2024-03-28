@@ -1,97 +1,49 @@
 <?php
-// include_once "config.php";
+include_once "config.php";
+
+// Démarre la temporisation de sortie
+// (Permet de stocker le contenu html suivant dans une variable php)
+ob_start();
 ?>
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Page d'accueil du site StagEureka">
-    <title>Accueil - StagEureka</title>
-    <link rel="stylesheet" href="vue/css/style.css">
-    <link rel="icon" href="vue/ressources/images/StagEureka-logo_200x200.jpg" type="image/jpeg">
-    <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="vue/js/theme.js"></script>
-</head>
+<main>
+    <div id="conteneur-accueil">
+        <div id="accueil-images-div">
+            <img src="<?= ADRESSE_SITE ?>/vue/ressources/images/logo_simple_clair_grand.png" alt="Logo StagEureka" class="image-accueil">
+        </div>
 
-<body>
-    <header>
-        <div id="header-div">
-            <div id="header-logo-div">
-                <a href="accueil.html">
-                    <img src="vue/ressources/images/logo_complet_clair_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-light" hidden>
-                    <img src="vue/ressources/images/logo_complet_sombre_compresse.jpg" alt="Logo StagEureka" class="logo" id="logo-dark" hidden>
-                </a>
-            </div>
+        <span>
 
-            <div id="header-button-div">
-                <a class="header-button" href="connexion.html">Connexion</a>
+        </span>
 
-                <span></span>
-
-                <div id="div-switch">
-                    <div class="switch">
-                        <input type="checkbox" id="checkbox-theme">
-                        <label class="slider" for="checkbox-theme"></label>
-                        <div class="slider-carte">
-                            <div class="slider-carte-face slider-carte-gauche"></div>
-                            <div class="slider-carte-face slider-carte-droite"></div>
-                        </div>
-                    </div>
-                </div>
+        <div id="description-div">
+            <h1>Qui sommes nous ?</h1><br>
+            <p>
+                Etudiants à CESI, nous avons créé ce site pour faciliter la recherche de stage et découvrir le développement web.
+                Cette plateforme permet aux pilotes de formation de diffuser des offres de stages.
+                Les étudiants peuvent chercher des offres, les ajouter à leur wishlist et même postuler.
+                <br>
+                Actuellement en seconde année de cycle préparatoire intégré à CESI, nous sommes une équipe de 3 développeurs (Adélie, Killian et Samuel) et nous avons développé ce site en quelques semaines.
+                <!-- Le code source est disponible sur GitHub sous license MIT. -->
+            </p>
+            <div id="accueil-btn-div">
+                <button class="bouton-principal">Je trouve mon stage</button>
             </div>
         </div>
-        <div>
-            <nav>
-                <ul>
-                    <li id="nav-accueil"><a href="accueil.html">Accueil</a></li>
-                    <li id="nav-offres"><a href="liste_offres.html">Offres</a></li>
-                    <li id="nav-entreprises"><a href="liste_entreprises.html">Entreprises</a></li>
-                    <li id="nav-etudiants"><a href="liste_etudiants.html">Étudiants</a></li>
-                    <li id="nav-pilotes"><a href="liste_pilotes.html">Pilotes</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- Surbrillance d'un des boutons de navigation en fonction de la page actuelle -->
-        <script>
-            document.getElementById("nav-accueil").classList.add("nav-selected");
-        </script>
-    </header>
+    </div>
+</main>
 
+<?php
+// Stocke le contenu html généré dans une variable php et efface l'html généré précédemment
+$contenu = ob_get_clean();
 
-    <main>
-        <div id="conteneur-accueil">
-            <div id="accueil-images-div">
-                <img src="vue/ressources/images/logo_simple_clair_grand.png" alt="Logo StagEureka" class="image-accueil">
-            </div>
+// Déclaration des variables pour la mise en page
+$titreOnglet = "Accueil StagEureka - Trouvez votre stage";
+$metaDescription = "Page d'accueil du site StagEureka";
+$navigationSelectionee = "accueil";
 
-            <span>
+// Inclut le template de mise en page
+// (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
+include "vue/php/mise_en_page.php";
 
-            </span>
-
-            <div id="description-div">
-                <h1>Qui sommes nous ?</h1><br>
-                <p>
-                    Etudiants à CESI, nous avons créé ce site pour faciliter la recherche de stage et découvrir le développement web.
-                    Cette plateforme permet aux pilotes de formation de diffuser des offres de stages.
-                    Les étudiants peuvent chercher des offres, les ajouter à leur wishlist et même postuler.
-                    <br>
-                    Actuellement en seconde année de cycle préparatoire intégré à CESI, nous sommes une équipe de 3 développeurs (Adélie, Killian et Samuel) et nous avons développé ce site en quelques semaines.
-                    <!-- Le code source est disponible sur GitHub sous license MIT. -->
-                </p>
-                <div id="accueil-btn-div">
-                    <button class="bouton-principal">Je trouve mon stage</button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-
-    <footer>
-        <a href="infos_legales.html">Informations légales</a>
-    </footer>
-</body>
-
-</html>
+?>
