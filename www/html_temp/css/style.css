@@ -471,6 +471,12 @@ main:has(.conteneur-connexion) {
     width: 30ch;
 }
 
+.choix-statut {
+    font-size: small;
+    padding: 5px;
+    margin: 9px;
+}
+
 /* Mot de passe */
 #groupe-mdp i {
     float: right;
