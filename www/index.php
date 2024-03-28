@@ -43,6 +43,9 @@ function routageGlobal(): void {
             case "etudiant":
                 include_once "controleur/etudiant.php";
                 break;
+            case "connexion":
+                include_once "controleur/connexion.php";
+                break;
             case "erreur":  // Contrôleur d'erreur
                 $erreurAffichee = include_once "controleur/erreur.php";
                 if (!$erreurAffichee) {  // Contrôleur d'erreur non trouvé
