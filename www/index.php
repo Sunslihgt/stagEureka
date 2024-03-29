@@ -17,6 +17,8 @@ if (session_status() == PHP_SESSION_NONE) {
 // var_dump($_SESSION);
 // echo "<br>";
 
+// echo password_hash("test", PASSWORD_DEFAULT);
+
 routageGlobal();
 
 
