@@ -8,7 +8,15 @@ require_once "config.php";
 // echo "Passage par le routeur!<br>";
 // var_dump($_GET);
 
-// echo "ADRESSE_SITE: " . ADRESSE_SITE . "<br>";
+// echo "<br>ADRESSE_SITE: " . ADRESSE_SITE . "<br>";
+
+// Démarrage de la session si nécessaire
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// var_dump($_SESSION);
+// echo "<br>";
+
 routageGlobal();
 
 
@@ -46,10 +54,13 @@ function routageGlobal(): void {
             case "connexion":
                 include_once "controleur/connexion.php";
                 break;
+            case "deconnexion":
+                include_once "controleur/deconnexion.php";
+                break;
             case "erreur":  // Contrôleur d'erreur
                 $erreurAffichee = include_once "controleur/erreur.php";
                 if (!$erreurAffichee) {  // Contrôleur d'erreur non trouvé
-                    redirectionErreur(400);
+                    redirectionErreur(400);  // Erreur 400: Mauvaise requête
                 }
                 break;
             default:  // Contrôleur inconnu ou contrôleur d'erreur

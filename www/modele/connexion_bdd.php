@@ -2,22 +2,27 @@
 
 /**
  * Renvoie une connexion à la base de données.
- * @brief Les données de connexion sont stockées dans le fichier mot_de_passe.php qui est sécurisé dans Apache.
+ * @brief Les données de connexion sont stockées dans le fichier mdp.php qui est sécurisé dans Apache.
  * Le fait d'utiliser une fonction pour récupérer les identifiants permet de limiter leur portée.
  * @return PDO Connexion à la base de données
  */
-function connexion(): PDO {
+function connexionBDD(): PDO {
     static $connexion = null;
 
+    // Si la connexion existe déjà, on la renvoie
+    if (!is_null($connexion)) {
+        return $connexion;
+    }
+
     // Récupère les informations de connexion à la base de données
-    $infosConnexion = include "mot_de_passe.php";
+    $infosConnexion = include "mdp.php";
     $serveur = $infosConnexion["serveur"];
     $utilisateur = $infosConnexion["utilisateur"];
-    $mot_de_passe = $infosConnexion["mot_de_passe"];
+    $mdp = $infosConnexion["mdp"];
     $base_de_donnees = $infosConnexion["base_de_donnees"];
 
     try {
-        $connexion = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+        $connexion = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mdp);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();

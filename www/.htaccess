@@ -7,8 +7,8 @@ RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 
 ErrorDocument 404 /erreur/404
 
-# Interdit l'accès à mot_de_passe.php
-<Files "mot_de_passe.php">
+# Interdit l'accès à mdp.php
+<Files "mdp.php">
     Order allow,deny
     Deny from all
 </Files>

@@ -9,12 +9,10 @@ ob_start();
 <main>
     <div class="message-erreur">
         <h1 id="erreur">Erreur <?= $codeErreur ?></h1>
-        <?php if (isset($messageErreur)) { ?>
-            <h3><?= $messageErreur ?></h3>
-        <?php } else { ?>
-            <h3>Une erreur inattendue est survenue</h3>
-        <?php } ?>
+        
+        <h3><?= $messageErreur ?? "Une erreur inattendue est survenue" ?></h3>
         <span></span><!-- Espace vide pour aérer la page -->
+        
         <a href="accueil.html" class="bouton-principal">Retour à l'accueil</a>
     </div>
 </main>
