@@ -33,8 +33,14 @@ const TYPES_UTILISATEUR = [
     "ETUDIANT" => "Student"
 ];
 
+/**
+ * Vérifie les identifiants de connexion d'un utilisateur.
+ * @param string $email Email de l'utilisateur
+ * @param string $mdp Mot de passe de l'utilisateur
+ * @return Utilisateur|null Utilisateur si les identifiants sont corrects, null sinon
+ */
 function connexionUtilisateur(string $email, string $mdp): ?Utilisateur {
-    $utilisateur = getUtilsateur($email);
+    $utilisateur = getUtilisateur($email);
 
     // S'il n'y a pas d'utilisateur correspondant à l'adresse email donnée
     if ($utilisateur === null) {
@@ -50,7 +56,12 @@ function connexionUtilisateur(string $email, string $mdp): ?Utilisateur {
     }
 }
 
-function getUtilsateur(string $email): ?Utilisateur {
+/**
+ * Récupère un utilisateur à partir de son adresse email (pas de vérification du mdp).
+ * @param string $email Email de l'utilisateur
+ * @return Utilisateur|null Utilisateur ou null si l'utilisateur n'existe pas
+ */
+function getUtilisateur(string $email): ?Utilisateur {
     // Récupère les utilisateurs correspondant à l'adresse email donnée
     $admin = getUtilisateurAbstrait($email, "ADMINISTRATEUR");
     $pilote = getUtilisateurAbstrait($email, "PILOTE");
@@ -63,10 +74,10 @@ function getUtilsateur(string $email): ?Utilisateur {
     if (!is_null($etudiant)) $nbTypesTrouves++;
 
     // On traite les cas possibles
-    if ($nbTypesTrouves === 0) {  // L'utilisateur n'existe pas
+    if ($nbTypesTrouves == 0) {  // L'utilisateur n'existe pas
         // echo "L'utilisateur n'existe pas";
         return null;
-    } else if ($nbTypesTrouves === 1) {  // L'utilisateur existe
+    } else if ($nbTypesTrouves == 1) {  // L'utilisateur existe
         // echo "L'utilisateur existe";
         // Renvoie l'utilisateur trouvé
         // L'opérateur ?? renvoie le premier opérande qui n'est pas null
@@ -78,7 +89,7 @@ function getUtilsateur(string $email): ?Utilisateur {
 }
 
 /**
- * Renvoie un utilisateur abstrait à partir de son email et de son type.
+ * Renvoie un utilisateur à partir de son email et de son type.
  * (Appelle la table correspondante au type d'utilisateur demandé)
  * @param string $email Email de l'utilisateur
  * @param string $typeUtilisateur Type de l'utilisateur
@@ -110,6 +121,10 @@ function getUtilisateurAbstrait(string $email, string $typeUtilisateur): ?Utilis
     return new Utilisateur($reponseBdd["idAdministrator"], $reponseBdd["name"], $reponseBdd["firstName"], $reponseBdd["email"], $reponseBdd["password"], $typeUtilisateur);
 }
 
+/**
+ * Renvoie une connexion à la base de données.
+ * @return PDO|null Connexion à la base de données ou null si la connexion a échouée
+ */
 function ConnectionBDD(): ?PDO {
     // Crée la variable PDO si elle n'existe pas
     // Une fois créée elle est conservée en mémoire

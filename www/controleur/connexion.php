@@ -38,9 +38,13 @@ if (!isset($_SESSION["id"])) {  // L'utilisateur n'est pas connecté
     exit();
 }
 
-// Affiche la vue de connexion
-// require_once "vue/php/accueil/accueil_vue.php";
-
+/**
+ * Vérifie les identifiants de connexion d'un utilisateur.
+ * Stocke les informations de l'utilisateur dans des variables de session si la connexion est réussie.
+ * @param string $email Email de l'utilisateur
+ * @param string $mdp Mot de passe de l'utilisateur
+ * @return bool true si les identifiants sont corrects, false sinon
+ */
 function connexion(string $email, string $mdp): bool {
     $utilisateur = connexionUtilisateur($email, $mdp);
 
