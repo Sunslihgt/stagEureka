@@ -106,8 +106,7 @@ function getUtilisateurAbstrait(string $email, string $typeUtilisateur): ?Utilis
     if ($reponseBdd === false || !isset($reponseBdd["idAdministrator"]) || !isset($reponseBdd["email"]) || !isset($reponseBdd["name"]) || !isset($reponseBdd["firstName"]) || !isset($reponseBdd["password"])) {
         return null;
     }
-
-
+    
     return new Utilisateur($reponseBdd["idAdministrator"], $reponseBdd["name"], $reponseBdd["firstName"], $reponseBdd["email"], $reponseBdd["password"], $typeUtilisateur);
 }
 
