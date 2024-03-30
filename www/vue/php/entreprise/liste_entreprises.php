@@ -7,18 +7,18 @@ ob_start();
 ?>
 
 <main class="main-affichage" id="main-liste-entreprises">
-    <form action="wip_liste_entreprise_filtre.php" method="post">
+    <form action="<?= ADRESSE_SITE ?>/entreprise/liste" method="post">
         <div class="block-recherche" id="block-recherche-entreprises">
             <div id="champs-filtre">
                 <div class="barres-recherche">
                     <div class="element-recherche" id="entreprise-recherche">
                         <label for="nom-entreprise-filtre">Nom</label>
-                        <input type="text" placeholder="Recherche via l'entreprise" class="case-recherche" id="nom-entreprise-filtre">
+                        <input type="text" placeholder="Recherche via l'entreprise" class="case-recherche" id="nom-entreprise-filtre" name="nom-entreprise-filtre">
                     </div>
                     <span></span>
                     <div class="element-recherche" id="localisation-recherche">
-                        <label for="nom-localisation-filtre">Localisation</label>
-                        <input type="text" placeholder="Recherche via localisation" class="case-recherche" id="nom-localisation-filtre">
+                        <label for="localisation-filtre">Localisation</label>
+                        <input type="text" placeholder="Recherche via localisation" class="case-recherche" id="localisation-filtre" name="localisation-filtre">
                     </div>
                 </div>
                 <span></span>
@@ -32,7 +32,7 @@ ob_start();
                             <button type="button" class="etoile" id="filtre-etoile-pilote-4"><i class="fa-regular fa-star"></i></button>
                             <button type="button" class="etoile" id="filtre-etoile-pilote-5"><i class="fa-regular fa-star"></i></button>
                         </div>
-                        <input type="hidden" name="note-pilote" id="note-pilote" value="1">
+                        <input type="hidden" name="note-pilote-filtre" id="note-pilote" value="1">
                     </div>
                     <div class="element-recherche" id="note-etudiants">
                         <h3>Etudiants</h3>
@@ -43,7 +43,7 @@ ob_start();
                             <button type="button" class="etoile" id="filtre-etoile-etudiant-4"><i class="fa-regular fa-star"></i></button>
                             <button type="button" class="etoile" id="filtre-etoile-etudiant-5"><i class="fa-regular fa-star"></i></button>
                         </div>
-                        <input type="hidden" name="note-etudiant" id="note-etudiant" value="1">
+                        <input type="hidden" name="note-etudiant-filtre" id="note-etudiant" value="1">
                     </div>
                 </div>
             </div>
@@ -65,10 +65,20 @@ ob_start();
                             <p class="element-carte-titre">Nom</p>
                             <p class="element-carte-valeur"><?= $entreprise->nom ?></p>
                         </div>
-                        <div class="element-carte">
-                            <p class="element-carte-titre">Localisation</p>
-                            <p class="element-carte-valeur">St Nazaire</p>
-                        </div>
+
+                        <!-- Villes -->
+                        <?php if (count($entreprise->adresses) > 0) { ?>
+                            <div class="element-carte">
+                                <p class="element-carte-titre">Localisation</p>
+                                <?php
+                                // Crée un string avec les villes des adresses de l'entreprise séparées par des virgules
+                                $villesString = implode(", ", array_map(function ($adresse) {
+                                    return $adresse->ville;
+                                }, $entreprise->adresses));
+                                ?>
+                                <p class="element-carte-valeur"><?= $villesString ?></p>
+                            </div>
+                        <?php } ?>
                         <div class="element-carte">
                             <p class="element-carte-titre">Domaines</p>
                             <p class="element-carte-valeur"><?= $entreprise->activite ?></p>
@@ -80,27 +90,39 @@ ob_start();
                         <div class="element-carte div-carte-note-pilote">
                             <p class="element-carte-titre">Pilotes</p>
                             <p class="etoiles-bleues">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                                <?php if ($entreprise->notePilotes == -1) { ?>
+                                    <?php for ($i = 0; $i < 5; $i++) { ?>
+                                        <i class="fa-solid fa-star" style="color: grey;"></i>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <?php for ($i = 0; $i < 5; $i++) { ?>
+                                        <i class="fa-<?= $i < $entreprise->notePilotes ? 'solid' : 'regular' ?> fa-star" title="<?= $entreprise->notePilotes ?>/5"></i>
+                                    <?php } ?>
+                                <?php } ?>
                             </p>
                         </div>
                         <div class="element-carte div-carte-note-etudiant">
                             <p class="element-carte-titre">Etudiants</p>
                             <p class="etoiles-bleues">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                                <?php if ($entreprise->noteEtudiants == -1) { ?>
+                                    <?php for ($i = 0; $i < 5; $i++) { ?>
+                                        <i class="fa-solid fa-star" style="color: grey;"></i>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <?php for ($i = 0; $i < 5; $i++) { ?>
+                                        <i class="fa-<?= $i < $entreprise->noteEtudiants ? 'solid' : 'regular' ?> fa-star" title="<?= $entreprise->noteEtudiants ?>/5"></i>
+                                    <?php } ?>
+                                <?php } ?>
                             </p>
                         </div>
                         <div class="boutons-carte">
-                            <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                            <button class="bouton-carte bouton-modification" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/modifier/<?= $entreprise->id ?>'">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                             <span></span>
-                            <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                            <button class="bouton-carte bouton-suppression" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/supprimer/<?= $entreprise->id ?>'">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
