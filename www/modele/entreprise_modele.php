@@ -1,4 +1,5 @@
 <?php
+
 // require_once "config.php";
 require_once "connexion_bdd.php";
 require_once "note_entreprise_modele.php";
@@ -126,4 +127,94 @@ function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationF
     // echo "<br>";
 
     return $entreprises;
+}
+
+function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, string $ville, string $codePostal, string $domaine, bool $visible): ?int {
+    $pdo = connexionBDD();
+
+    // Début de la transaction (permet d'annuler les modifications si une erreur survient)
+    $pdo->beginTransaction();
+
+    // Ajout de l'entreprise
+    $requete = $pdo->prepare(
+        "INSERT INTO Company (nameCompany, activityAera, applicationAmount, visible)
+        VALUES (:nomEntreprise, :domaine, 0, :visible)"
+    );
+    $requete->execute([
+        ":nomEntreprise" => $nomEntreprise,
+        ":domaine" => $domaine,
+        ":visible" => $visible
+    ]);
+
+    $idEntreprise = $pdo->lastInsertId();
+    if ($idEntreprise === false) {
+        $pdo->rollBack();
+        return null;
+    }
+    echo "Entreprise créée ! idEntreprise: " . $idEntreprise . "<br>";
+
+    // Recherche de la ville
+    $requete = $pdo->prepare(
+        "SELECT idCity FROM City WHERE cityName = :ville AND addressCode = :codePostal"
+    );
+    $requete->execute([
+        ":ville" => $ville,
+        ":codePostal" => $codePostal
+    ]);
+    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+    if ($resultat !== false && isset($resultat["idCity"])) {  // La ville existe
+        $idVille = $resultat["idCity"];
+        echo "ville trouvée ! idVille: " . $idVille . "<br>";
+    } else {  // Création de la ville
+        $requete = $pdo->prepare(
+            "INSERT INTO City (cityName, addressCode)
+            VALUES (:ville, :codePostal)"
+        );
+        $requete->execute([
+            ":ville" => $ville,
+            ":codePostal" => $codePostal
+        ]);
+        $idVille = $pdo->lastInsertId();
+        
+        echo "ville créée ! idVille: " . $idVille . "<br>";
+    }
+    
+    if ($idVille === false) {
+        $pdo->rollBack();
+        return null;
+    }
+
+    // Création de l'adresse
+    $requete = $pdo->prepare(
+        "INSERT INTO Address (streetNumber, streetName, idCity)
+        VALUES (:numeroRue, :rue, :idVille)"
+    );
+    $requete->execute([
+        ":numeroRue" => $numeroRue,
+        ":rue" => $rue,
+        ":idVille" => $idVille,
+    ]);
+
+    $idAdresse = $pdo->lastInsertId();
+    if ($idAdresse === false) {
+        $pdo->rollBack();
+        return null;
+    }
+
+    // Ajout de la relation entre l'entreprise et l'adresse
+    $requete = $pdo->prepare(
+        "INSERT INTO is_settle (idCompany, idAddress)
+        VALUES (:idEntreprise, :idAdresse)"
+    );
+    $requete->execute([
+        ":idEntreprise" => $idEntreprise,
+        ":idAdresse" => $idAdresse
+    ]);
+
+    echo "Relation entreprise-adresse créée ! idAdresse: " . $idAdresse . "idEntreprise" . $idEntreprise . "<br>";
+
+    // Validation de la transaction
+    $pdo->commit();
+
+    return $idEntreprise;
 }

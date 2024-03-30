@@ -7,7 +7,6 @@ class Adresse {
     public int $id;
     public int $numero;
     public string $rue;
-    // public int $idVille;
     public string $ville;
     public string $codePostal;
 
@@ -28,16 +27,12 @@ function getAdresses(): ?array {
 
     $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-    // var_dump($reponseBdd);
     if ($reponseBdd === false) {
         return null;
     }
 
-    // echo "<br>";
     $adresses = [];
     foreach ($reponseBdd as $adresse) {
-        // echo var_dump($adresse) . "<br>";
-
         $adresses[] = new Adresse(
             $adresse["idAddress"],
             $adresse["streetNumber"],
@@ -46,8 +41,6 @@ function getAdresses(): ?array {
             $adresse["addressCode"]
         );
     }
-
-    // echo "<br>";
 
     return $adresses;
 }
@@ -96,7 +89,6 @@ function getAdressesEntreprise(int $idEntreprise): ?array {
 
     $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-    // echo var_dump($reponseBdd) . "<br>";
     if ($reponseBdd === false) {
         return null;
     }

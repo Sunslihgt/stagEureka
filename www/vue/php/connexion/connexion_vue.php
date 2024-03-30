@@ -37,6 +37,6 @@ $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/champ_mdp.js'
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
-include "vue/php/mise_en_page.php";
+include "vue/php/mise_en_page_vue.php";
 
 ?>

@@ -16,14 +16,14 @@ switch ($action) {
     case "liste":
         afficherListeEntreprises($params);
         break;
-    case "lire":
-        // var_dump(getAdresses());
-        // var_dump(getAdresse(1));
-        // var_dump(getAdressesEntreprise(1));
-        # code...
-        break;
+    // case "lire":
+    //     // var_dump(getAdresses());
+    //     // var_dump(getAdresse(1));
+    //     // var_dump(getAdressesEntreprise(1));
+    //     # code...
+    //     break;
     case "creer":
-        # code...
+        affcherCreerEntreprise($params);
         break;
     case "modifier":
         # code...
@@ -50,18 +50,46 @@ function afficherListeEntreprises($params): void {
         // On récupère les entreprises filtrées
         $entreprises = getEntreprisesFiltre($nomEntrepriseFiltre, $localisationFiltre, $notePiloteFiltre, $noteEtudiantFiltre);
 
-        require_once "vue/php/entreprise/liste_entreprises.php";
+        require_once "vue/php/entreprise/liste_entreprises_vue.php";
     } else {  // Pas de filtres
         $entreprises = getEntreprises(true);
 
-        require_once "vue/php/entreprise/liste_entreprises.php";
+        require_once "vue/php/entreprise/liste_entreprises_vue.php";
     }
 }
 
-function modifierEntreprise($params): void {
+function affcherCreerEntreprise(array $params): void {
+    if (count($params) > 1) {
+        header("Location: " . ADRESSE_SITE . "/entreprise/liste");
+    }
+
+    var_dump($_POST);
+    if (isset($_POST) && isset($_POST["entreprise"]) && isset($_POST["numeroRue"]) && isset($_POST["rue"]) && isset($_POST["ville"]) && isset($_POST["codePostal"]) && isset($_POST["domaine"])) {
+        $nomEntreprise = $_POST["entreprise"];
+        $numeroRue = $_POST["numeroRue"];
+        $rue = $_POST["rue"];
+        $ville = $_POST["ville"];
+        $codePostal = $_POST["codePostal"];
+        $domaine = $_POST["domaine"];
+        $visible = isset($_POST["visible"]) ? true : false;
+
+        $idEntreprise = creerEntreprise($nomEntreprise, $numeroRue, $rue, $ville, $codePostal, $domaine, $visible);
+        echo "<br>idEntreprise: " . $idEntreprise . "<br>";
+
+        if (!is_null($idEntreprise)) {  // Entreprise créée
+            header("Location: " . ADRESSE_SITE . "/entreprise/liste");  // Redirection vers la liste des entreprises
+        } else {  // Erreur lors de la création de l'entreprise
+            header("Location: " . ADRESSE_SITE . "/entreprise/creer");  // Redirection vers la page de création d'entreprise
+        }
+    } else {
+        require_once "vue/php/entreprise/creer_entreprise_vue.php";
+    }
+}
+
+function afficherModifierEntreprise(array $params): void {
     // TODO: Modifier une entreprise
 }
 
-function supprimerEntreprise($params): void {
+function afficherSupprimerEntreprise(array $params): void {
     // TODO: Supprimer une entreprise
 }

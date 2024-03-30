@@ -28,6 +28,6 @@ $metaDescription = "Page d'erreur " . $codeErreur . " du site StagEureka";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
-include "vue/php/mise_en_page.php";
+include "vue/php/mise_en_page_vue.php";
 
 ?>

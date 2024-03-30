@@ -54,7 +54,7 @@ ob_start();
     <div class="affichage-cartes">
         <div class="haut-page-liste-resultats">
             <h1 id="haut-h1">Liste des Entreprises</h1>
-            <button id="haut-bouton">Ajouter une Entreprise</button>
+            <button id="haut-bouton" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/creer'">Ajouter une Entreprise</button>
         </div>
 
         <div id="selection-entreprise">
@@ -152,11 +152,11 @@ $contenu = ob_get_clean();
 // Déclaration des variables pour la mise en page
 $titreOnglet = "Entreprises StagEureka - Trouvez votre stage";
 $metaDescription = "Page de liste des entreprises du site StagEureka";
-$navigationSelectionee = "entreprise";
+$navigationSelectionee = "entreprises";
 $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/filtre_etoile.js'></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
-include "vue/php/mise_en_page.php";
+include "vue/php/mise_en_page_vue.php";
 
 ?>
