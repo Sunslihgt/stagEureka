@@ -16,7 +16,7 @@ ob_start();
             <fieldset class="rectangle-gris">
                 <div>
                     <label for="entreprise">Nom de l'entreprise :</label><br>
-                    <input class="case-standard case-nom-ent" type="text" name="entreprise" id="entreprise" required><br><br>
+                    <input class="case-standard case-nom-ent" type="text" name="entreprise" id="entreprise" value="<?= $entreprise->nom ?>" required><br><br>
                 </div>
 
                 <div>
@@ -62,8 +62,8 @@ ob_start();
 $contenu = ob_get_clean();
 
 // Déclaration des variables pour la mise en page
-$titreOnglet = "Créer entreprises StagEureka - Trouvez votre stage";
-$metaDescription = "Page de création d'une entreprise du site StagEureka";
+$titreOnglet = "Modifier Entreprise StagEureka - Trouvez votre stage";
+$metaDescription = "Page de modification d'une entreprise du site StagEureka";
 $navigationSelectionee = "entreprises";
 $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/filtre_etoile.js'></script>";
 
