@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "outils.php";
 
 // Démarre la temporisation de sortie
 // (Permet de stocker le contenu html suivant dans une variable php)
@@ -7,9 +7,11 @@ ob_start();
 ?>
 
 <main>
-    <button name="fleche-retour" id="fleche-retour" value="fleche-retour"><i class="fa-solid fa-arrow-left fa-3x"></i></button>
+    <button name="fleche-retour" id="fleche-retour" value="fleche-retour" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/liste'">
+        <i class="fa-solid fa-arrow-left fa-3x"></i>
+    </button>
 
-    <div class="conteneur-creation-entreprise">
+    <div class="conteneur-entreprise">
         <h1>Création d'une entreprise</h1>
 
         <form action="<?= ADRESSE_SITE ?>/entreprise/creer" method="post">

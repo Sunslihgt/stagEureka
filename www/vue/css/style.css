@@ -253,6 +253,7 @@ nav li {
     box-sizing: border-box;
     border: 1px solid var(--primary-color);
     background-color: var(--background-color);
+    cursor: pointer;
 }
 
 /* Retire les bordures de droite qui sont doublées */
@@ -361,7 +362,7 @@ nav a {
 .conteneur-bouton-principal {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 0;
 }
 
 .bouton-principal {
@@ -376,6 +377,7 @@ nav a {
     margin-top: 15px;
     cursor: pointer;
     box-sizing: border-box;
+    text-align: center;
 }
 
 /* Retire le souligné et aligne verticalement les boutons principaux qui sont des liens */
@@ -439,9 +441,20 @@ footer a {
     height: 80px;
 }
 
+/* Diminue la taille de l'espace après le nom de l'erreur s'il y a une description */
+.message-erreur:has(.description-erreur) span {
+    height: 0px;
+}
+
 #erreur {
     font-size: 50px;
     color: var(--accent-color);
+}
+
+.description-erreur {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 40px;
 }
 
 /*** CONNEXION ***/
@@ -511,19 +524,20 @@ main:has(.conteneur-connexion) {
     top: 16px;
     z-index: 99;
     color: var(--primary-color);
+    cursor: pointer;
 }
 
-.conteneur-creation-entreprise {
+.conteneur-entreprise {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.conteneur-creation-entreprise .rectangle-gris {
+.conteneur-entreprise .rectangle-gris {
     padding: 15px 50px 20px 50px;
 }
 
-.conteneur-creation-entreprise h1 {
+.conteneur-entreprise h1 {
     color: var(--accent-color-1);
 }
 
@@ -710,6 +724,11 @@ textarea {
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: bold;
+}
+
+.rectangle-gris p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #espace-image-offre {
@@ -1050,6 +1069,7 @@ textarea {
 
 .etoiles-bleues {
     color: var(--accent-color-1);
+    margin-top: 0;
 }
 
 /* Boutons modification et supression d'une des cartes de résultat */
@@ -1142,6 +1162,16 @@ textarea {
 
 .centrer-icone {
     transform: translate(0, -4%);
+}
+
+/* Recentre l'icône d'oeil dans les cartes */
+.affichage-cartes .fa-eye {
+    transform: translate(-6%, 7%);
+}
+
+/* Recentre l'icône de crayon dans les cartes */
+.affichage-cartes .fa-pen {
+    transform: translate(0%, 6%);
 }
 
 /* Titre et bouton ajouter élément en 2 lignes */

@@ -1,12 +1,24 @@
 <?php
 
-$codeErreur = 404;
+$codeErreur = 404;  // Code d'erreur par défaut
 if (isset($params[0])) {
     if (is_numeric($params[0]) && $params[0] >= 400 && $params[0] < 600) {
         $codeErreur = $params[0];
     } else {
         header("Location: " . ADRESSE_SITE . "/erreur/404");
+        exit();
     }
+}
+
+// Description supplémentaire
+$descriptionErreur = null;
+if (isset($params[1])) {
+    $descriptionErreur = str_replace("-", " ", $params[1]);
+}
+
+if (count($params) > 2) {
+    header("Location: " . ADRESSE_SITE . "/erreur/404");
+    exit();
 }
 
 $messageErreur = null;
@@ -22,6 +34,15 @@ switch ($codeErreur) {
         break;
     case 404:
         $messageErreur = "Page non trouvée";
+        break;
+    case 405:
+        $messageErreur = "Méthode non autorisée";
+        break;
+    case 408:
+        $messageErreur = "Temps d'attente dépassé";
+        break;
+    case 409:
+        $messageErreur = "Conflit avec la ressource actuelle";
         break;
     case 500:
         $messageErreur = "Erreur interne du serveur";

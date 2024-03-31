@@ -1,6 +1,6 @@
 <?php
 
-require_once "config.php";
+require_once "outils.php";
 
 // Démarrage de la session si nécessaire
 if (session_status() == PHP_SESSION_NONE) {

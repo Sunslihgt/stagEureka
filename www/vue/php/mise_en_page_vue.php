@@ -51,9 +51,20 @@ const OBJETS_NAVIGATION = [
             </div>
 
             <div id="header-button-div">
+                <!-- Bouton connexion/déconnexion -->
                 <?php if (isset($_SESSION["prenom"])) { ?>
                     <a class="header-button" href="<?= ADRESSE_SITE ?>/deconnexion" title="Déconnexion">
+                        <!-- Icône du type d'utilisateur -->
+                        <?php if (estAdmin()) { ?>
+                            <i class="fa-solid fa-crown"></i>
+                        <?php } else if (estPilote()) { ?>
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                        <?php } else if (estEtudiant()) { ?>
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        <?php } ?>
+                        <!-- Prénom de l'utilisateur -->
                         <?= $_SESSION["prenom"] ?>
+                        <!-- Icône de déconnexion -->
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </a>
                 <?php } else { ?>
@@ -77,11 +88,21 @@ const OBJETS_NAVIGATION = [
         <div>
             <nav>
                 <ul>
-                    <li id="nav-accueil"><a href="<?= ADRESSE_SITE ?>/accueil">Accueil</a></li>
-                    <li id="nav-offres"><a href="<?= ADRESSE_SITE ?>/offre">Offres</a></li>
-                    <li id="nav-entreprises"><a href="<?= ADRESSE_SITE ?>/entreprise">Entreprises</a></li>
-                    <li id="nav-etudiants"><a href="<?= ADRESSE_SITE ?>/etudiant">Étudiants</a></li>
-                    <li id="nav-pilotes"><a href="<?= ADRESSE_SITE ?>/pilote">Pilotes</a></li>
+                    <li id="nav-accueil" onclick="location.href='<?= ADRESSE_SITE ?>/accueil'">
+                        <a href="<?= ADRESSE_SITE ?>/accueil">Accueil</a>
+                    </li>
+                    <li id="nav-offres" onclick="location.href='<?= ADRESSE_SITE ?>/offre'">
+                        <a href="<?= ADRESSE_SITE ?>/offre">Offres</a>
+                    </li>
+                    <li id="nav-entreprises" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise'">
+                        <a href="<?= ADRESSE_SITE ?>/entreprise">Entreprises</a>
+                    </li>
+                    <li id="nav-etudiants" onclick="location.href='<?= ADRESSE_SITE ?>/etudiant'">
+                        <a href="<?= ADRESSE_SITE ?>/etudiant">Étudiants</a>
+                    </li>
+                    <li id="nav-pilotes" onclick="location.href='<?= ADRESSE_SITE ?>/pilote'">
+                        <a href="<?= ADRESSE_SITE ?>/pilote">Pilotes</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -97,7 +118,7 @@ const OBJETS_NAVIGATION = [
     <?= $contenu ?>
 
     <footer>
-        <a href="<?= ADRESSE_SITE ?>/legale">Informations légales</a>
+        <a href="<?= ADRESSE_SITE ?>/legal">Informations légales</a>
     </footer>
 </body>
 

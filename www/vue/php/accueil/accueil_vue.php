@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "outils.php";
 
 // Démarre la temporisation de sortie
 // (Permet de stocker le contenu html suivant dans une variable php)

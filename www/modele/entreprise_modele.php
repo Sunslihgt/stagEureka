@@ -1,6 +1,6 @@
 <?php
 
-// require_once "config.php";
+// require_once "outils.php";
 require_once "connexion_bdd.php";
 require_once "note_entreprise_modele.php";
 require_once "adresse_modele.php";
@@ -29,7 +29,44 @@ class Entreprise {
     }
 }
 
-function getEntreprises(bool $cacherInvisible): ?array {
+function getEntreprise(int $idEntreprise, bool $cacherInvisible): ?Entreprise {
+    if ($idEntreprise < 0) {
+        return null;
+    }
+
+    $pdo = connexionBDD();
+
+    $sql = "SELECT * FROM Company WHERE idCompany = :idEntreprise";
+    if ($cacherInvisible) {  // Si on doit cacher les entreprises invisibles
+        $sql .= " AND visible = 1";  // On ajoute la condition
+    }
+    $requete = $pdo->prepare($sql);
+    $requete->execute([
+        ":idEntreprise" => $idEntreprise
+    ]);
+
+    $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
+
+    if ($reponseBdd === false) {
+        return null;
+    }
+
+    
+    $entreprise = new Entreprise(
+        $reponseBdd["idCompany"],
+        $reponseBdd["nameCompany"],
+        $reponseBdd["activityAera"],
+        $reponseBdd["applicationAmount"],
+        $reponseBdd["visible"],
+        getMoyenneNotesEntreprise($reponseBdd["idCompany"], "ETUDIANT"),
+        getMoyenneNotesEntreprise($reponseBdd["idCompany"], "PILOTE"),
+        getAdressesEntreprise($reponseBdd["idCompany"])
+    );
+
+    return $entreprise;
+}
+
+function getEntreprises(bool $cacherInvisible): array {
     $pdo = connexionBDD();
 
     $sql = "SELECT * FROM Company";
@@ -43,7 +80,7 @@ function getEntreprises(bool $cacherInvisible): ?array {
     
     // var_dump($reponseBdd);
     if ($reponseBdd === false) {
-        return null;
+        return [];
     }
     
     // echo "<br>";
@@ -100,15 +137,15 @@ function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationF
         );
 
         // Filtrage par la position
-        // if ($localisationFiltre != "") {  // Si on a un filtre de localisation
-        //     // On crée un string avec les villes des adresses de l'entreprise séparées par des virgules
-        //     $villesString = implode(", ", array_map(function ($adresse) {
-        //         return $adresse->ville;
-        //     }, $entreprise->adresses));
-        //     if (strpos($villesString, $localisationFiltre) === false) {  // Si la localisation n'est pas dans les villes de l'entreprise
-        //         continue;  // On passe à l'entreprise suivante
-        //     }
-        // }
+        if ($localisationFiltre != "") {  // Si on a un filtre de localisation
+            // On crée un string avec les villes des adresses de l'entreprise séparées par des virgules
+            $villesString = implode(", ", array_map(function ($adresse) {
+                return $adresse->ville;
+            }, $entreprise->adresses));
+            if (strpos($villesString, $localisationFiltre) === false) {  // Si la localisation n'est pas dans les villes de l'entreprise
+                continue;  // On passe à l'entreprise suivante
+            }
+        }
 
         // // Filtrage par la note des pilotes
         if ($notePiloteFiltre != -1 && $entreprise->notePilotes != -1 && $entreprise->notePilotes < $notePiloteFiltre) {
@@ -217,4 +254,63 @@ function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, str
     $pdo->commit();
 
     return $idEntreprise;
+}
+
+// function modifierEntreprise(int $idEntreprise, string $nomEntreprise, int $numeroRue, string $rue, string $ville, string $codePostal, string $domaine, bool $visible): bool {
+function modifierEntreprise(int $idEntreprise, string $nomEntreprise, string $domaine, bool $visible): bool {
+    $pdo = connexionBDD();
+
+    // Modification de l'entreprise
+    $requete = $pdo->prepare(
+        "UPDATE Company
+        SET nameCompany = :nomEntreprise, activityAera = :domaine, visible = :visible
+        WHERE idCompany = :idEntreprise"
+    );
+    $requete->execute([
+        ":nomEntreprise" => $nomEntreprise,
+        ":domaine" => $domaine,
+        ":visible" => $visible,
+        ":idEntreprise" => $idEntreprise
+    ]);
+
+    // Si aucune ligne n'a été modifiée
+    if ($requete->rowCount() === 0) {
+        return false;
+    }
+
+    return true;
+}
+
+function supprimerEntreprise(int $idEntreprise): bool {
+    $pdo = connexionBDD();
+
+    // Début de la transaction (permet d'annuler les modifications si une erreur survient)
+    $pdo->beginTransaction();
+    try {
+        // Suppression de la relation entre l'entreprise et l'adresse
+        $requete = $pdo->prepare(
+            "DELETE FROM is_settle
+        WHERE idCompany = :idEntreprise"
+        );
+        $requete->execute([
+            ":idEntreprise" => $idEntreprise
+        ]);
+
+        // Suppression de l'entreprise
+        $requete = $pdo->prepare(
+            "DELETE FROM Company
+        WHERE idCompany = :idEntreprise"
+        );
+        $requete->execute([
+            ":idEntreprise" => $idEntreprise
+        ]);
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        return false;
+    }
+
+    // Validation de la transaction
+    $pdo->commit();
+
+    return true;
 }

@@ -3,7 +3,7 @@
 // (Point d'entrée du site web)
 
 // Inclusion des fichiers de configuration
-require_once "config.php";
+require_once "outils.php";
 
 // echo "Passage par le routeur!<br>";
 // var_dump($_GET);

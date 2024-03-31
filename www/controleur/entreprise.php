@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once "outils.php";
 require_once "modele/entreprise_modele.php";
 require_once "modele/adresse_modele.php";
 
@@ -16,23 +16,35 @@ switch ($action) {
     case "liste":
         afficherListeEntreprises($params);
         break;
-    // case "lire":
-    //     // var_dump(getAdresses());
-    //     // var_dump(getAdresse(1));
-    //     // var_dump(getAdressesEntreprise(1));
-    //     # code...
-    //     break;
+    case "lire":
+        afficherLectureEntreprise($params);
+        break;
     case "creer":
-        affcherCreerEntreprise($params);
+        // On vérifie que l'utilisateur est connecté et n'est pas un étudiant
+        if (estAdmin() || estPilote()) {
+            afficherCreerEntreprise($params);
+        } else {
+            header("Location: " . ADRESSE_SITE . "/erreur/401");
+        }
         break;
     case "modifier":
-        # code...
+        // On vérifie que l'utilisateur est connecté et n'est pas un étudiant
+        if (estAdmin() || estPilote()) {
+            afficherModifierEntreprise($params);
+        } else {
+            header("Location: " . ADRESSE_SITE . "/erreur/401");
+        }
         break;
     case "supprimer":
-        # code...
+        // On vérifie que l'utilisateur est connecté et n'est pas un étudiant
+        if (estAdmin() || estPilote()) {
+            afficherSupprimerEntreprise($params);
+        } else {
+            header("Location: " . ADRESSE_SITE . "/erreur/401");
+        }
         break;
-    default:
-        # code...
+    default:  // Mot clé non reconnu
+        header("Location: " . ADRESSE_SITE . "/entreprise/liste");
         break;
 }
 
@@ -58,12 +70,26 @@ function afficherListeEntreprises($params): void {
     }
 }
 
-function affcherCreerEntreprise(array $params): void {
-    if (count($params) > 1) {
+function afficherLectureEntreprise($params): void {
+    if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
         header("Location: " . ADRESSE_SITE . "/entreprise/liste");
     }
 
-    var_dump($_POST);
+    $idEntreprise = $params[1];
+    $entreprise = getEntreprise($idEntreprise, true);
+
+    if (is_null($entreprise)) {
+        header("Location: " . ADRESSE_SITE . "/erreur/404");
+    }
+    require_once "vue/php/entreprise/lire_entreprise_vue.php";
+}
+
+function afficherCreerEntreprise(array $params): void {
+    if (count($params) > 1) {
+        header("Location: " . ADRESSE_SITE . "/entreprise/creer");
+    }
+
+    // var_dump($_POST);
     if (isset($_POST) && isset($_POST["entreprise"]) && isset($_POST["numeroRue"]) && isset($_POST["rue"]) && isset($_POST["ville"]) && isset($_POST["codePostal"]) && isset($_POST["domaine"])) {
         $nomEntreprise = $_POST["entreprise"];
         $numeroRue = $_POST["numeroRue"];
@@ -74,7 +100,7 @@ function affcherCreerEntreprise(array $params): void {
         $visible = isset($_POST["visible"]) ? true : false;
 
         $idEntreprise = creerEntreprise($nomEntreprise, $numeroRue, $rue, $ville, $codePostal, $domaine, $visible);
-        echo "<br>idEntreprise: " . $idEntreprise . "<br>";
+        // echo "<br>idEntreprise: " . $idEntreprise . "<br>";
 
         if (!is_null($idEntreprise)) {  // Entreprise créée
             header("Location: " . ADRESSE_SITE . "/entreprise/liste");  // Redirection vers la liste des entreprises
@@ -87,9 +113,65 @@ function affcherCreerEntreprise(array $params): void {
 }
 
 function afficherModifierEntreprise(array $params): void {
-    // TODO: Modifier une entreprise
+    if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
+        header("Location: " . ADRESSE_SITE . "/entreprise/liste");
+    }
+
+    $idEntreprise = $params[1];
+    // $idEntreprise = intval($params[1]);
+    // echo var_dump($idEntreprise) . "<br>";
+
+    // echo var_dump($_POST) . "<br>";
+    // if (isset($_POST) && isset($_POST["entreprise"]) && isset($_POST["numeroRue"]) && isset($_POST["rue"]) && isset($_POST["ville"]) && isset($_POST["codePostal"]) && isset($_POST["domaine"])) {
+    if (isset($_POST) && isset($_POST["entreprise"]) && isset($_POST["domaine"])) {
+        $nomEntreprise = $_POST["entreprise"];
+        // $numeroRue = $_POST["numeroRue"];
+        // $rue = $_POST["rue"];
+        // $ville = $_POST["ville"];
+        // $codePostal = $_POST["codePostal"];
+        $domaine = $_POST["domaine"];
+        $visible = isset($_POST["visible"]) ? true : false;
+
+        // $entrepriseModifiee = modifierEntreprise($idEntreprise, $nomEntreprise, $numeroRue, $rue, $ville, $codePostal, $domaine, $visible);
+        $entrepriseModifiee = modifierEntreprise($idEntreprise, $nomEntreprise, $domaine, $visible);
+        echo "Entreprise modifiée: " . var_dump($entrepriseModifiee) . "<br>";
+
+        if ($entrepriseModifiee) {  // Entreprise modifiée
+            header("Location: " . ADRESSE_SITE . "/entreprise/liste");  // Redirection vers la liste des entreprises
+        } else {  // Erreur lors de la modification de l'entreprise
+            header("Location: " . ADRESSE_SITE . "/entreprise/modifier");  // Redirection vers la page de modification d'entreprise
+        }
+    } else {
+        // echo "Entreprise à modifier, id: " . $idEntreprise . "<br>";
+        $entreprise = getEntreprise($idEntreprise, false);
+
+        if (is_null($entreprise)) {
+            header("Location: " . ADRESSE_SITE . "/erreur/404");
+        }
+        require_once "vue/php/entreprise/modifier_entreprise_vue.php";
+    }
 }
 
 function afficherSupprimerEntreprise(array $params): void {
-    // TODO: Supprimer une entreprise
+    if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
+        header("Location: " . ADRESSE_SITE . "/entreprise/liste");
+    }
+
+    $idEntreprise = $params[1];
+
+    if (isset($_POST) && isset($_POST["confirmation"]) && $_POST["confirmation"] == "oui") {  // Suppression confirmée
+        $entrepriseSupprimee = supprimerEntreprise($idEntreprise);
+        if ($entrepriseSupprimee) {
+            header("Location: " . ADRESSE_SITE . "/entreprise/liste");
+        } else {
+            header("Location: " . ADRESSE_SITE . "/erreur/409/Impossible-de-supprimer-l'entreprise-(essayez-de-la-cacher)");
+        }
+    } else {  // Demande de confirmation de suppression
+        $entreprise = getEntreprise($idEntreprise, false);
+
+        if (is_null($entreprise)) {
+            header("Location: " . ADRESSE_SITE . "/erreur/404");
+        }
+        require_once "vue/php/entreprise/supprimer_entreprise_vue.php";
+    }
 }

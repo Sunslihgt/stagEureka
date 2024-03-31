@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "outils.php";
 
 // Démarre la temporisation de sortie
 // (Permet de stocker le contenu html suivant dans une variable php)
@@ -116,13 +116,19 @@ ob_start();
                             </p>
                         </div>
                         <div class="boutons-carte">
-                            <button class="bouton-carte bouton-modification" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/modifier/<?= $entreprise->id ?>'">
-                                <i class="fa-solid fa-pen"></i>
+                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/lire/<?= $entreprise->id ?>'">
+                                <i class="fa-solid fa-eye"></i>
                             </button>
-                            <span></span>
-                            <button class="bouton-carte bouton-suppression" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/supprimer/<?= $entreprise->id ?>'">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
+                            <?php if (estAdmin() || estPilote()) { ?>
+                                <span></span>
+                                <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/modifier/<?= $entreprise->id ?>'">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <span></span>
+                                <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/supprimer/<?= $entreprise->id ?>'">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

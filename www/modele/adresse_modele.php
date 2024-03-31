@@ -1,5 +1,5 @@
 <?php
-// require_once "config.php";
+// require_once "outils.php";
 require_once "connexion_bdd.php";
 
 

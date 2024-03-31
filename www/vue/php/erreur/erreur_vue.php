@@ -1,5 +1,5 @@
 <?php
-// include_once "config.php";
+// include_once "outils.php";
 
 // Démarre la temporisation de sortie
 // (Permet de stocker le contenu html suivant dans une variable php)
@@ -12,6 +12,10 @@ ob_start();
         
         <h3><?= $messageErreur ?? "Une erreur inattendue est survenue" ?></h3>
         <span></span><!-- Espace vide pour aérer la page -->
+
+        <?php if (isset($descriptionErreur)) { ?>
+            <p class="description-erreur"><?= $descriptionErreur ?></p>
+        <?php } ?>
         
         <a href="accueil.html" class="bouton-principal">Retour à l'accueil</a>
     </div>

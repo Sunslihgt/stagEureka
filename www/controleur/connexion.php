@@ -1,6 +1,6 @@
 <?php
 
-require_once "config.php";
+require_once "outils.php";
 require_once "modele/utilisateur_modele.php";
 
 // Démarrage de la session si nécessaire
