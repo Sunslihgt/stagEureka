@@ -78,15 +78,14 @@ function getEntreprises(bool $cacherInvisible): array {
 
     $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
     
-    // var_dump($reponseBdd);
+    // if (DEBUG) var_dump($reponseBdd);
     if ($reponseBdd === false) {
         return [];
     }
     
-    // echo "<br>";
     $entreprises = [];
     foreach ($reponseBdd as $ligneEntreprise) {
-        // echo var_dump($ligneEntreprise) . "<br>";
+        // if (DEBUG) echo var_dump($ligneEntreprise) . "<br>";
         $entreprise = new Entreprise(
             $ligneEntreprise["idCompany"],
             $ligneEntreprise["nameCompany"],
@@ -100,8 +99,6 @@ function getEntreprises(bool $cacherInvisible): array {
 
         $entreprises[] = $entreprise;
     }
-    
-    // echo "<br>";
 
     return $entreprises;
 }
@@ -116,15 +113,14 @@ function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationF
 
     $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
     
-    // var_dump($reponseBdd);
+    // if (DEBUG) var_dump($reponseBdd);
     if ($reponseBdd === false) {
         return null;
     }
     
-    // echo "<br>";
     $entreprises = [];
     foreach ($reponseBdd as $ligneEntreprise) {
-        // echo var_dump($ligneEntreprise) . "<br>";
+        // if (DEBUG) echo var_dump($ligneEntreprise) . "<br>";
         $entreprise = new Entreprise(
             $ligneEntreprise["idCompany"],
             $ligneEntreprise["nameCompany"],
@@ -160,8 +156,6 @@ function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationF
         // Si tous les filtres correspondent, on ajoute l'entreprise
         $entreprises[] = $entreprise;
     }
-    
-    // echo "<br>";
 
     return $entreprises;
 }
@@ -188,7 +182,7 @@ function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, str
         $pdo->rollBack();
         return null;
     }
-    echo "Entreprise créée ! idEntreprise: " . $idEntreprise . "<br>";
+    // if (DEBUG) echo "Entreprise créée ! idEntreprise: " . $idEntreprise . "<br>";
 
     // Recherche de la ville
     $requete = $pdo->prepare(
@@ -201,7 +195,7 @@ function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, str
     $resultat = $requete->fetch(PDO::FETCH_ASSOC);
     if ($resultat !== false && isset($resultat["idCity"])) {  // La ville existe
         $idVille = $resultat["idCity"];
-        echo "ville trouvée ! idVille: " . $idVille . "<br>";
+        // if (DEBUG) echo "ville trouvée ! idVille: " . $idVille . "<br>";
     } else {  // Création de la ville
         $requete = $pdo->prepare(
             "INSERT INTO City (cityName, addressCode)
@@ -212,8 +206,8 @@ function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, str
             ":codePostal" => $codePostal
         ]);
         $idVille = $pdo->lastInsertId();
-        
-        echo "ville créée ! idVille: " . $idVille . "<br>";
+
+        // if (DEBUG) echo "ville créée ! idVille: " . $idVille . "<br>";
     }
     
     if ($idVille === false) {
@@ -248,7 +242,7 @@ function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, str
         ":idAdresse" => $idAdresse
     ]);
 
-    echo "Relation entreprise-adresse créée ! idAdresse: " . $idAdresse . "idEntreprise" . $idEntreprise . "<br>";
+    // if (DEBUG) echo "Relation entreprise-adresse créée ! idAdresse: " . $idAdresse . "idEntreprise" . $idEntreprise . "<br>";
 
     // Validation de la transaction
     $pdo->commit();

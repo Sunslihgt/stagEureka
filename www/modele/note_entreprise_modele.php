@@ -44,15 +44,14 @@ function getNotesEntreprise(int $idEntreprise, string $typeNote): ?array {
 
     $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-    // var_dump($reponseBdd);
+    // if (DEBUG) var_dump($reponseBdd);
     if ($reponseBdd === false) {
         return null;
     }
 
-    // echo "<br>";
     $notes = [];
     foreach ($reponseBdd as $note) {
-        // echo var_dump($note) . "<br>";
+        // if (DEBUG) echo var_dump($note) . "<br>";
 
         $notes[] = new NoteEtudiant(
             $note["idCompany"],
@@ -60,8 +59,6 @@ function getNotesEntreprise(int $idEntreprise, string $typeNote): ?array {
             $note[TYPES_NOTE[$typeNote][2]]  // pilotGrade ou studentGrade
         );
     }
-
-    // echo "<br>";
 
     return $notes;
 }
@@ -87,7 +84,7 @@ function getMoyenneNotesEntreprise(int $idEntreprise, string $typeNote): float {
 
     $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
 
-    // var_dump($reponseBdd);
+    // if (DEBUG) var_dump($reponseBdd);
     if ($reponseBdd === false || $reponseBdd["quantite"] == 0) {
         return -1;
     }

@@ -50,7 +50,7 @@ function connexionUtilisateur(string $email, string $mdp): ?Utilisateur {
 
     // Vérifie que le mot de passe donné correspond au mot de passe hashé stocké en bdd
     if (password_verify($mdp, $utilisateur->hash_mdp)) {
-        echo "Mot de passe correct";
+        // if (DEBUG) echo "Mot de passe correct";
         return $utilisateur;
     } else {
         return null;
@@ -76,15 +76,15 @@ function getUtilisateur(string $email): ?Utilisateur {
 
     // On traite les cas possibles
     if ($nbTypesTrouves == 0) {  // L'utilisateur n'existe pas
-        // echo "L'utilisateur n'existe pas";
+        // if (DEBUG) echo "L'utilisateur n'existe pas";
         return null;
     } else if ($nbTypesTrouves == 1) {  // L'utilisateur existe
-        // echo "L'utilisateur existe";
+        // if (DEBUG) echo "L'utilisateur existe";
         // Renvoie l'utilisateur trouvé
         // L'opérateur ?? renvoie le premier opérande qui n'est pas null
         return $admin ?? $pilote ?? $etudiant;
     } else {  // Plusieurs utilisateurs ont la même adresse email
-        // echo "Plusieurs utilisateurs ont la même adresse email";
+        // if (DEBUG) echo "Plusieurs utilisateurs ont la même adresse email";
         return null;
     }
 }
@@ -111,9 +111,9 @@ function getUtilisateurAbstrait(string $email, string $typeUtilisateur): ?Utilis
     $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
     
     // Affiche le résultat de la recherche pour débugger
-    // echo "Recherche utilisateur " . $typeUtilisateur . ": ";
-    // var_dump($reponseBdd);
-    // echo "<br>";
+    // if (DEBUG) echo "Recherche utilisateur " . $typeUtilisateur . ": ";
+    // if (DEBUG) var_dump($reponseBdd);
+    // if (DEBUG) echo "<br>";
 
     if ($reponseBdd === false || !isset($reponseBdd["idAdministrator"]) || !isset($reponseBdd["email"]) || !isset($reponseBdd["name"]) || !isset($reponseBdd["firstName"]) || !isset($reponseBdd["password"])) {
         return null;

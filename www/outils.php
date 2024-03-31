@@ -2,7 +2,10 @@
 /**
  * Adresse du site web
  */
-const ADRESSE_SITE = "http://localhost/stageureka/www";
+const ADRESSE_SITE = "http://localhost/stageureka/www";  // Pour la version locale
+// const ADRESSE_SITE = "https://stageureka.alwaysdata.net";  // Pour la version en ligne
+
+const DEBUG = true;  // Affiche ou cache les erreurs
 
 /**
  * Vérifie si l'utilisateur est un administrateur

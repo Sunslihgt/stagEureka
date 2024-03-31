@@ -7,12 +7,10 @@ require_once "modele/utilisateur_modele.php";
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// var_dump($_SESSION);
+// if (DEBUG) var_dump($_SESSION);
 
 if (!isset($_SESSION["id"])) {  // L'utilisateur n'est pas connecté
     if (isset($_POST) && isset($_POST["email"]) && isset($_POST["mdp"])) {  // Tentative de connexion
-        // echo "POST";
-
         // L'utilisateur a soumis le formulaire de connexion
         $email = $_POST["email"];
         $mdp = $_POST["mdp"];
@@ -20,7 +18,6 @@ if (!isset($_SESSION["id"])) {  // L'utilisateur n'est pas connecté
         // Vérifie les identifiants
         $connexion = connexion($email, $mdp);
         if ($connexion) {  // Connexion réussie
-            // echo "Connexion réussie";
             header("Location: " . ADRESSE_SITE . "/accueil");
             exit();
         } else {  // Connexion échouée
@@ -28,7 +25,6 @@ if (!isset($_SESSION["id"])) {  // L'utilisateur n'est pas connecté
             exit();
         }
     } else {  // Affichage du formulaire de connexion
-        // echo "GET";
         require_once "vue/php/connexion/connexion_vue.php";
         exit();
     }
@@ -49,9 +45,6 @@ function connexion(string $email, string $mdp): bool {
     $utilisateur = connexionUtilisateur($email, $mdp);
 
     if (is_null($utilisateur)) {  // La connexion a échouée
-        // echo "<br>";
-        // echo "Identifiants incorrects";
-
         return false;
     }
     
@@ -63,9 +56,6 @@ function connexion(string $email, string $mdp): bool {
     $_SESSION["email"] = $utilisateur->email;
     $_SESSION["typeUtilisateur"] = $utilisateur->typeUtilisateur;
 
-    // echo "<br>";
-    // echo "Identifiants corrects";
-    // echo "<br>";
-    // var_dump($_SESSION);
+    // if (DEBUG) var_dump($_SESSION);
     return true;
 }

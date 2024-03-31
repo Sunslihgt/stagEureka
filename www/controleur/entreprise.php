@@ -3,7 +3,7 @@ require_once "outils.php";
 require_once "modele/entreprise_modele.php";
 require_once "modele/adresse_modele.php";
 
-// var_dump($params);
+// if (DEBUG) var_dump($params);
 
 // Si pas de paramètre, on redirige vers la liste des entreprises
 if (count($params) == 0 || $params[0] == "") {
@@ -89,7 +89,7 @@ function afficherCreerEntreprise(array $params): void {
         header("Location: " . ADRESSE_SITE . "/entreprise/creer");
     }
 
-    // var_dump($_POST);
+    // if (DEBUG) var_dump($_POST);
     if (isset($_POST) && isset($_POST["entreprise"]) && isset($_POST["numeroRue"]) && isset($_POST["rue"]) && isset($_POST["ville"]) && isset($_POST["codePostal"]) && isset($_POST["domaine"])) {
         $nomEntreprise = $_POST["entreprise"];
         $numeroRue = $_POST["numeroRue"];
@@ -100,7 +100,6 @@ function afficherCreerEntreprise(array $params): void {
         $visible = isset($_POST["visible"]) ? true : false;
 
         $idEntreprise = creerEntreprise($nomEntreprise, $numeroRue, $rue, $ville, $codePostal, $domaine, $visible);
-        // echo "<br>idEntreprise: " . $idEntreprise . "<br>";
 
         if (!is_null($idEntreprise)) {  // Entreprise créée
             header("Location: " . ADRESSE_SITE . "/entreprise/liste");  // Redirection vers la liste des entreprises
@@ -119,9 +118,9 @@ function afficherModifierEntreprise(array $params): void {
 
     $idEntreprise = $params[1];
     // $idEntreprise = intval($params[1]);
-    // echo var_dump($idEntreprise) . "<br>";
+    // if (DEBUG) echo var_dump($idEntreprise) . "<br>";
 
-    // echo var_dump($_POST) . "<br>";
+    // if (DEBUG) echo var_dump($_POST) . "<br>";
     // if (isset($_POST) && isset($_POST["entreprise"]) && isset($_POST["numeroRue"]) && isset($_POST["rue"]) && isset($_POST["ville"]) && isset($_POST["codePostal"]) && isset($_POST["domaine"])) {
     if (isset($_POST) && isset($_POST["entreprise"]) && isset($_POST["domaine"])) {
         $nomEntreprise = $_POST["entreprise"];
@@ -134,7 +133,7 @@ function afficherModifierEntreprise(array $params): void {
 
         // $entrepriseModifiee = modifierEntreprise($idEntreprise, $nomEntreprise, $numeroRue, $rue, $ville, $codePostal, $domaine, $visible);
         $entrepriseModifiee = modifierEntreprise($idEntreprise, $nomEntreprise, $domaine, $visible);
-        echo "Entreprise modifiée: " . var_dump($entrepriseModifiee) . "<br>";
+        // if (DEBUG) echo "Entreprise modifiée: " . var_dump($entrepriseModifiee) . "<br>";
 
         if ($entrepriseModifiee) {  // Entreprise modifiée
             header("Location: " . ADRESSE_SITE . "/entreprise/liste");  // Redirection vers la liste des entreprises
@@ -142,7 +141,6 @@ function afficherModifierEntreprise(array $params): void {
             header("Location: " . ADRESSE_SITE . "/entreprise/modifier");  // Redirection vers la page de modification d'entreprise
         }
     } else {
-        // echo "Entreprise à modifier, id: " . $idEntreprise . "<br>";
         $entreprise = getEntreprise($idEntreprise, false);
 
         if (is_null($entreprise)) {

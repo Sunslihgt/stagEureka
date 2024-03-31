@@ -1,5 +1,7 @@
 <?php
 
+require_once "outils.php";
+
 /**
  * Renvoie une connexion à la base de données.
  * @brief Les données de connexion sont stockées dans le fichier mdp.php qui est sécurisé dans Apache.
@@ -23,9 +25,11 @@ function connexionBDD(): PDO {
 
     try {
         $connexion = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mdp);
-        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if (DEBUG) {  // Affiche les erreurs SQL si le mode DEBUG est activé (dans outils.php)
+            $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
     } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
+        if (DEBUG) echo "Erreur : " . $e->getMessage();
         return null;
     }
 

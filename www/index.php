@@ -5,19 +5,19 @@
 // Inclusion des fichiers de configuration
 require_once "outils.php";
 
-// echo "Passage par le routeur!<br>";
-// var_dump($_GET);
+// if (DEBUG) echo "Passage par le routeur!<br>";
+// if (DEBUG) var_dump($_GET);
 
-// echo "<br>ADRESSE_SITE: " . ADRESSE_SITE . "<br>";
+// if (DEBUG) echo "<br>ADRESSE_SITE: " . ADRESSE_SITE . "<br>";
 
 // Démarrage de la session si nécessaire
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// var_dump($_SESSION);
-// echo "<br>";
+// if (DEBUG) var_dump($_SESSION);
+// if (DEBUG) echo "<br>";
 
-// echo password_hash("test", PASSWORD_DEFAULT);
+// if (DEBUG) echo password_hash("test", PASSWORD_DEFAULT);
 
 routageGlobal();
 
