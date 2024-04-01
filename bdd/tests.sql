@@ -12,3 +12,5 @@ INNER JOIN City ON Address.idCity = City.idCity;
 
 SELECT * FROM Address
 INNER JOIN City ON Address.idCity = City.idCity;
+
+SELECT * FROM InternshipOffer;

@@ -48,7 +48,7 @@ switch ($action) {
         break;
 }
 
-function afficherListeEntreprises($params): void {
+function afficherListeEntreprises(array $params): void {
     if (count($params) > 1) {
         header("Location: " . ADRESSE_SITE . "/entreprise/liste");
     }
@@ -70,7 +70,7 @@ function afficherListeEntreprises($params): void {
     }
 }
 
-function afficherLectureEntreprise($params): void {
+function afficherLectureEntreprise(array $params): void {
     if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
         header("Location: " . ADRESSE_SITE . "/entreprise/liste");
     }

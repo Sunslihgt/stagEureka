@@ -13,12 +13,16 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
     color: var(--primary-color);
     overflow: hidden;
+}
+
+body,
+textarea {
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -549,6 +553,10 @@ main:has(.conteneur-connexion) {
     padding: 8px;
 }
 
+select.case-standard {
+    width: 100%;
+}
+
 /* Input de longueur courte */
 .case-court {
     width: 70px;
@@ -626,6 +634,16 @@ textarea {
     resize: none;
 }
 
+/* Espace vertical pour les champs de la localisation */
+.creation-offre-localisation input {
+    margin-bottom: 4px;
+}
+
+/* Aligne le numéro et le nom de la rue sur une même ligne */
+.creation-offre-localisation #champ-rue {
+    width: 197.5px;
+}
+
 /* Permet de cacher un élément tout en permettant aux lecteurs d'écrans de pouvoir le lire */
 .accessibilite-invisible {
     clip: rect(0 0 0 0);
@@ -653,6 +671,10 @@ textarea {
     text-align: center;
     font-weight: bold;
     cursor: pointer;
+}
+
+.label-mineure-offre {
+    cursor: default;
 }
 
 .categories .label-gene {
@@ -712,10 +734,15 @@ textarea {
 }
 
 .label-mineure:focus,
-.label-mineure:hover,
-.case-mineure:focus-within + .label-mineure {
+:not(.case-mineure:disabled) + .label-mineure:hover,
+.case-mineure:focus-within:not(:disabled) + .label-mineure {
     outline: 2px solid var(--primary-color);
     color: var(--primary-color);
+}
+
+.label-mineure-offre:hover {
+    outline: none;
+    color: var(--alternate-color);
 }
 
 .rectangle-gris label,
@@ -1171,7 +1198,12 @@ textarea {
 
 /* Recentre l'icône de crayon dans les cartes */
 .affichage-cartes .fa-pen {
-    transform: translate(0%, 6%);
+    transform: translate(0, 6%);
+}
+
+/* Recentrer l'icône d'étoile dans les cartes */
+.affichage-cartes .fa-star {
+    transform: translate(-4%, 0);
 }
 
 /* Titre et bouton ajouter élément en 2 lignes */
@@ -1374,13 +1406,16 @@ textarea {
 }
 
 /* Si le fieldset ne contient pas d'image (image invisible)  */
-.fieldset-image-offre:has(.image-offre-liste[hidden]) {
+.fieldset-image-offre:has(.image-offre-liste[hidden]),
+.fieldset-image-offre:has(.image-offre-liste[src=""]),
+.fieldset-image-offre:not(:has(.image-offre-liste)) {
     display: none;
 }
 
 /* Image liste offres */
 .image-offre-liste {
     /* max-width: 100%; */
+    width: 100%;
     max-width: 40vw;
     max-height: 100%;
     /* height: fit-content; */

@@ -36,8 +36,8 @@ INSERT INTO Address (streetNumber, streetName, idCity) VALUES
 
 -- Offres de stage
 INSERT INTO InternshipOffer (skills, title, description, remuneration, offerDate, numberOfPlaces, duration, minor, pictureURL, idAddress, idCompany) VALUES 
-("Java, SQL", "Développeur Java", "Développement d'applications Java", "1000€/mois", "2022-01-01", 2, 6, 18, "url_image", 1, 1),
-("C++, Python", "Développeur C++", "Développement d'applications C++", "1200€/mois", "2022-01-02", 1, 6, 18, "url_image", 2, 2);
+("Java, SQL", "Développeur Java", "Développement d'applications Java", 1000.0, "2022-10-01", 2, 6, "GENE", "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg", 1, 1),
+("C++, Python", "Développeur C++", "Développement d'applications C++", 1200.0, "2022-10-02", 1, 6, "INFO", "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg", 2, 2);
 
 -- Entreprises installées
 INSERT INTO is_settle (idCompany, idAddress) VALUES

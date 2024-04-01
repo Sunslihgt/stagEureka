@@ -160,6 +160,17 @@ function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationF
     return $entreprises;
 }
 
+/**
+ * Crée une entreprise et lie son adresse (réutilise la ville si possible)
+ * @param string $nomEntreprise
+ * @param int $numeroRue
+ * @param string $rue
+ * @param string $ville
+ * @param string $codePostal
+ * @param string $domaine
+ * @param bool $visible
+ * @return int|null ID de l'entreprise créée ou null si une erreur survient
+ */
 function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, string $ville, string $codePostal, string $domaine, bool $visible): ?int {
     $pdo = connexionBDD();
 
