@@ -18,7 +18,7 @@ if (!isset($_SESSION["id"])) {  // L'utilisateur n'est pas connecté
         // Vérifie les identifiants
         $connexion = connexion($email, $mdp);
         if ($connexion) {  // Connexion réussie
-            header("Location: " . ADRESSE_SITE . "/accueil");
+            redirectionAccueil();
             exit();
         } else {  // Connexion échouée
             require_once "vue/php/connexion/connexion_vue.php";
@@ -30,7 +30,7 @@ if (!isset($_SESSION["id"])) {  // L'utilisateur n'est pas connecté
     }
 } else {
     // L'utilisateur est déjà connecté
-    header("Location: " . ADRESSE_SITE . "/accueil");
+    redirectionAccueil();
     exit();
 }
 

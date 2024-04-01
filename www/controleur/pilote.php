@@ -2,4 +2,5 @@
 require_once "outils.php";
 
 // TODO: Implémenter la logique et la vue du contrôleur
-header("Location: " . ADRESSE_SITE . "/erreur/501");
+redirectionErreur(501);  // Erreur 501 (Non implémenté)
+

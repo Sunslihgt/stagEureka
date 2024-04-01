@@ -8,6 +8,14 @@ const ADRESSE_SITE = "http://localhost/stageureka/www";  // Pour la version loca
 const DEBUG = true;  // Affiche ou cache les erreurs
 
 /**
+ * Vérifie si l'utilisateur est connecté
+ * @return bool
+ */
+function estConnecte(): bool {
+    return isset($_SESSION["id"]);
+}
+
+/**
  * Vérifie si l'utilisateur est un administrateur
  * @return bool
  */
@@ -29,4 +37,34 @@ function estPilote(): bool {
  */
 function estEtudiant(): bool {
     return isset($_SESSION["id"]) && isset($_SESSION["typeUtilisateur"]) && $_SESSION["typeUtilisateur"] == "ETUDIANT";
+}
+
+/**
+ * Redirige vers la page d'accueil
+ */
+function redirectionAccueil(): void {
+    redirectionInterne("accueil");
+}
+
+/**
+ * Redirige vers la page d'erreur
+ * @param int $codeErreur Code d'erreur HTTP (Optionnel)
+ * @param string $messageErreur Message d'erreur (Optionnel)
+ */
+function redirectionErreur(int $codeErreur = 404, string $messageErreur = ""): void {
+    $url = "erreur/$codeErreur";
+    if ($messageErreur != "") {
+        $url .= "/$messageErreur";
+    }
+    redirectionInterne($url);
+}
+
+
+/**
+ * Redirige vers une page interne commençant par le nom du site
+ * (Exemple: /offre/liste)
+ * @param string $url URL de la page interne
+ */
+function redirectionInterne(string $url): void {
+    header("Location: " . ADRESSE_SITE . "/$url");
 }

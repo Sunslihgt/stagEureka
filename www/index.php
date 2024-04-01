@@ -42,7 +42,11 @@ function routageGlobal(): void {
                 include_once "controleur/legal.php";
                 break;
             case "offre":
-                include_once "controleur/offre.php";
+                if (estConnecte()) {
+                    include_once "controleur/offre.php";
+                } else {
+
+                }
                 break;
             case "entreprise":
                 include_once "controleur/entreprise.php";
@@ -66,26 +70,13 @@ function routageGlobal(): void {
                 }
                 break;
             default:  // Contrôleur inconnu ou contrôleur d'erreur
-                redirectionErreur();
+                redirectionErreur(404);  // Erreur 404: Non trouvé
                 break;
         }
     } else {
         // Redirige vers la page d'accueil par défaut
-        header("Location: html_temp/accueil.html");
+        redirectionAccueil();
     }
 }
 
-/**
- * Redirige vers la page d'accueil
- */
-function redirectionAccueil(): void {
-    header("Location: " . ADRESSE_SITE . "/accueil");
-}
 
-/**
- * Redirige vers la page d'erreur
- * @param int $codeErreur Code d'erreur HTTP
- */
-function redirectionErreur(int $codeErreur = 404): void {
-    header("Location: " . ADRESSE_SITE . "/erreur/$codeErreur");
-}

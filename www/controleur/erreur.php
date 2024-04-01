@@ -5,7 +5,7 @@ if (isset($params[0])) {
     if (is_numeric($params[0]) && $params[0] >= 400 && $params[0] < 600) {
         $codeErreur = $params[0];
     } else {
-        header("Location: " . ADRESSE_SITE . "/erreur/404");
+        redirectionErreur(404);  // Erreur 404 (Non trouvé)
         exit();
     }
 }
@@ -17,7 +17,7 @@ if (isset($params[1])) {
 }
 
 if (count($params) > 2) {
-    header("Location: " . ADRESSE_SITE . "/erreur/404");
+    redirectionErreur(404);  // Erreur 404 (Non trouvé)
     exit();
 }
 

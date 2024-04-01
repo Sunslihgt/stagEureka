@@ -7,7 +7,7 @@ require_once "modele/adresse_modele.php";
 
 // Si pas de paramètre, on redirige vers la liste des offres
 if (count($params) == 0 || $params[0] == "") {
-    header("Location: " . ADRESSE_SITE . "/offre/liste");
+    redirectionInterne("offre/liste");
     exit();
 }
 
@@ -24,7 +24,7 @@ switch ($action) {
         if (estAdmin() || estPilote()) {
             afficherCreerOffre($params);
         } else {  // Si l'utilisateur n'est pas autorisé
-            header("Location: " . ADRESSE_SITE . "/erreur/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-cr%C3%A9er-des-offres-de-stage");
+            redirectionErreur(401, "/erreur/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-cr%C3%A9er-des-offres-de-stage");  // Erreur 401 (Non autorisé)
         }
         break;
     case "modifier":
@@ -32,7 +32,7 @@ switch ($action) {
         if (estAdmin() || estPilote()) {
             afficherModifierOffre($params);
         } else {  // Si l'utilisateur n'est pas autorisé
-            header("Location: " . ADRESSE_SITE . "/erreur/401");
+            redirectionErreur(401, "/erreur/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-modifier-des-offres-de-stage");  // Erreur 401 (Non autorisé)
         }
         break;
     case "supprimer":
@@ -40,24 +40,24 @@ switch ($action) {
         if (estAdmin() || estPilote()) {
             afficherSupprimerOffre($params);
         } else {  // Si l'utilisateur n'est pas autorisé
-            header("Location: " . ADRESSE_SITE . "/erreur/401");
+            redirectionErreur(401, "/erreur/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-supprimer-des-offres-de-stage");  // Erreur 401 (Non autorisé)
         }
         break;
     default:  // Mot clé non reconnu
-        header("Location: " . ADRESSE_SITE . "/offre/liste");
+        redirectionInterne("offre/liste");
         break;
 }
 
 function afficherLectureOffre(array $params) {
-    if (count($params) != 2) {
-        header("Location: " . ADRESSE_SITE . "/offre/lire" . $params[1]);
+    if (count($params) != 2 || !is_numeric($params[1]) || intval($params[1]) < 0) {
+        redirectionInterne("offre/liste");
     }
 
     $idOffre = intval($params[1]);
     $offre = getOffre($idOffre);
 
     if (is_null($offre)) {
-        header("Location: " . ADRESSE_SITE . "/erreur/404");
+        redirectionErreur(404);  // Erreur 404 (Non trouvé)
     }
 
     require_once "vue/php/offre/lire_offre_vue.php";
@@ -65,7 +65,7 @@ function afficherLectureOffre(array $params) {
 
 function afficherListeOffres(array $params): void {
     if (count($params) > 1) {
-        header("Location: " . ADRESSE_SITE . "/offre/liste");
+        redirectionInterne("offre/liste");
     }
 
     if (isset($_POST)) {  // Filtres de recherche trouvés
@@ -83,7 +83,7 @@ function afficherListeOffres(array $params): void {
 
 function afficherCreerOffre(array $params) {
     if (count($params) > 1) {
-        header("Location: " . ADRESSE_SITE . "/offre/liste");
+        redirectionInterne("offre/liste");
     }
 
     // if (DEBUG) var_dump($_POST);
@@ -131,9 +131,9 @@ function afficherCreerOffre(array $params) {
         );
 
         if (!is_null($idOffre)) {  // Offre créée
-            header("Location: " . ADRESSE_SITE . "/offre/liste");  // Redirection vers la liste des offres
+            redirectionInterne("offre/liste");  // Redirection vers la liste des offres
         } else {  // Erreur lors de la création de l'offre
-            header("Location: " . ADRESSE_SITE . "/offre/creer");  // Redirection vers la page de création d'offre
+            redirectionInterne("offre/creer");  // Redirection vers la page de création d'offre
         }
     } else {
         // if (DEBUG) var_dump($_POST);  // Affiche les données du formulaire pour voir les erreurs

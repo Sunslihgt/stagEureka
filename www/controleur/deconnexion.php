@@ -11,4 +11,4 @@ if (session_status() == PHP_SESSION_NONE) {
 session_destroy();
 
 // Redirige l'utilisateur vers la page d'accueil
-header("Location: " . ADRESSE_SITE . "/accueil");
+redirectionAccueil();
