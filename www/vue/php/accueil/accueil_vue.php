@@ -27,7 +27,10 @@ ob_start();
                 <!-- Le code source est disponible sur GitHub sous license MIT. -->
             </p>
             <div id="accueil-btn-div">
-                <button class="bouton-principal">Je trouve mon stage</button>
+                <!-- Bouton qui propose de se connecter ou de voir les offres -->
+                <button class="bouton-principal" onclick="location.href='<?= estConnecte() ? ADRESSE_SITE . '/offre/liste' : ADRESSE_SITE . '/connexion' ?>'">
+                    Je trouve mon stage
+                </button>
             </div>
         </div>
     </div>

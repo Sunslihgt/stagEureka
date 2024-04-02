@@ -45,23 +45,43 @@ function routageGlobal(): void {
                 if (estConnecte()) {
                     include_once "controleur/offre.php";
                 } else {
-
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
                 }
                 break;
             case "entreprise":
-                include_once "controleur/entreprise.php";
+                if (estConnecte()) {
+                    include_once "controleur/entreprise.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
                 break;
             case "pilote":
-                include_once "controleur/pilote.php";
+                if (estConnecte()) {
+                    include_once "controleur/pilote.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
                 break;
             case "etudiant":
-                include_once "controleur/etudiant.php";
+                if (estConnecte()) {
+                    include_once "controleur/etudiant.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
                 break;
             case "connexion":
-                include_once "controleur/connexion.php";
+                if (!estConnecte()) {
+                    include_once "controleur/connexion.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-déconnecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
                 break;
             case "deconnexion":
-                include_once "controleur/deconnexion.php";
+                if (estConnecte()) {
+                    include_once "controleur/deconnexion.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
                 break;
             case "erreur":  // Contrôleur d'erreur
                 $erreurAffichee = include_once "controleur/erreur.php";

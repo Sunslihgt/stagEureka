@@ -13,9 +13,8 @@ ob_start();
 
     <div class="conteneur-creation-offre">
         <h1>Création d'une offre</h1>
-        <!-- <form action="<?= ADRESSE_SITE ?>/offre/creer" method="post"> -->
-        <fieldset class="rectangle-gris">
 
+        <fieldset class="rectangle-gris">
             <div class="ligne">
                 <div class="colonne">
                     <div>
@@ -26,7 +25,7 @@ ob_start();
                     <div>
                         <label for="id-entreprise">Entreprise :</label><br>
                         <select class="case-standard" name="idEntreprise" id="id-entreprise" disabled>
-                            <option value=" -1" default><?= $offre->entreprise->nom ?></option>
+                            <option value="<?= $offre->entreprise->id ?>" default><?= $offre->entreprise->nom ?></option>
                         </select><br><br>
                     </div>
 
@@ -55,13 +54,13 @@ ob_start();
                         <input type="radio" name="mineure" class="case-mineure accessibilite-invisible" id="gene" value="GENE" <?= $offre->mineure == "GENE" ? "checked" : "" ?> disabled>
                         <label class="label-mineure label-gene" for="gene">GENE</label>
 
-                        <input type="radio" name="mineure" class="case-mineure accessibilite-invisible" id="info" value="INFO" <?= $offre->mineure == "INFO" ? "disabled" : "" ?> disabled>
+                        <input type="radio" name="mineure" class="case-mineure accessibilite-invisible" id="info" value="INFO" <?= $offre->mineure == "INFO" ? "checked" : "" ?> disabled>
                         <label class="label-mineure label-info" for="info">INFO</label>
 
-                        <input type="radio" name="mineure" class="case-mineure accessibilite-invisible" id="btp" value="BTP" <?= $offre->mineure == "BTP" ? "disabled" : "" ?> disabled>
+                        <input type="radio" name="mineure" class="case-mineure accessibilite-invisible" id="btp" value="BTP" <?= $offre->mineure == "BTP" ? "checked" : "" ?> disabled>
                         <label class="label-mineure label-btp" for="btp">BTP</label>
 
-                        <input type="radio" name="mineure" class="case-mineure accessibilite-invisible" id="s3e" value="S3E" <?= $offre->mineure == "S3E" ? "disabled" : "" ?> disabled>
+                        <input type="radio" name="mineure" class="case-mineure accessibilite-invisible" id="s3e" value="S3E" <?= $offre->mineure == "S3E" ? "checked" : "" ?> disabled>
                         <label class="label-mineure label-s3e" for="s3e">S3E</label>
                     </div>
 
@@ -93,7 +92,6 @@ ob_start();
                 <textarea class="case-description" name="description" id="description" rows="25" disabled><?= $offre->description ?></textarea><br><br>
             </div>
         </fieldset>
-        <!-- </form> -->
 
         <?php if (estAdmin() || estPilote()) { ?>
             <form action="<?= ADRESSE_SITE ?>/offre/modifier/<?= $offre->id ?>" method="get">

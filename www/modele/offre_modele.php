@@ -266,3 +266,122 @@ function creerOffre(
 
     return $idOffre;
 }
+
+function modifierOffre(
+    int $idOffre,
+    string $titre,
+    string $description,
+    string $competences,
+    float $remuneration,
+    int $places,
+    int $duree,
+    string $mineure,
+    string $urlImage,
+    DateTime $dateDebut,
+    int $idEntreprise,
+    int $numeroRue,
+    string $rue,
+    string $ville,
+    string $codePostal
+) : bool {
+    $pdo = connexionBDD();
+
+    // Début de la transaction (permet d'annuler les modifications si une erreur survient)
+    $pdo->beginTransaction();
+
+    // Création de l'adresse
+    // Recherche de la ville
+    $requete = $pdo->prepare(
+        "SELECT idCity FROM City WHERE cityName = :ville AND addressCode = :codePostal"
+    );
+    $requete->execute([
+        ":ville" => $ville,
+        ":codePostal" => $codePostal
+    ]);
+    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+    if ($resultat !== false && isset($resultat["idCity"])) {  // La ville existe déjà
+        $idVille = $resultat["idCity"];
+        // if (DEBUG) echo "ville trouvée ! idVille: " . $idVille . "<br>";
+    } else {  // Création de la ville
+        $requete = $pdo->prepare(
+            "INSERT INTO City (cityName, addressCode)
+            VALUES (:ville, :codePostal)"
+        );
+        $requete->execute([
+            ":ville" => $ville,
+            ":codePostal" => $codePostal
+        ]);
+        $idVille = $pdo->lastInsertId();
+
+        // if (DEBUG) echo "ville créée ! idVille: " . $idVille . "<br>";
+    }
+
+    if ($idVille === false) {
+        $pdo->rollBack();
+        return false;
+    }
+
+    // Création de l'adresse
+    $requete = $pdo->prepare(
+        "INSERT INTO Address (streetNumber, streetName, idCity)
+        VALUES (:numeroRue, :rue, :idVille)"
+    );
+    $requete->execute([
+        ":numeroRue" => $numeroRue,
+        ":rue" => $rue,
+        ":idVille" => $idVille,
+    ]);
+
+    $idAdresse = $pdo->lastInsertId();
+    if ($idAdresse === false) {
+        $pdo->rollBack();
+        return false;
+    }
+
+    // Création de l'offre
+    $sql = "UPDATE InternshipOffer
+    SET title = :titre, description = :description, skills = :competences,
+    remuneration = :remuneration, numberOfPlaces = :places, duration = :duree,
+    minor = :mineure, pictureURL = :urlImage, offerDate = :dateDebut,
+    idAddress = :idAdresse, idCompany = :idEntreprise
+    WHERE idInternshipOffer = :idOffre";
+    $requete = $pdo->prepare($sql);
+    $requete->execute([
+        ":titre" => $titre,
+        ":description" => $description,
+        ":competences" => $competences,
+        ":remuneration" => $remuneration,
+        ":places" => $places,
+        ":duree" => $duree,
+        ":mineure" => $mineure,
+        ":urlImage" => $urlImage,
+        ":dateDebut" => $dateDebut->format("Y-m-d"),
+        ":idAdresse" => $idAdresse,
+        ":idEntreprise" => $idEntreprise,
+        ":idOffre" => $idOffre
+    ]);
+
+    if ($requete->rowCount() === 0) {
+        $pdo->rollBack();
+        return false;
+    }
+    // TODO: Vérifier fonctionnement fonction
+
+    $pdo->commit();
+
+    return true;
+}
+
+function supprimerOffre(int $idOffre): bool {
+    $pdo = connexionBDD();
+
+    try {
+        $sql = "DELETE FROM InternshipOffer WHERE idInternshipOffer = ?";
+        $requete = $pdo->prepare($sql);
+        $requete->execute([$idOffre]);
+    } catch (Exception $e) {
+        return false;
+    }
+
+    return true;
+}

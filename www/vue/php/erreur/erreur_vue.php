@@ -17,7 +17,7 @@ ob_start();
             <p class="description-erreur"><?= $descriptionErreur ?></p>
         <?php } ?>
         
-        <a href="accueil.html" class="bouton-principal">Retour à l'accueil</a>
+        <a href="<?= ADRESSE_SITE ?>/accueil" class="bouton-principal">Retour à l'accueil</a>
     </div>
 </main>
 
