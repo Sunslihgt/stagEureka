@@ -487,7 +487,7 @@ main:has(.conteneur-connexion) {
     font-size: 50px;
 }
 
-#email, #mdp {
+#email, .case-mdp {
     margin-top: 4px;
     border-radius: 6px;
     border: none;
@@ -554,7 +554,8 @@ main:has(.conteneur-connexion) {
 }
 
 select.case-standard {
-    width: 100%;
+    width: 308px;
+    /* overflow-x: scroll; */
 }
 
 /* Input de longueur courte */

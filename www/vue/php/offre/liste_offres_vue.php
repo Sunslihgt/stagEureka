@@ -74,7 +74,7 @@ ob_start();
                 </div>
             </div>
 
-            <button type="reset" class="bouton-filtrage" id="effacer-filtres-offres">Effacer</button>
+            <button type="reset" class="bouton-filtrage">Effacer</button>
             <button type="submit" class="bouton-filtrage">Filtrer</button>
         </div>
 
@@ -214,7 +214,7 @@ $navigationSelectionee = "offres";
 $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/image_offre_liste.js' defer></script>" .
     "<script src='" . ADRESSE_SITE . "/vue/js/filtre_wishlist.js'></script>" .
     "<script src='" . ADRESSE_SITE . "/vue/js/pagination.js'></script>" .
-    "<script src='" . ADRESSE_SITE . "/vue/js/effacer_filtres_offres.js' defer></script>";
+    "<script src='" . ADRESSE_SITE . "/vue/js/effacer_filtres_liste.js' defer></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)

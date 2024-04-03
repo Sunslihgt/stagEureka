@@ -34,6 +34,12 @@ ob_start();
                             <label for="mdp-etudiant">Mot de passe :</label><br>
                             <input class="case-standard case-mdp-etudiant" type="text" name="mdp" id="mdp-etudiant" disabled><br><br>
                         </div> -->
+                        <div class="classe-etudiant">
+                            <label for="classe-etudiant">Classe :</label><br>
+                            <select class="case-standard" name="idClasse" id="classe-etudiant" disabled>
+                                <option value="<?= $etudiant->classe->id ?>"><?= $etudiant->classe->nom . " - " . $etudiant->classe->ville ?></option>
+                            </select><br><br>
+                        </div>
                     </div>
                 </div>
             </fieldset>

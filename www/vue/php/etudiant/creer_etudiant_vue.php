@@ -33,15 +33,22 @@ ob_start();
                         </div>
                         <div class="mdp-etudiant">
                             <label for="mdp-etudiant">Mot de passe :</label><br>
-                            <input class="case-standard" type="text" name="mdp" id="mdp-etudiant"required><br><br>
+                            <input class="case-standard" type="text" name="mdp" id="mdp-etudiant" required><br><br>
                         </div>
                     </div>
-                    <!-- <div class="colonne">
+                    <div class="colonne">
                         <div class="classe-etudiant">
                             <label for="classe-etudiant">Classe :</label><br>
-                            <input class="case-standard" type="text" name="classe" id="classe-etudiant" required><br><br>
+                            <select class="case-standard" name="idClasse" id="classe-etudiant" required>
+                                <!-- <option value="-1">Choisissez une classe</option> -->
+                                <?php foreach ($classes as $classe) { ?>
+                                    <option value="<?= $classe->id ?>"><?= $classe->nom . " - " . $classe->ville ?></option>
+                                <?php } ?>
+                            </select><br><br>
+
+                            <!-- <input class="case-standard" type="text" name="classe" id="classe-etudiant" required><br><br> -->
                         </div>
-                    </div> -->
+                    </div>
                 </div>
 
             </fieldset>
@@ -63,7 +70,7 @@ $contenu = ob_get_clean();
 $titreOnglet = "Etudiants StagEureka - Trouvez votre stage";
 $metaDescription = "Page de création des étudiants du site StagEureka";
 $navigationSelectionee = "etudiants";
-// $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/champ_mdp.js'></script>";
+$entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/champ_mdp.js'></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)

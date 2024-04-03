@@ -21,13 +21,26 @@ INSERT INTO City (cityName, addressCode) VALUES
 
 -- Classes
 INSERT INTO Class (className, yearClass, idCity, idPilot) VALUES
-("INFO", 2022, 1, 1),
-("BTP", 2023, 2, 2);
+("A2 INFO", 2022, 1, 1),
+("A3 FISA GENE", 2023, 2, 2);
 
 -- Étudiants
 INSERT INTO Student (email, name, firstName, idClass, password) VALUES 
 ("etudiant1@mail.com", "Etudiant1", "ETUDIANT1", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),  -- mdp: test
-("etudiant2@mail.com", "Etudiant2", "ETUDIANT2", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm");  -- mdp: test
+("etudiant2@mail.com", "Etudiant2", "ETUDIANT2", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant1@mail.com", "Etudiant1", "ETUDIANT1", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant2@mail.com", "Etudiant2", "ETUDIANT2", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant3@mail.com", "Etudiant3", "ETUDIANT3", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant4@mail.com", "Etudiant4", "ETUDIANT4", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant5@mail.com", "Etudiant5", "ETUDIANT5", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant6@mail.com", "Etudiant6", "ETUDIANT6", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant7@mail.com", "Etudiant7", "ETUDIANT7", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant8@mail.com", "Etudiant8", "ETUDIANT8", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant9@mail.com", "Etudiant9", "ETUDIANT9", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant10@mail.com", "Etudiant10", "ETUDIANT10", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant11@mail.com", "Etudiant11", "ETUDIANT11", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("etudiant12@mail.com", "Etudiant12", "ETUDIANT12", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm");
+;  -- mdp: test
 
 -- Adresses
 INSERT INTO Address (streetNumber, streetName, idCity) VALUES

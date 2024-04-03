@@ -25,7 +25,7 @@ switch ($action) {
         if (estAdmin() || estPilote()) {
             afficherCreerOffre($params);
         } else {  // Si l'utilisateur n'est pas autorisé
-            redirectionErreur(401, "/erreur/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-cr%C3%A9er-des-offres-de-stage");  // Erreur 401 (Non autorisé)
+            redirectionErreur(401, "/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-cr%C3%A9er-des-offres-de-stage");  // Erreur 401 (Non autorisé)
         }
         break;
     case "modifier":
@@ -33,7 +33,7 @@ switch ($action) {
         if (estAdmin() || estPilote()) {
             afficherModifierOffre($params);
         } else {  // Si l'utilisateur n'est pas autorisé
-            redirectionErreur(401, "/erreur/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-modifier-des-offres-de-stage");  // Erreur 401 (Non autorisé)
+            redirectionErreur(401, "/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-modifier-des-offres-de-stage");  // Erreur 401 (Non autorisé)
         }
         break;
     case "supprimer":
@@ -41,7 +41,7 @@ switch ($action) {
         if (estAdmin() || estPilote()) {
             afficherSupprimerOffre($params);
         } else {  // Si l'utilisateur n'est pas autorisé
-            redirectionErreur(401, "/erreur/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-supprimer-des-offres-de-stage");  // Erreur 401 (Non autorisé)
+            redirectionErreur(401, "/401/Seuls-les-administrateurs-et-les-pilotes-peuvent-supprimer-des-offres-de-stage");  // Erreur 401 (Non autorisé)
         }
         break;
     default:  // Mot clé non reconnu

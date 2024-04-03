@@ -5,7 +5,7 @@ require_once "modele/pilote_modele.php";
 // var_dump($params);
 
 if (count($params) == 0 || $params[0] == "") {
-    header("Location: " . ADRESSE_SITE . "/pilote/liste");
+    redirectionInterne("pilote/liste");
     exit();
 }
 
@@ -27,13 +27,13 @@ switch ($action) {
         afficherSupprimerPilote($params);
         break;
     default:
-        header("Location: " . ADRESSE_SITE . "/pilote/liste");
+        redirectionInterne("pilote/liste");
         break;
 }
 
 // function afficherLecturePilote(array $params) {
 //     if (count($params) != 2 || !is_numeric($params[1]) || intval($params[1]) < 0) {
-//         header("Location: " . ADRESSE_SITE . "/pilote/liste");
+//         redirectionInterne("pilote/liste");
 //     }
 
 //     $idPilote = intval($params[1]);
@@ -49,7 +49,7 @@ switch ($action) {
 function afficherListePilote(array $params)
 {
     if (count($params) > 1) {
-        header("Location: " . ADRESSE_SITE . "/pilote/liste");
+        redirectionInterne("pilote/liste");
     }
 
     $pilotes = getPilotes();
@@ -62,7 +62,7 @@ function afficherListePilote(array $params)
 function afficherCreerPilote(array $params)
 {
     if (count($params) > 1) {
-        header("Location: " . ADRESSE_SITE . "/pilote/liste");
+        redirectionInterne("pilote/liste");
         exit();
     }
 
@@ -75,9 +75,9 @@ function afficherCreerPilote(array $params)
         $idPilote = creerPilote($nom, $prenom, $email, $mdp);
 
         if (!is_null($idPilote)) {
-            header("Location: " . ADRESSE_SITE . "/pilote/liste");
+            redirectionInterne("pilote/liste");
         } else {  // Erreur lors de la création
-            header("Location: " . ADRESSE_SITE . "/pilote/creer");
+            redirectionInterne("pilote/creer");
         } 
     } else {
         require_once "vue/php/pilote/creer_pilote_vue.php";
@@ -87,7 +87,7 @@ function afficherCreerPilote(array $params)
 function afficherModifierPilote(array $params)
 {
     if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
-        header("Location: " . ADRESSE_SITE . "/pilote/liste");
+        redirectionInterne("pilote/liste");
         exit();
     }
 
@@ -109,10 +109,10 @@ function afficherModifierPilote(array $params)
         // if (DEBUG) echo "pilote modifiée: " . var_dump($piloteModifiee) . "<br>";
 
         if ($piloteModifiee) {  // pilote modifiée
-            header("Location: " . ADRESSE_SITE . "/pilote/liste");
+            redirectionInterne("pilote/liste");
             // redirectionInterne("pilote/liste"); Redirection vers la liste des pilotes
         } else {  // Erreur lors de la modification de l'pilote
-            header("Location: " . ADRESSE_SITE . "/pilote/modifier");
+            redirectionInterne("pilote/modifier");
             // redirectionInterne("pilote/modifier"); Redirection vers la page de modification d'pilote
         }
     } else {
@@ -128,7 +128,7 @@ function afficherModifierPilote(array $params)
 function afficherSupprimerPilote(array $params)
 {
     if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
-        header("Location: " . ADRESSE_SITE . "/pilote/liste");
+        redirectionInterne("pilote/liste");
         exit();
     }
 
@@ -138,7 +138,7 @@ function afficherSupprimerPilote(array $params)
         $piloteSupprimee = supprimerPilote($idPilote);
 
         if ($piloteSupprimee) {
-            header("Location: " . ADRESSE_SITE . "/pilote/liste");
+            redirectionInterne("pilote/liste");
         } else {  // Erreur lors de la suppression du pilote
             // La suppression échouera si le pilote est liée à des offres, des notes...
             redirectionErreur(409, "Impossible-de-supprimer-le-pilote-(essayez-de-la-cacher)");  // Erreur 409 (Conflit)

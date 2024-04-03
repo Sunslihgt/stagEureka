@@ -16,7 +16,7 @@ ob_start();
 
             <div id="groupe-mdp">
                 <label for="mdp">Mot de passe :</label><br>
-                <input class="case mdp" type="password" name="mdp" id="mdp" placeholder="********" required><br><br>
+                <input class="case-mdp" type="password" name="mdp" placeholder="mot de passe" required><br><br>
                 <i class="icone-mdp fa-regular fa-eye"></i>
             </div>
 

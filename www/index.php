@@ -64,7 +64,11 @@ function routageGlobal(): void {
                 break;
             case "etudiant":
                 if (estConnecte()) {
-                    include_once "controleur/etudiant.php";
+                    if (!estEtudiant()) {
+                        include_once "controleur/etudiant.php";
+                    } else {
+                        redirectionErreur(401, "Vous-devez-être-un-pilote-ou-un-administrateur-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                    }
                 } else {
                     redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
                 }

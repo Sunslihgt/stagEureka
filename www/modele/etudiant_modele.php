@@ -1,6 +1,7 @@
 <?php
 // require_once "outils.php";
 require_once "connexion_bdd.php";
+require_once "modele/classe_modele.php";
 
 class Etudiant {
     public int $id;
@@ -12,39 +13,65 @@ class Etudiant {
     // Il est impossible de retrouver le texte d'origine à partir du hash.
     // Cependant, on peut comparer un texte avec un hash pour vérifier si le texte correspond au texte d'origine.
     public string $hash_mdp;
+    public Classe $classe;
 
 
-    public function __construct(int $id, string $nom, string $prenom, string $email, string $hash_mdp) {
+    public function __construct(int $id, string $nom, string $prenom, string $email, string $hash_mdp, Classe $classe) {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
         $this->hash_mdp = $hash_mdp;
+        $this->classe = $classe;
     }
 }
 
-class Classe {
-    public int $id;
-    public string $nom;
-    public int $annee;
-    public string $ville;
-    public string $codePostal;
+function getEtudiant(int $idEtudiant): ?etudiant {
+    $pdo = connexionBDD();
 
-    public function __construct(int $id, string $nom, int $annee, string $ville, string $codePostal) {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->annee = $annee;
-        $this->ville = $ville;
-        $this->codePostal = $codePostal;
+    $requete = $pdo->prepare(
+        "SELECT * FROM Student s
+        INNER JOIN Class ON (s.idClass = Class.idClass)
+        INNER JOIN City c ON (Class.idCity = c.idCity)
+        WHERE idStudent = :id"
+    );
+    $requete->execute([
+        ":id" => $idEtudiant
+    ]);
+
+    $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
+
+    if ($reponseBdd === false) {
+        return null;
     }
+
+    $etudiant = new Etudiant(
+        $reponseBdd["idStudent"],
+        $reponseBdd["name"],
+        $reponseBdd["firstName"],
+        $reponseBdd["email"],
+        $reponseBdd["password"],
+        new Classe(
+            $reponseBdd["idClass"],
+            $reponseBdd["className"],
+            $reponseBdd["yearClass"],
+            $reponseBdd["cityName"],
+            $reponseBdd["addressCode"],
+            $reponseBdd["idPilot"]
+        )
+    );
+
+    return $etudiant;
 }
-
-
 
 function getEtudiants(): ?array {
     $pdo = connexionBDD();
 
-    $requete = $pdo->prepare("SELECT * FROM Student");
+    $requete = $pdo->prepare(
+        "SELECT * FROM Student s
+        INNER JOIN Class class ON (s.idClass = class.idClass)
+        INNER JOIN City c ON (class.idCity = c.idCity)"
+    );
     $requete->execute([]);
 
     $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -62,7 +89,15 @@ function getEtudiants(): ?array {
             $ligneEtudiant["name"],
             $ligneEtudiant["firstName"],
             $ligneEtudiant["email"],
-            $ligneEtudiant["password"]
+            $ligneEtudiant["password"],
+            new Classe(
+                $ligneEtudiant["idClass"],
+                $ligneEtudiant["className"],
+                $ligneEtudiant["yearClass"],
+                $ligneEtudiant["cityName"],
+                $ligneEtudiant["addressCode"],
+                $ligneEtudiant["idPilot"]
+            )
         );
 
         $etudiants[] = $etudiant;
@@ -73,67 +108,66 @@ function getEtudiants(): ?array {
     return $etudiants;
 }
 
-
-
-function getEtudiant(int $idEtudiant): ?etudiant {
+function getEtudiantsFiltres(string $nom, string $prenom, string $ville, string $nomClasse) : array {
     $pdo = connexionBDD();
 
-    $requete = $pdo->prepare("SELECT * FROM Student WHERE idStudent = :id");
-    $requete->execute([
-        ":id" => $idEtudiant
-    ]);
-
-    $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
-
-    if ($reponseBdd === false) {
-        return null;
+    $sql = "SELECT * FROM Student s
+            INNER JOIN Class class ON (s.idClass = class.idClass)
+            INNER JOIN City c ON (class.idCity = c.idCity)
+            WHERE 1";
+    $filtres = [];
+    if ($nom !== "") {
+        $sql .= " AND s.name LIKE :nom";
+        $filtres[":nom"] = "%" . $nom . "%";
+    }
+    if ($prenom !== "") {
+        $sql .= " AND s.firstName LIKE :prenom";
+        $filtres[":prenom"] = "%" . $prenom . "%";
+    }
+    if ($ville !== "") {
+        $sql .= " AND c.cityName LIKE :ville";
+        $filtres[":ville"] = "%" . $ville . "%";
+    }
+    if ($nomClasse !== "") {
+        $sql .= " AND class.className LIKE :nomClasse";
+        $filtres[":nomClasse"] = "%" . $nomClasse . "%";
     }
 
-    $etudiant = new Etudiant(
-        $reponseBdd["idStudent"],
-        $reponseBdd["name"],
-        $reponseBdd["firstName"],
-        $reponseBdd["email"],
-        $reponseBdd["password"]
-    );
-
-    return $etudiant;
-}
-
-
-
-function listeEtudiant(int $idEtudiant): ?Etudiant {
-    $pdo = connexionBDD();
-
-    $sql = "SELECT * FROM Student WHERE idStudent = ?";
     $requete = $pdo->prepare($sql);
-    $requete->execute([$idEtudiant]);
+    $requete->execute($filtres);
 
-    $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
+    $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
 
     if ($reponseBdd === false) {
-        return null;
+        return [];
     }
 
-    return new Etudiant(
-        $reponseBdd["idStudent"],
-        $reponseBdd["name"],
-        $reponseBdd["firstName"],
-        $reponseBdd["email"],
-        $reponseBdd["password"]
-    );
+    $etudiants = [];
+    foreach ($reponseBdd as $etudiant) {
+        $etudiants[] = new Etudiant(
+            $etudiant["idStudent"],
+            $etudiant["name"],
+            $etudiant["firstName"],
+            $etudiant["email"],
+            $etudiant["password"],
+            new Classe(
+                $etudiant["idClass"],
+                $etudiant["className"],
+                $etudiant["yearClass"],
+                $etudiant["cityName"],
+                $etudiant["addressCode"],
+                $etudiant["idPilot"]
+            )
+        );
+    }
+
+    return $etudiants;
 }
 
-
-
-function creerEtudiant(
-    string $nom,
-    string $prenom,
-    string $hash_mdp,
-    string $email,
-    int $idClass
-): ?int {
+function creerEtudiant(string $nom, string $prenom, string $mdp, string $email, int $idClass): ?int {
     $pdo = connexionBDD();
+
+    $hash_mdp = password_hash($mdp, PASSWORD_DEFAULT);
 
     $query = "INSERT INTO Student (name, firstName, password, email, idClass) VALUE (:nom, :prenom, :hash_mdp, :email, :idClass)";
     $stmt = $pdo->prepare($query);
@@ -155,19 +189,22 @@ function creerEtudiant(
 
 
 
-function modifierEtudiant(int $id, string $nom, string $prenom, string $email, string $mdp): bool {
+function modifierEtudiant(int $id, string $nom, string $prenom, string $email, string $mdp, int $idClasse): bool {
     $pdo = connexionBDD();
+
     $hash_mdp = password_hash($mdp, PASSWORD_DEFAULT);
-    echo "$mdp $hash_mdp <br>";
+    // if (DEBUG) echo "$mdp -> $hash_mdp <br>";
 
     // Requête SQL Update 
-    $query = "UPDATE Student SET name = :nom, firstName = :prenom, email = :email, password = :hash_mdp WHERE idStudent = :id;";
+    $query = "UPDATE Student SET name = :nom, firstName = :prenom, email = :email,
+              password = :hash_mdp, idClass = :idClasse WHERE idStudent = :id;";
     $stmt = $pdo->prepare($query);
     $stmt->execute([
         ":nom" => $nom,
         ":prenom" => $prenom,
         ":email" => $email,
         ":hash_mdp" => $hash_mdp,
+        ":idClasse" => $idClasse,
         ":id" => $id
     ]);
 
@@ -176,8 +213,6 @@ function modifierEtudiant(int $id, string $nom, string $prenom, string $email, s
     }
     return true;
 }
-
-
 
 function supprimerEtudiant(int $id): bool {
     $pdo = connexionBDD();

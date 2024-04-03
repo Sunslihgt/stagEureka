@@ -163,7 +163,7 @@ function getOffresFiltre(
     bool $btp,
     bool $s3e,
     int $idEtudiant=-1
-) : ?array {
+) : array {
     $pdo = connexionBDD();
 
     $filtres = [];

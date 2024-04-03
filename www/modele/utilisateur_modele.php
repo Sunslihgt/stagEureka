@@ -75,19 +75,19 @@ function getUtilisateur(string $email): ?Utilisateur {
     if (!is_null($pilote)) $nbTypesTrouves++;
     if (!is_null($etudiant)) $nbTypesTrouves++;
 
-    if (DEBUG) echo "Nombre de types d'utilisateur trouvés: $nbTypesTrouves<br>";
+    // if (DEBUG) echo "Nombre de types d'utilisateur trouvés: $nbTypesTrouves<br>";
 
     // On traite les cas possibles
     if ($nbTypesTrouves == 0) {  // L'utilisateur n'existe pas
-        if (DEBUG) echo "L'utilisateur n'existe pas";
+        // if (DEBUG) echo "L'utilisateur n'existe pas";
         return null;
     } else if ($nbTypesTrouves == 1) {  // L'utilisateur existe
-        if (DEBUG) echo "L'utilisateur existe";
+        // if (DEBUG) echo "L'utilisateur existe";
         // Renvoie l'utilisateur trouvé
         // L'opérateur ?? renvoie le premier opérande qui n'est pas null
         return $admin ?? $pilote ?? $etudiant;
     } else {  // Plusieurs utilisateurs ont la même adresse email
-        if (DEBUG) echo "Plusieurs utilisateurs ont la même adresse email";
+        // if (DEBUG) echo "Plusieurs utilisateurs ont la même adresse email";
         return null;
     }
 }

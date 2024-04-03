@@ -1,6 +1,7 @@
 <?php
 require_once "outils.php";
 require_once "connexion_bdd.php";
+require_once "modele/pilote_modele.php";
 
 class Pilote {
     public int $id;

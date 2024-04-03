@@ -26,7 +26,7 @@ ob_start();
                         <div>
                             <label for="entreprise">Entreprise :</label><br>
                             <select class="case-standard" name="idEntreprise">
-                                <option value="-1" default>Choisissez une entreprise</option>
+                                <!-- <option value="-1" default>Choisissez une entreprise</option> -->
                                 <?php foreach ($entreprises as $entreprise) { ?>
                                     <option value="<?= $entreprise->id ?>"><?= $entreprise->nom ?></option>
                                 <?php } ?>
