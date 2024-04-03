@@ -51,6 +51,7 @@ switch ($action) {
 function afficherLectureOffre(array $params) {
     if (count($params) != 2 || !is_numeric($params[1]) || intval($params[1]) < 0) {
         redirectionInterne("offre/liste");
+        exit();
     }
 
     $idOffre = intval($params[1]);
@@ -66,16 +67,40 @@ function afficherLectureOffre(array $params) {
 function afficherListeOffres(array $params): void {
     if (count($params) > 1) {
         redirectionInterne("offre/liste");
+        exit();
     }
 
-    var_dump($_POST);
-    // exit();
+    // if (DEBUG) var_dump($_POST);
+    // if (DEBUG) echo "<br>";
+    // if (DEBUG) echo (isset($_POST["wishlist"]) && $_POST["wishlist"] == "on" ? "checked" : "") . "<br>";
 
-    // TODO: Filtres
     if (isset($_POST)) {  // Filtres de recherche trouvés
+        // On récupère les filtres
+        $nomEntreprise = isset($_POST["nomEntreprise"]) ? $_POST["nomEntreprise"] : "";
+        $ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
+        $dureeMin = isset($_POST["dureeMin"]) && is_numeric($_POST["dureeMin"]) ? intval($_POST["dureeMin"]) : -1;
+        $dureeMax = isset($_POST["dureeMax"]) && is_numeric($_POST["dureeMax"]) ? intval($_POST["dureeMax"]) : -1;
+        $remunerationMin = isset($_POST["remunerationMin"]) && is_numeric($_POST["remunerationMin"]) && intval($_POST["remunerationMin"]) >= 0 ? intval($_POST["remunerationMin"]) : -1;
+        $remunerationMax = isset($_POST["remunerationMax"]) && is_numeric($_POST["remunerationMax"]) && intval($_POST["remunerationMax"]) >= 0 ? intval($_POST["remunerationMax"]) : -1;
+        $wishlist = isset($_POST["wishlist"]) && $_POST["wishlist"] == "on";
+        // Mineures
+        $gene = isset($_POST["gene"]) && $_POST["gene"] == "on";
+        $info = isset($_POST["info"]) && $_POST["info"] == "on";
+        $btp = isset($_POST["btp"]) && $_POST["btp"] == "on";
+        $s3e = isset($_POST["s3e"]) && $_POST["s3e"] == "on";
+        // Id de l'étudiant (pour les wishlists)
+        $idEtudiant = estEtudiant() && $wishlist && $_SESSION["id"] ? $_SESSION["id"] : -1;
+        
+        // echo "Filtres trouvés : <br>";
+        // var_dump( $nomEntreprise, $ville, $dureeMin, $dureeMax, $remunerationMin, $remunerationMax, $wishlist, $gene, $info, $btp, $s3e, $idEtudiant);
+        // echo "<br>";
+            
         // On récupère les offres filtrées
-        // $offres = getOffresFiltre($nomEntrepriseFiltre, $localisationFiltre, $notePiloteFiltre, $noteEtudiantFiltre);
-        $offres = getOffres();
+        $offres = getOffresFiltre(
+            $nomEntreprise, $ville, $dureeMin, $dureeMax,
+            $remunerationMin, $remunerationMax, $wishlist,
+            $gene, $info, $btp, $s3e, $idEtudiant
+        );
 
         require_once "vue/php/offre/liste_offres_vue.php";
     } else {  // Pas de filtres
@@ -88,6 +113,7 @@ function afficherListeOffres(array $params): void {
 function afficherCreerOffre(array $params) {
     if (count($params) > 1) {
         redirectionInterne("offre/liste");
+        exit();
     }
 
     // if (DEBUG) var_dump($_POST);
@@ -150,6 +176,7 @@ function afficherCreerOffre(array $params) {
 function afficherModifierOffre(array $params) {
     if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
         redirectionInterne("offre/liste");
+        exit();
     }
 
     $idOffre = $params[1];
@@ -222,6 +249,7 @@ function afficherModifierOffre(array $params) {
 function afficherSupprimerOffre(array $params) {
     if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
         redirectionInterne("offre/liste");
+        exit();
     }
 
     $idOffre = $params[1];

@@ -29,6 +29,12 @@ class Entreprise {
     }
 }
 
+/**
+ * Récupère une entreprise par son ID (peut être filtré pour cacher les entreprises invisibles)
+ * @param int $idEntreprise ID de l'entreprise à récupérer
+ * @param bool $cacherInvisible true pour cacher les entreprises invisibles, false sinon
+ * @return Entreprise|null Entreprise récupérée ou null si elle n'est pas trouvée
+ */
 function getEntreprise(int $idEntreprise, bool $cacherInvisible): ?Entreprise {
     if ($idEntreprise < 0) {
         return null;
@@ -66,6 +72,11 @@ function getEntreprise(int $idEntreprise, bool $cacherInvisible): ?Entreprise {
     return $entreprise;
 }
 
+/**
+ * Récupère toutes les entreprises (peut être filtré pour cacher les entreprises invisibles)
+ * @param bool $cacherInvisible true pour cacher les entreprises invisibles, false sinon
+ * @return array Tableau d'entreprises
+ */
 function getEntreprises(bool $cacherInvisible): array {
     $pdo = connexionBDD();
 
@@ -103,6 +114,14 @@ function getEntreprises(bool $cacherInvisible): array {
     return $entreprises;
 }
 
+/**
+ * Récupère les entreprises filtrées par nom, localisation, note des pilotes et note des étudiants
+ * @param string $nomEntrepriseFiltre Nom de l'entreprise à filtrer
+ * @param string $localisationFiltre Localisation à filtrer
+ * @param int $notePiloteFiltre Note des pilotes à filtrer
+ * @param int $noteEtudiantFiltre Note des étudiants à filtrer
+ * @return array|null Tableau d'entreprises filtrées ou null si une erreur survient
+ */
 function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationFiltre, int $notePiloteFiltre, int $noteEtudiantFiltre): ?array {
     $pdo = connexionBDD();
 
@@ -261,7 +280,18 @@ function creerEntreprise(string $nomEntreprise, int $numeroRue, string $rue, str
     return $idEntreprise;
 }
 
-// function modifierEntreprise(int $idEntreprise, string $nomEntreprise, int $numeroRue, string $rue, string $ville, string $codePostal, string $domaine, bool $visible): bool {
+/**
+ * Modifie une entreprise et son adresse (réutilise la ville si possible)
+ * @param int $idEntreprise
+ * @param string $nomEntreprise
+ * @param int $numeroRue
+ * @param string $rue
+ * @param string $ville
+ * @param string $codePostal
+ * @param string $domaine
+ * @param bool $visible
+ * @return bool true si la modification a réussi, false sinon
+ */
 function modifierEntreprise(int $idEntreprise, string $nomEntreprise, string $domaine, bool $visible): bool {
     $pdo = connexionBDD();
 
@@ -286,6 +316,11 @@ function modifierEntreprise(int $idEntreprise, string $nomEntreprise, string $do
     return true;
 }
 
+/**
+ * Supprime une entreprise et ses adresses
+ * @param int $idEntreprise ID de l'entreprise à supprimer
+ * @return bool true si la suppression a réussi, false sinon
+ */
 function supprimerEntreprise(int $idEntreprise): bool {
     $pdo = connexionBDD();
 
@@ -304,7 +339,7 @@ function supprimerEntreprise(int $idEntreprise): bool {
         // Suppression de l'entreprise
         $requete = $pdo->prepare(
             "DELETE FROM Company
-        WHERE idCompany = :idEntreprise"
+            WHERE idCompany = :idEntreprise"
         );
         $requete->execute([
             ":idEntreprise" => $idEntreprise

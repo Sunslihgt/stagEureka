@@ -74,17 +74,19 @@ function getUtilisateur(string $email): ?Utilisateur {
     if (!is_null($pilote)) $nbTypesTrouves++;
     if (!is_null($etudiant)) $nbTypesTrouves++;
 
+    // if (DEBUG) echo "Nombre de types d'utilisateur trouvés: $nbTypesTrouves<br>";
+
     // On traite les cas possibles
     if ($nbTypesTrouves == 0) {  // L'utilisateur n'existe pas
-        // if (DEBUG) echo "L'utilisateur n'existe pas";
+        if (DEBUG) echo "L'utilisateur n'existe pas";
         return null;
     } else if ($nbTypesTrouves == 1) {  // L'utilisateur existe
-        // if (DEBUG) echo "L'utilisateur existe";
+        if (DEBUG) echo "L'utilisateur existe";
         // Renvoie l'utilisateur trouvé
         // L'opérateur ?? renvoie le premier opérande qui n'est pas null
         return $admin ?? $pilote ?? $etudiant;
     } else {  // Plusieurs utilisateurs ont la même adresse email
-        // if (DEBUG) echo "Plusieurs utilisateurs ont la même adresse email";
+        if (DEBUG) echo "Plusieurs utilisateurs ont la même adresse email";
         return null;
     }
 }
@@ -111,13 +113,15 @@ function getUtilisateurAbstrait(string $email, string $typeUtilisateur): ?Utilis
     $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
     
     // Affiche le résultat de la recherche pour débugger
-    // if (DEBUG) echo "Recherche utilisateur " . $typeUtilisateur . ": ";
+    // if (DEBUG) echo "Recherche utilisateur $typeUtilisateur: ";
     // if (DEBUG) var_dump($reponseBdd);
     // if (DEBUG) echo "<br>";
 
-    if ($reponseBdd === false || !isset($reponseBdd["idAdministrator"]) || !isset($reponseBdd["email"]) || !isset($reponseBdd["name"]) || !isset($reponseBdd["firstName"]) || !isset($reponseBdd["password"])) {
+    $nomColonneId = "id" . TYPES_UTILISATEUR[$typeUtilisateur];
+    // if (DEBUG) echo "Nom colonne id: $nomColonneId<br>";
+    if ($reponseBdd === false || !isset($reponseBdd[$nomColonneId]) || !isset($reponseBdd["email"]) || !isset($reponseBdd["name"]) || !isset($reponseBdd["firstName"]) || !isset($reponseBdd["password"])) {
         return null;
     }
     
-    return new Utilisateur($reponseBdd["idAdministrator"], $reponseBdd["name"], $reponseBdd["firstName"], $reponseBdd["email"], $reponseBdd["password"], $typeUtilisateur);
+    return new Utilisateur($reponseBdd[$nomColonneId], $reponseBdd["name"], $reponseBdd["firstName"], $reponseBdd["email"], $reponseBdd["password"], $typeUtilisateur);
 }
