@@ -1,4 +1,5 @@
 <?php
+require_once "connexion_bdd.php";
 
 /**
  * Classe Utilisateur
@@ -100,7 +101,7 @@ function getUtilisateurAbstrait(string $email, string $typeUtilisateur): ?Utilis
         return null;
     }
 
-    $pdo = ConnectionBDD();
+    $pdo = connexionBDD();
 
     $requete = $pdo->prepare("SELECT * FROM " . TYPES_UTILISATEUR[$typeUtilisateur] . " WHERE email = :email");
     $requete->execute([
@@ -119,20 +120,4 @@ function getUtilisateurAbstrait(string $email, string $typeUtilisateur): ?Utilis
     }
     
     return new Utilisateur($reponseBdd["idAdministrator"], $reponseBdd["name"], $reponseBdd["firstName"], $reponseBdd["email"], $reponseBdd["password"], $typeUtilisateur);
-}
-
-/**
- * Renvoie une connexion à la base de données.
- * @return PDO|null Connexion à la base de données ou null si la connexion a échouée
- */
-function ConnectionBDD(): ?PDO {
-    // Crée la variable PDO si elle n'existe pas
-    // Une fois créée elle est conservée en mémoire
-    static $pdo = null;
-    if ($pdo === null) {
-        require_once 'connexion_bdd.php';
-        $pdo = connexionBDD();
-    }
-
-    return $pdo;
 }
