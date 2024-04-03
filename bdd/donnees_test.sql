@@ -12,7 +12,17 @@ INSERT INTO Company (nameCompany, activityAera, applicationAmount) VALUES
 -- Pilotes
 INSERT INTO Pilot (email, name, firstName, password) VALUES 
 ("pilote1@mail.com", "Pilote1", "PILOTE1", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),  -- mdp: test
-("pilote2@mail.com", "Pilote2", "PILOTE2", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm");  -- mdp: test
+("pilote2@mail.com", "Pilote2", "PILOTE2", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote3@mail.com", "Pilote3", "PILOTE3", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote4@mail.com", "Pilote4", "PILOTE4", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote5@mail.com", "Pilote5", "PILOTE5", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote6@mail.com", "Pilote6", "PILOTE6", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote7@mail.com", "Pilote7", "PILOTE7", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote8@mail.com", "Pilote8", "PILOTE8", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote9@mail.com", "Pilote9", "PILOTE9", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote10@mail.com", "Pilote10", "PILOTE10", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote11@mail.com", "Pilote11", "PILOTE11", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
+("pilote12@mail.com", "Pilote12", "PILOTE12", "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm");  -- mdp: test
 
 -- Villes
 INSERT INTO City (cityName, addressCode) VALUES
@@ -28,8 +38,6 @@ INSERT INTO Class (className, yearClass, idCity, idPilot) VALUES
 INSERT INTO Student (email, name, firstName, idClass, password) VALUES 
 ("etudiant1@mail.com", "Etudiant1", "ETUDIANT1", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),  -- mdp: test
 ("etudiant2@mail.com", "Etudiant2", "ETUDIANT2", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
-("etudiant1@mail.com", "Etudiant1", "ETUDIANT1", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
-("etudiant2@mail.com", "Etudiant2", "ETUDIANT2", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
 ("etudiant3@mail.com", "Etudiant3", "ETUDIANT3", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
 ("etudiant4@mail.com", "Etudiant4", "ETUDIANT4", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
 ("etudiant5@mail.com", "Etudiant5", "ETUDIANT5", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
@@ -39,8 +47,7 @@ INSERT INTO Student (email, name, firstName, idClass, password) VALUES
 ("etudiant9@mail.com", "Etudiant9", "ETUDIANT9", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
 ("etudiant10@mail.com", "Etudiant10", "ETUDIANT10", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
 ("etudiant11@mail.com", "Etudiant11", "ETUDIANT11", 1, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm"),
-("etudiant12@mail.com", "Etudiant12", "ETUDIANT12", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm");
-;  -- mdp: test
+("etudiant12@mail.com", "Etudiant12", "ETUDIANT12", 2, "$2y$10$SQ9m3VeCIOh4on6QFqkHVOa89carPJWm/rcH7jh5YII1GpbDBVZpm");  -- mdp: test
 
 -- Adresses
 INSERT INTO Address (streetNumber, streetName, idCity) VALUES

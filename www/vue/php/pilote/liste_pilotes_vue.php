@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "outils.php";
 
 // Démarre la temporisation de sortie
 // (Permet de stocker le contenu html suivant dans une variable php)
@@ -7,32 +7,43 @@ ob_start();
 ?>
 
 <main class="main-affichage" id="main-liste-pilotes">
-    <form action="wip_liste_pilote_filtre.php" method="post">
+    <form action="<?= ADRESSE_SITE ?>/pilote/liste" method="post" id="form-filtres">
         <div class="block-recherche" id="block-recherche-pilotes">
             <div class="barres-recherche">
                 <div class="element-recherche" id="pilote-recherche">
-                    <label for="nom-pilote-filtre">Nom du pilote</label>
-                    <input type="text" placeholder="Recherche via le nom" class="case-recherche" id="nom-pilote-filtre">
+                    <label for="nom">Nom du pilote</label>
+                    <input type="text" placeholder="Recherche via le nom" class="case-recherche" id="nom" name="nom" value="<?= isset($_POST["nom"]) ? $_POST["nom"] : "" ?>">
                 </div>
                 <div class="element-recherche" id="localisation-recherche">
-                    <label for="prenom-pilote-filtre">Prénom du pilote</label>
-                    <input type="text" placeholder="Recherche via le prénom" class="case-recherche" id="prenom-pilote-filtre">
+                    <label for="prenom">Prénom du pilote</label>
+                    <input type="text" placeholder="Recherche via le prénom" class="case-recherche" id="prenom" name="prenom" value="<?= isset($_POST["prenom"]) ? $_POST["prenom"] : "" ?>">
                 </div>
             </div>
 
+            <button type="reset" class="bouton-filtrage">Effacer</button>
             <button type="submit" class="bouton-filtrage">Filtrer</button>
         </div>
+
+        <?php
+        // $nbResultats = count($pilotes);
+        // $nbPages = ceil($nbResultats / 5);
+
+        const NB_RESULTATS_PAGE = 5;
+        $page = isset($_POST["page"]) ? intval($_POST["page"]) : 1;
+        ?>
+        <input type="hidden" name="page" id="page" value="<?= $page ?>">
+        <input type="hidden" name="nb-pages" id="nb-pages" value="<?= ceil(count($pilotes) / 5); ?>">
     </form>
 
     <div class="affichage-cartes">
         <div class="haut-page-liste-resultats">
             <h1 id="haut-h1">Liste des Pilotes</h1>
-            <button id="haut-bouton" onclick="location.href='<?=ADRESSE_SITE?>/pilote/creer'"> Ajouter un Pilote</button>
+            <button id="haut-bouton" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/creer'"> Ajouter un Pilote</button>
         </div>
 
         <div id="selection-pilote">
-            <?php foreach ($pilotes as $pilote) { ?>
-            
+            <?php for ($i = ($page - 1) * NB_RESULTATS_PAGE; $i < min(count($pilotes), $page * NB_RESULTATS_PAGE); $i++) { ?>
+                <?php $pilote = $pilotes[$i] ?>
                 <div class="carte carte-pilote" id="carte-pilote-<?= $pilote->id ?>">
                     <div class="info-carte">
                         <div class="element-carte">
@@ -49,24 +60,32 @@ ob_start();
                         </div> -->
 
                         <div class="boutons-carte">
-                            <button class="bouton-carte bouton-modification" onclick="location.href='<?=ADRESSE_SITE?>/pilote/modifier/<?= $pilote->id ?>'"><i class="fa-solid fa-pen"></i></button>
+                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/lire/<?= $pilote->id ?>'">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
                             <span></span>
-                            <button class="bouton-carte bouton-suppression" onclick="location.href='<?=ADRESSE_SITE?>/pilote/supprimer/<?= $pilote->id ?>'"><i class="fa-solid fa-trash"></i></button>
+                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/modifier/<?= $pilote->id ?>'">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <span></span>
+                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/supprimer/<?= $pilote->id ?>'">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             <?php } ?>
-            
+
             <!-- Pagination des résultats -->
             <div class="conteneur-pagination-cartes">
                 <div class="pagination-cartes" id="pagination">
-                    <button class="bouton-nav bouton-minimum"><i class="fa-solid fa-angles-left"></i></button>
-                    <button class="bouton-nav bouton-precedent"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="bouton-nav bouton-numero-precedent">1</button>
-                    <button class="bouton-nav bouton-numero-actuel">2</button>
-                    <button class="bouton-nav bouton-numero-suivant">3</button>
-                    <button class="bouton-nav bouton-suivant"><i class="fa-solid fa-angle-right"></i></button>
-                    <button class="bouton-nav bouton-extremum"><i class="fa-solid fa-angles-right"></i></button>
+                    <button class="bouton-nav" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
+                    <button class="bouton-nav" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
+                    <!-- <button class="bouton-nav" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
+                    <button class="bouton-nav" id="pagination-numero-actuel" hidden><?= $page ?></button>
+                    <!-- <button class=" bouton-nav" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
+                    <button class="bouton-nav" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="bouton-nav" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>
                 </div>
             </div>
         </div>
@@ -80,10 +99,11 @@ $contenu = ob_get_clean();
 // Déclaration des variables pour la mise en page
 $titreOnglet = "Pilotes StagEureka - Trouvez votre stage";
 $metaDescription = "Page listant les pilotes du site StagEureka";
-$navigationSelectionee = "pilote";
-$entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/champ_mdp.js'></script>";
+$navigationSelectionee = "pilotes";
+$entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/pagination.js'></script>" .
+    "<script src='" . ADRESSE_SITE . "/vue/js/effacer_filtres_liste.js' defer></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
-include "vue/php/mise_en_page.php";
+include "vue/php/mise_en_page_vue.php";
 ?>

@@ -1,7 +1,7 @@
 <?php
 require_once "outils.php";
 require_once "connexion_bdd.php";
-require_once "modele/pilote_modele.php";
+require_once "modele/classe_modele.php";
 
 class Pilote {
     public int $id;
@@ -17,39 +17,6 @@ class Pilote {
     $this->hash_mdp = $hash_mdp;
     $this->email = $email;
     }
-}
-
-function getPilotes(): ?array {
-    $pdo = connexionBDD();
-
-    $requete = $pdo->prepare("SELECT * FROM Pilot");
-    $requete->execute([]);
-
-    $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-    // var_dump($reponseBdd);
-    if($reponseBdd === false) {
-        return null;
-    }
-
-    // echo "<br>";
-    $pilotes = [];
-    foreach ($reponseBdd as $lignePilote) {
-        // $pilote = new Pilote();
-        // echo var_dump($lignePilote) . "<br>";
-        $pilote = new Pilote(
-            $lignePilote["idPilot"],
-            $lignePilote["name"],
-            $lignePilote["firstName"],
-            $lignePilote["password"],
-            $lignePilote["email"]
-        );
-
-        $pilotes[] = $pilote;
-    }
-
-    // echo "<br>";
-    return $pilotes;
 }
 
 function getPilote(int $idPilote){
@@ -77,11 +44,78 @@ function getPilote(int $idPilote){
     return $pilote;
 }
 
+function getPilotes(): array {
+    $pdo = connexionBDD();
+
+    $requete = $pdo->prepare("SELECT * FROM Pilot");
+    $requete->execute([]);
+
+    $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+    // var_dump($reponseBdd);
+    if($reponseBdd === false) {
+        return [];
+    }
+
+    // echo "<br>";
+    $pilotes = [];
+    foreach ($reponseBdd as $lignePilote) {
+        // echo var_dump($lignePilote) . "<br>";
+        $pilotes[] = new Pilote(
+            $lignePilote["idPilot"],
+            $lignePilote["name"],
+            $lignePilote["firstName"],
+            $lignePilote["password"],
+            $lignePilote["email"]
+        );
+    }
+
+    // echo "<br>";
+    return $pilotes;
+}
+
+function getPilotesFiltres(string $nom, string $prenom): array {
+    $pdo = connexionBDD();
+
+    $sql = "SELECT * FROM Pilot WHERE 1";
+    $filtres = [];
+    if ($nom !== "") {
+        $sql .= " AND name LIKE :nom";
+        $filtres[":nom"] = "%". $nom . "%";
+    }
+    if ($prenom !== "") {
+        $sql .= " AND firstName LIKE :prenom";
+        $filtres[":prenom"] = "%". $prenom . "%";
+    }
+
+    $requete = $pdo->prepare($sql);
+    $requete->execute($filtres);
+
+    $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($reponseBdd === false) {
+        return [];
+    }
+
+    $pilotes = [];
+    foreach ($reponseBdd as $lignePilote) {
+        $pilotes[] = new Pilote(
+            $lignePilote["idPilot"],
+            $lignePilote["name"],
+            $lignePilote["firstName"],
+            $lignePilote["password"],
+            $lignePilote["email"]
+        );
+    }
+
+    return $pilotes;
+}
+
 function creerPilote(string $nom, string $prenom, string $email, string $mdp): ?int{
     $hash_mdp = password_hash($mdp, PASSWORD_DEFAULT);
     $pdo = connexionBDD();
 
-    $sql = "INSERT INTO Student (name :nom, firstName :prenom, password :hash_mpd, email :email)";
+    $sql = "INSERT INTO Pilot (name, firstName, password, email) VALUE (:nom, :prenom, :hash_mdp, :email)";
     $requete = $pdo->prepare($sql);
     $requete->execute([
         ":nom" => $nom,
@@ -104,7 +138,7 @@ function ModifierPilote(int $idPilote, string $nom, string $prenom, string $emai
     $pdo = connexionBDD();
     $sql = "UPDATE Pilot
     SET name = :nom, firstName = :prenom, email = :email, password = :mdp
-    WHERE idInternshipOffer = :idOffre";
+    WHERE idPilot = :idPilote";
     $requete = $pdo->prepare($sql);
     $requete->execute([
         ":nom" => $nom, 
@@ -115,11 +149,8 @@ function ModifierPilote(int $idPilote, string $nom, string $prenom, string $emai
     ]);
 
     if ($requete->rowCount() === 0) {
-        $pdo->rollBack();
         return false;
     }
-
-    $pdo->commit();
 
     return true;
 }
@@ -128,12 +159,13 @@ function supprimerPilote(int $idPilote): bool{
     $pdo = connexionBDD();
 
     try {
-        $sql = "DELETE FROM Pilot WHERE idPilot= :idPilote";
+        $sql = "DELETE FROM Pilot WHERE idPilot = :idPilote";
         $requete = $pdo->prepare($sql);
         $requete->execute([
-            " :idPilote" => $idPilote
+            ":idPilote" => $idPilote
         ]);
     } catch (Exception $e) {
+        var_dump($e);
         return false;
     }
 

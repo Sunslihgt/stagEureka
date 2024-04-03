@@ -51,7 +51,7 @@ function afficherListeEtudiants(array $params) {
         require_once "vue/php/etudiant/liste_etudiants_vue.php";
     } else {
         $etudiants = getEtudiants();
-    
+
         require_once "vue/php/etudiant/liste_etudiants_vue.php";
     }
 }

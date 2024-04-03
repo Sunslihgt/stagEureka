@@ -68,7 +68,7 @@ $contenu = ob_get_clean();
 $titreOnglet = "Etudiants StagEureka - Trouvez votre stage";
 $metaDescription = "Page de lecture des étudiants du site StagEureka";
 $navigationSelectionee = "etudiants";
-// $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/champ_mdp.js'></script>";
+// $entetesSuplementaires = "";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)

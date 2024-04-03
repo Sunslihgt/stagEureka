@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "outils.php";
 
 // Démarre la temporisation de sortie
 // (Permet de stocker le contenu html suivant dans une variable php)
@@ -61,10 +61,10 @@ $contenu = ob_get_clean();
 // Déclaration des variables pour la mise en page
 $titreOnglet = "Pilotes StagEureka - Trouvez votre stage";
 $metaDescription = "Page permettant la modification d'un pilote du site StagEureka";
-$navigationSelectionee = "pilote";
+$navigationSelectionee = "pilotes";
 $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/champ_mdp.js'></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
-include "vue/php/mise_en_page.php";
+include "vue/php/mise_en_page_vue.php";
 ?>

@@ -57,7 +57,11 @@ function routageGlobal(): void {
                 break;
             case "pilote":
                 if (estConnecte()) {
-                    include_once "controleur/pilote.php";
+                    if (estAdmin()) {
+                        include_once "controleur/pilote.php";
+                    } else {
+                        redirectionErreur(401, "Vous-devez-être-un-administrateur-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                    }
                 } else {
                     redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
                 }

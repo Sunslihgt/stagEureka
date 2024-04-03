@@ -99,7 +99,7 @@ function getClassesPilote(int $idPilote): ?array {
 
     $classes = [];
     foreach ($reponseBdd as $classe) {
-        $classes[] = new Adresse(
+        $classes[] = new Classe(
             $classe["idClass"],
             $classe["className"],
             $classe["yearClass"],

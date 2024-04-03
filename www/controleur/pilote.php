@@ -15,7 +15,7 @@ switch ($action) {
         afficherListePilote($params);
         break;
     case "lire":
-        // afficherLecturePilote($params);
+        afficherLecturePilote($params);
         break;
     case "creer":
         afficherCreerPilote($params);
@@ -31,46 +31,59 @@ switch ($action) {
         break;
 }
 
-// function afficherLecturePilote(array $params) {
-//     if (count($params) != 2 || !is_numeric($params[1]) || intval($params[1]) < 0) {
-//         redirectionInterne("pilote/liste");
-//     }
-
-//     $idPilote = intval($params[1]);
-//     $pilote = getPilotes($idPilote);
-
-//     if (is_null($pilote)) {
-//         redirectionErreur(404);  // Erreur 404 (Non trouvé)
-//     }
-
-//     require_once "vue/php/etudiant/lire_pilote_vue.php";
-// }
-
-function afficherListePilote(array $params)
-{
-    if (count($params) > 1) {
+function afficherLecturePilote(array $params) {
+    if (count($params) != 2 || !is_numeric($params[1]) || intval($params[1]) < 0) {
         redirectionInterne("pilote/liste");
     }
 
-    $pilotes = getPilotes();
+    $idPilote = intval($params[1]);
+    $pilote = getPilote($idPilote);
 
-    // var_dump($pilotes);
+    $classes = getClassesPilote($idPilote);
 
-    require_once "vue/php/pilote/liste_pilotes_vue.php";
+    if (is_null($pilote)) {
+        redirectionErreur(404);  // Erreur 404 (Non trouvé)
+    }
+
+    require_once "vue/php/pilote/lire_pilote_vue.php";
 }
 
-function afficherCreerPilote(array $params)
-{
+function afficherListePilote(array $params) {
     if (count($params) > 1) {
         redirectionInterne("pilote/liste");
         exit();
     }
 
-    if (isset($_POST) && isset($_POST["nom-pilote"]) && isset($_POST["prenom-pilote"]) && isset($_POST["email-pilote"]) && isset($_POST["mdp-pilote"])) {
-        $nom = $_POST["nom-pilote"];
-        $prenom = $_POST["prenom-pilote"];
-        $email = $_POST["email-pilote"];
-        $mdp = $_POST["mdp-pilote"];
+    // if (DEBUG) var_dump($_POST);
+    // if (DEBUG) echo "<br>";
+
+    if (isset($_POST) && count($_POST) > 0) {
+        $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
+        $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
+
+        $pilotes = getPilotesFiltres($nom, $prenom);
+
+        require_once "vue/php/pilote/liste_pilotes_vue.php";
+    } else {
+        $pilotes = getPilotes();
+        // if (DEBUG) var_dump($pilotes);
+
+        require_once "vue/php/pilote/liste_pilotes_vue.php";
+    }
+}
+
+function afficherCreerPilote(array $params) {
+    if (count($params) > 1) {
+        redirectionInterne("pilote/liste");
+        exit();
+    }
+
+    if (DEBUG) var_dump($_POST);
+    if (isset($_POST) && isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["mdp"])) {
+        $nom = $_POST["nom"];
+        $prenom = $_POST["prenom"];
+        $email = $_POST["email"];
+        $mdp = $_POST["mdp"];
 
         $idPilote = creerPilote($nom, $prenom, $email, $mdp);
 
@@ -78,14 +91,13 @@ function afficherCreerPilote(array $params)
             redirectionInterne("pilote/liste");
         } else {  // Erreur lors de la création
             redirectionInterne("pilote/creer");
-        } 
+        }
     } else {
         require_once "vue/php/pilote/creer_pilote_vue.php";
     }
 }
 
-function afficherModifierPilote(array $params)
-{
+function afficherModifierPilote(array $params) {
     if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
         redirectionInterne("pilote/liste");
         exit();
@@ -125,8 +137,7 @@ function afficherModifierPilote(array $params)
     }
 }
 
-function afficherSupprimerPilote(array $params)
-{
+function afficherSupprimerPilote(array $params) {
     if (count($params) != 2 || !is_numeric($params[1]) || $params[1] < 0) {
         redirectionInterne("pilote/liste");
         exit();
