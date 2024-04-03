@@ -2,7 +2,8 @@
 // require_once "outils.php";
 require_once "connexion_bdd.php";
 
-class Etudiant {
+class Etudiant
+{
     public int $id;
     public string $nom;
     public string $prenom;
@@ -13,8 +14,9 @@ class Etudiant {
     // Cependant, on peut comparer un texte avec un hash pour vérifier si le texte correspond au texte d'origine.
     public string $hash_mdp;
 
- 
-    public function __construct(int $id, string $nom, string $prenom, string $email, string $hash_mdp) {
+
+    public function __construct(int $id, string $nom, string $prenom, string $email, string $hash_mdp)
+    {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -23,15 +25,28 @@ class Etudiant {
     }
 }
 
-class Classe {
+class Classe
+{
     public int $id;
     public string $nom;
     public int $annee;
     public string $ville;
+    public string $codePostal;
 
+    public function __construct(int $id, string $nom, int $annee, string $ville, string $codePostal)
+    {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->annee = $annee;
+        $this->ville = $ville;
+        $this->codePostal = $codePostal;
+    }
 }
 
-function getEtudiants(): ?array {
+
+
+function getEtudiants(): ?array
+{
     $pdo = connexionBDD();
 
     $requete = $pdo->prepare("SELECT * FROM Student");
@@ -41,23 +56,23 @@ function getEtudiants(): ?array {
 
     $etudiants = [];
     // var_dump($etudiants);
-    if($reponseBdd === false) {
+    if ($reponseBdd === false) {
         return null;
     }
 
     foreach ($reponseBdd as $ligneEtudiant) {
         // echo var_dump($ligneEtudiant) . "<br>";
-            $etudiant = new Etudiant(
-                $ligneEtudiant["idStudent"],
-                $ligneEtudiant["name"],
-                $ligneEtudiant["firstName"],
-                $ligneEtudiant["email"],
-                $ligneEtudiant["password"]
-            );
+        $etudiant = new Etudiant(
+            $ligneEtudiant["idStudent"],
+            $ligneEtudiant["name"],
+            $ligneEtudiant["firstName"],
+            $ligneEtudiant["email"],
+            $ligneEtudiant["password"]
+        );
 
-            $etudiants[] = $etudiant;
+        $etudiants[] = $etudiant;
     }
-    
+
     // echo "<br>";
 
     return $etudiants;
@@ -65,7 +80,36 @@ function getEtudiants(): ?array {
 
 
 
-function listeEtudiant(int $idEtudiant): ?Etudiant {
+function getEtudiant(int $idEtudiant): ?etudiant
+{
+    $pdo = connexionBDD();
+
+    $requete = $pdo->prepare("SELECT * FROM Student WHERE idStudent = :id");
+    $requete->execute([
+        ":id" => $idEtudiant
+    ]);
+
+    $reponseBdd = $requete->fetch(PDO::FETCH_ASSOC);
+
+    if ($reponseBdd === false) {
+        return null;
+    }
+
+    $etudiant = new Etudiant(
+        $reponseBdd["idStudent"],
+        $reponseBdd["name"],
+        $reponseBdd["firstName"],
+        $reponseBdd["email"],
+        $reponseBdd["password"]
+    );
+
+    return $etudiant;
+}
+
+
+
+function listeEtudiant(int $idEtudiant): ?Etudiant
+{
     $pdo = connexionBDD();
 
     $sql = "SELECT * FROM Student WHERE idStudent = ?";
@@ -78,23 +122,10 @@ function listeEtudiant(int $idEtudiant): ?Etudiant {
         return null;
     }
 
-    try {
-        $dateDebut = new DateTime($reponseBdd["offerDate"]);
-    } catch (Exception $e) {
-        return null;
-    }
-    $mineure = $reponseBdd["minor"];
-    $adresse = getAdresse($reponseBdd["idAddress"]);
-    $entreprise = getEntreprise($reponseBdd["idCompany"], false);
-
-    if (is_null($adresse) || is_null($entreprise) || !in_array($mineure, MINEURES)) {
-        return null;
-    }
-
     return new Etudiant(
         $reponseBdd["idStudent"],
         $reponseBdd["name"],
-        $reponseBdd["firstNAme"],
+        $reponseBdd["firstName"],
         $reponseBdd["email"],
         $reponseBdd["password"]
     );
@@ -102,115 +133,50 @@ function listeEtudiant(int $idEtudiant): ?Etudiant {
 
 
 
-function creerEtudiant( 
+function creerEtudiant(
     string $nom,
     string $prenom,
+    string $hash_mdp,
     string $email,
-    string $hash_mdp
-) : ?int {
+    int $idClass
+): ?int {
     $pdo = connexionBDD();
 
-    // Début de la transaction (permet d'annuler les modifications si une erreur survient)
-    $pdo->beginTransaction();
-
-    // Création du nom
-    // Recherche du nom
-    $requete = $pdo->prepare(
-        "SELECT idStudent FROM Student WHERE cityName = :ville AND addressCode = :codePostal"
-    );
-    $requete->execute([
-        ":ville" => $ville,
-        ":codePostal" => $codePostal
+    $query = "INSERT INTO Student (name, firstName, password, email, idClass) VALUE (:nom, :prenom, :hash_mdp, :email, :idClass)";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([
+        ":nom" => $nom,
+        ":prenom" => $prenom,
+        ":hash_mdp" => $hash_mdp,
+        ":email" => $email,
+        ":idClass" => $idClass
     ]);
-    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
-    if ($resultat !== false && isset($resultat["idCity"])) {  // La ville existe déjà
-        $idVille = $resultat["idCity"];
-        // if (DEBUG) echo "ville trouvée ! idVille: " . $idVille . "<br>";
-    } else {  // Création de la ville
-        $requete = $pdo->prepare(
-            "INSERT INTO City (cityName, addressCode)
-            VALUES (:ville, :codePostal)"
-        );
-        $requete->execute([
-            ":ville" => $ville,
-            ":codePostal" => $codePostal
-        ]);
-        $idVille = $pdo->lastInsertId();
 
-        // if (DEBUG) echo "ville créée ! idVille: " . $idVille . "<br>";
-    }
-
-    if ($idVille === false) {
-        $pdo->rollBack();
+    $idEtudiant = $pdo->lastInsertId();
+    if ($idEtudiant === false) {
         return null;
     }
 
-    // Création de l'adresse
-    $requete = $pdo->prepare(
-        "INSERT INTO Address (streetNumber, streetName, idCity)
-        VALUES (:numeroRue, :rue, :idVille)"
-    );
-    $requete->execute([
-        ":numeroRue" => $numeroRue,
-        ":rue" => $rue,
-        ":idVille" => $idVille,
-    ]);
-
-    $idAdresse = $pdo->lastInsertId();
-    if ($idAdresse === false) {
-        $pdo->rollBack();
-        return null;
-    }
-
-    // Création de l'offre
-    $sql = "INSERT INTO InternshipOffer (title, description, skills,
-    remuneration, numberOfPlaces, duration, minor, pictureURL, offerDate, idAddress, idCompany)
-    VALUES (:titre, :description, :competences, :remuneration, :places, :duree, :mineure, :urlImage, :dateDebut, :idAdresse, :idEntreprise)";
-    $requete = $pdo->prepare($sql);
-    $requete->execute([
-        ":titre" => $titre,
-        ":description" => $description,
-        ":competences" => $competences,
-        ":remuneration" => $remuneration,
-        ":places" => $places,
-        ":duree" => $duree,
-        ":mineure" => $mineure,
-        ":urlImage" => $urlImage,
-        ":dateDebut" => $dateDebut->format("Y-m-d"),
-        ":idAdresse" => $idAdresse,
-        ":idEntreprise" => $idEntreprise
-    ]);
-
-    $idOffre = $pdo->lastInsertId();
-    if ($idOffre === false) {
-        $pdo->rollBack();
-        return null;
-    }
-
-    $pdo->commit();
-
-    return $idOffre;
+    return $idEtudiant;
 }
 
 
 
-function modifierEtudiant(int $id, string $nom, string $prenom, string $email, string $hash_mdp): bool {
-    if ($nom == "" || $prenom == "" || $email == "" || $hash_mdp != "") {
-        // echo "Erreur : etudiant invalide";
-        header("Location: " . ADRESSE_SITE . "/erreur/404");
-        exit();
-    }
-
+function modifierEtudiant(int $id, string $nom, string $prenom, string $email, string $mdp): bool
+{
     $pdo = connexionBDD();
+    $hash_mdp = password_hash($mdp, PASSWORD_DEFAULT);
+    echo "$mdp $hash_mdp <br>";
 
     // Requête SQL Update 
-    $query = "UPDATE etudiant SET name = :nom, firstName = :prenom, email = :email, password = :hash_mdp WHERE idStudent = :id;";
+    $query = "UPDATE Student SET name = :nom, firstName = :prenom, email = :email, password = :hash_mdp WHERE idStudent = :id;";
     $stmt = $pdo->prepare($query);
     $stmt->execute([
         ":nom" => $nom,
         ":prenom" => $prenom,
         ":email" => $email,
-        ":hash_mdp" => $hash_mdp
+        ":hash_mdp" => $hash_mdp,
+        ":id" => $id
     ]);
 
     if ($stmt->rowCount() === 0) {
@@ -221,14 +187,20 @@ function modifierEtudiant(int $id, string $nom, string $prenom, string $email, s
 
 
 
-function supprimerEtudiant(int $id): bool {
+function supprimerEtudiant(int $id): bool
+{
     $pdo = connexionBDD();
 
-    // Requête SQL Update
-    $query = "DELETE FROM etudiant WHERE id = ?;";
-    $stmt = $pdo->prepare($query);
-    $reussiteRequete = $stmt->execute([$id]);
-    
+    try {
+        $query = "DELETE FROM Student WHERE idStudent = :idStudent;";
+        $stmt = $pdo->prepare($query);
+        $reussiteRequete = $stmt->execute([
+            ":idStudent" => $id
+        ]);
+    } catch (Exception $e) {
+        return false;
+    }
+
     // Vérification réussite requête
     return $reussiteRequete;
 }

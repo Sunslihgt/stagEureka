@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "outils.php";
 
 // Démarre la temporisation de sortie
 // (Permet de stocker le contenu html suivant dans une variable php)
@@ -7,7 +7,7 @@ ob_start();
 ?>
 
 <main class="main-affichage" id="main-liste-etudiants">
-        <form action="wip_liste_etudiant_filtre.php" method="post">
+        <form action="<?= ADRESSE_SITE ?>/etudiant/liste" method="post">
             <div class="block-recherche" id="block-recherche-etudiants">
                 <div class="barres-recherche">
                     <div class="element-recherche">
@@ -35,11 +35,11 @@ ob_start();
         <div class="affichage-cartes">
             <div class="haut-page-liste-resultats">
                 <h1 id="haut-h1">Liste des Etudiants</h1>
-                <button id="haut-bouton">Ajouter un Etudiant</button>
+                <button id="haut-bouton" onclick="location.href='<?= ADRESSE_SITE ?>/etudiant/creer'">Ajouter un Etudiant</button>
             </div>
 
             <div id="selection-etudiant">
-                <?php foreach ($etudiants as $etudiant) { ?>            
+                <?php foreach ($etudiants as $etudiant) { ?>
                     <div class="carte carte-etudiant" id="carte-etudiant-<?= $etudiant->id ?>">
                             <div class="info-carte">
                             <div class="element-carte">
@@ -50,19 +50,21 @@ ob_start();
                                 <p class="element-carte-titre">Prénom de l'étudiant</p>
                                 <p class="element-carte-valeur"><?= $etudiant->prenom ?></p>
                             </div>
-                            <div class="element-carte div-carte-campus">
+                            <!-- <div class="element-carte div-carte-campus">
                                 <p class="element-carte-titre">Campus</p>
                                 <p class="element-carte-valeur">NOM DU CAMPUS</p>
-                            </div>
-                            <div class="element-carte">
+                            </div> -->
+                            <!-- <div class="element-carte">
                                 <p class="element-carte-titre">Classe</p>
                                 <p class="element-carte-valeur">CLASSE DE L'ELEVE</p>
-                            </div>
+                            </div> -->
 
                             <div class="boutons-carte">
-                                <button class="bouton-carte bouton-modification"><i class="fa-solid fa-pen"></i></button>
+                                <button class="bouton-carte bouton-lecture" onclick="location.href='<?= ADRESSE_SITE ?>/etudiant/lire/<?= $etudiant->id ?>'"><i class="fa-solid fa-eye"></i></button>
                                 <span></span>
-                                <button class="bouton-carte bouton-suppression"><i class="fa-solid fa-trash"></i></button>
+                                <button class="bouton-carte bouton-modification" onclick="location.href='<?= ADRESSE_SITE ?>/etudiant/modifier/<?= $etudiant->id ?>'"><i class="fa-solid fa-pen"></i></button>
+                                <span></span>
+                                <button class="bouton-carte bouton-suppression" onclick="location.href='<?= ADRESSE_SITE ?>/etudiant/supprimer/<?= $etudiant->id ?>'"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
@@ -91,11 +93,11 @@ $contenu = ob_get_clean();
 // Déclaration des variables pour la mise en page
 $titreOnglet = "Etudiants StagEureka - Trouvez votre stage";
 $metaDescription = "Page de liste des étudiants du site StagEureka";
-$navigationSelectionee = "etudiant";
+$navigationSelectionee = "etudiants";
 // $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/champ_mdp.js'></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)
-include "vue/php/mise_en_page.php";
+include "vue/php/mise_en_page_vue.php";
 
 ?>
