@@ -57,7 +57,8 @@ function changerTheme(light, logo) {
         document.documentElement.style.setProperty("--alternate-color", "#ffffff");
         document.documentElement.style.setProperty("--background-color", "#ffffff");
         document.documentElement.style.setProperty("--background-color-2", "#eeeeee");
-    } else {  // Thème sombre
+    }
+    else {  // Thème sombre
         document.documentElement.style.setProperty("--primary-color", "#ffffff");
         document.documentElement.style.setProperty("--secondary-color", "#bbbbbb");
         document.documentElement.style.setProperty("--accent-color-1", "#122f8f");

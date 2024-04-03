@@ -1,4 +1,13 @@
 :root {
+
+    --const-primary-color: #333333;
+    --const-secondary-color: #cecece;
+    --const-accent-color-1: #2e4283;
+    --const-accent-color-2: #454acc;
+    --const-alternate-color: #ffffff;
+    --const-background-color: #ffffff;
+    --const-background-color-2: #eeeeee;
+
     /* Thème clair (remplacé par theme.js) */
     --primary-color: #333333;
     --secondary-color: #cecece;
@@ -865,8 +874,8 @@ textarea {
 }
 
 .block-recherche {
-    color: var(--background-color);
-    background-color: var(--accent-color-1);
+    color: var(--const-background-color);
+    background-color: var(--const-accent-color-1);
     padding: 15px;
     font-weight: bold;
     text-align: center;
@@ -955,7 +964,8 @@ textarea {
     margin: 0 auto;
     margin-top: 50px;
     display: block;
-    border: 1px solid var(--background-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     background-color: var(--background-color);
     border-radius: 4px;
     padding: 10px 25px;
@@ -993,7 +1003,7 @@ textarea {
     padding: 16px;
     border-color: var(--background-color);
     background-color: var(--accent-color-1);
-    color: var(--background-color);
+    color: var(--const-background-color);
     font-weight: bold;
     font-size: large;
     border-radius: 15px;
@@ -1076,8 +1086,8 @@ textarea {
 
 .bouton-carte {
     cursor: pointer;
-    color: var(--accent-color-1);
-    background-color: var(--background-color);
+    color: var(--const-accent-color-1);
+    background-color: var(--const-background-color);
     border-radius: 100%;
     border: 0px;
     font-size: large;
@@ -1136,7 +1146,7 @@ textarea {
 }
 
 .bouton-numero-actuel {
-  color: var(--background-color);
+  color: var(--const-background-color);
   background: var(--accent-color-2);
 }
 
