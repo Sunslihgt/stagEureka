@@ -74,7 +74,7 @@ function getUtilisateur(string $email): ?Utilisateur {
     if (!is_null($pilote)) $nbTypesTrouves++;
     if (!is_null($etudiant)) $nbTypesTrouves++;
 
-    // if (DEBUG) echo "Nombre de types d'utilisateur trouvés: $nbTypesTrouves<br>";
+    if (DEBUG) echo "Nombre de types d'utilisateur trouvés: $nbTypesTrouves<br>";
 
     // On traite les cas possibles
     if ($nbTypesTrouves == 0) {  // L'utilisateur n'existe pas

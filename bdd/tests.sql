@@ -1,3 +1,5 @@
+USE stageureka_mysql;
+
 SELECT a.idAddress, a.streetNumber, a.streetName, city.cityName, city.addressCode
 FROM Company company
 JOIN is_settle s ON (company.idCompany = s.idCompany)
@@ -14,3 +16,5 @@ SELECT * FROM Address
 INNER JOIN City ON Address.idCity = City.idCity;
 
 SELECT * FROM InternshipOffer;
+
+SELECT * FROM Student;

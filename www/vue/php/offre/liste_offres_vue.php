@@ -13,7 +13,7 @@ ob_start();
                 <div>
                     <div class="element-recherche">
                         <label for="filtre-nom-offre">Nom de l'offre</label>
-                        <input type="text" placeholder="Recherche via le nom" class="case-recherche" id="filtre-nom-offre" name="nomEntreprise" value="<?= isset($_POST["nomEntreprise"]) ? $_POST["nomEntreprise"] : "" ?>">
+                        <input type="text" placeholder="Recherche via le nom" class="case-recherche" id="filtre-nom-offre" name="nomOffre" value="<?= isset($_POST["nomOffre"]) ? $_POST["nomOffre"] : "" ?>">
                     </div>
                     <div class="element-recherche" id="localisation-recherche">
                         <h3>Localisation</h3>
@@ -40,18 +40,19 @@ ob_start();
                             <input type="number" class="case-court" placeholder="Maximum" name="remunerationMax" value="<?= isset($_POST["remunerationMax"]) ? $_POST["remunerationMax"] : "" ?>">
                         </div>
                     </div>
-                    <div class="element-recherche" id="wishlist">
-                        <h3>Wishlist</h3>
-                        <!-- Cacher ce filtre si l'utilisateur n'est pas un étudiant -->
-                        <?php if (estEtudiant()) { ?>
+
+                    <!-- Cacher le filtre de wishlist si l'utilisateur n'est pas un étudiant -->
+                    <?php if (estEtudiant()) { ?>
+                        <div class="element-recherche" id="wishlist">
+                            <h3>Wishlist</h3>
                             <div id="conteneur-wishlist-filtre">
                                 <input type="checkbox" name="wishlist" class="case-wishlist accessibilite-invisible" id="filtre-wishlist" name="wishlist" <?= isset($_POST["wishlist"]) && $_POST["wishlist"] == "on" ? "checked" : "" ?>>
                                 <label class="label-wishlist" for="filtre-wishlist">
                                     <i class="fa-regular fa-star" id="icone-wishlist-filtre"></i>
                                 </label>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="mineures-recherche">
@@ -73,16 +74,18 @@ ob_start();
                 </div>
             </div>
 
+            <button type="reset" class="bouton-filtrage" id="effacer-filtres-offres">Effacer</button>
             <button type="submit" class="bouton-filtrage">Filtrer</button>
         </div>
 
         <?php
         // $nbResultats = count($offres);
         // $nbPages = ceil($nbResultats / 5);
-        $page = isset($_POST["page"]) ? $_POST["page"] : 1;
+        const NB_RESULTATS_PAGE = 5;
+        $page = isset($_POST["page"]) ? intval($_POST["page"]) : 1;
         ?>
-        <input type="hidden" name="page" value="<?= $page ?>">
-        <input type="hidden" name="nb-pages" value="<?= ceil($nbResultats / 5); ?>">
+        <input type="hidden" name="page" id="page" value="<?= $page ?>">
+        <input type="hidden" name="nb-pages" id="nb-pages" value="<?= ceil(count($offres) / 5); ?>">
     </form>
 
     <div class="affichage-cartes">
@@ -92,7 +95,8 @@ ob_start();
         </div>
 
         <div id="selection-entreprise">
-            <?php foreach ($offres as $offre) { ?>
+            <?php for ($i = ($page - 1) * NB_RESULTATS_PAGE; $i < min(count($offres), $page * NB_RESULTATS_PAGE); $i++) { ?>
+                <?php $offre = $offres[$i] ?>
                 <div class="carte carte-offre" id="carte-offre-<?= $offre->id ?>">
                     <div class="info-carte">
                         <div class="element-partition titre-image-offre">
@@ -143,7 +147,7 @@ ob_start();
                             </div>
 
                             <div class="boutons-carte">
-                                <!-- TODO: Action ajouter/supprimer de la wishlist -->
+                                <!-- Afficher/Cacher bouton wishlist -->
                                 <?php if (estEtudiant()) { ?>
                                     <button class="bouton-carte">
                                         <i class="fa-solid fa-star"></i>
@@ -187,11 +191,11 @@ ob_start();
             <div class="conteneur-pagination-cartes">
                 <div class="pagination-cartes" id="pagination">
                     <button class="bouton-nav" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
-                    <!-- <button class="bouton-nav" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button> -->
-                    <button class="bouton-nav" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button>
+                    <button class="bouton-nav" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
+                    <!-- <button class="bouton-nav" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
                     <button class="bouton-nav" id="pagination-numero-actuel" hidden><?= $page ?></button>
-                    <button class=" bouton-nav" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button>
-                    <!-- <button class="bouton-nav" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button> -->
+                    <!-- <button class=" bouton-nav" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
+                    <button class="bouton-nav" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
                     <button class="bouton-nav" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>
                 </div>
             </div>
@@ -209,7 +213,8 @@ $metaDescription = "Page de liste des offres de stage du site StagEureka";
 $navigationSelectionee = "offres";
 $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/image_offre_liste.js' defer></script>" .
     "<script src='" . ADRESSE_SITE . "/vue/js/filtre_wishlist.js'></script>" .
-    "<script src='" . ADRESSE_SITE . "/vue/js/pagination.js'></script>";
+    "<script src='" . ADRESSE_SITE . "/vue/js/pagination.js'></script>" .
+    "<script src='" . ADRESSE_SITE . "/vue/js/effacer_filtres_offres.js' defer></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)

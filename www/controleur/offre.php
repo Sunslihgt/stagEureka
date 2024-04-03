@@ -4,6 +4,7 @@ require_once "modele/offre_modele.php";
 require_once "modele/adresse_modele.php";
 
 // if (DEBUG) echo var_dump($offres) . "<br>";
+// if (DEBUG) var_dump($_POST);
 
 // Si pas de paramètre, on redirige vers la liste des offres
 if (count($params) == 0 || $params[0] == "") {
@@ -76,7 +77,7 @@ function afficherListeOffres(array $params): void {
 
     if (isset($_POST)) {  // Filtres de recherche trouvés
         // On récupère les filtres
-        $nomEntreprise = isset($_POST["nomEntreprise"]) ? $_POST["nomEntreprise"] : "";
+        $nomOffre = isset($_POST["nomOffre"]) ? $_POST["nomOffre"] : "";
         $ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
         $dureeMin = isset($_POST["dureeMin"]) && is_numeric($_POST["dureeMin"]) ? intval($_POST["dureeMin"]) : -1;
         $dureeMax = isset($_POST["dureeMax"]) && is_numeric($_POST["dureeMax"]) ? intval($_POST["dureeMax"]) : -1;
@@ -92,12 +93,12 @@ function afficherListeOffres(array $params): void {
         $idEtudiant = estEtudiant() && $wishlist && $_SESSION["id"] ? $_SESSION["id"] : -1;
         
         // echo "Filtres trouvés : <br>";
-        // var_dump( $nomEntreprise, $ville, $dureeMin, $dureeMax, $remunerationMin, $remunerationMax, $wishlist, $gene, $info, $btp, $s3e, $idEtudiant);
+        // var_dump($nomOffre, $ville, $dureeMin, $dureeMax, $remunerationMin, $remunerationMax, $wishlist, $gene, $info, $btp, $s3e, $idEtudiant);
         // echo "<br>";
             
         // On récupère les offres filtrées
         $offres = getOffresFiltre(
-            $nomEntreprise, $ville, $dureeMin, $dureeMax,
+            $nomOffre, $ville, $dureeMin, $dureeMax,
             $remunerationMin, $remunerationMax, $wishlist,
             $gene, $info, $btp, $s3e, $idEtudiant
         );
@@ -115,6 +116,13 @@ function afficherCreerOffre(array $params) {
         redirectionInterne("offre/liste");
         exit();
     }
+
+    if (isset($_POST)) {
+
+    } else {
+
+    }
+
 
     // if (DEBUG) var_dump($_POST);
     // Filtre massif pour s'assurer que toutes les données sont présentes et valides
@@ -228,7 +236,7 @@ function afficherModifierOffre(array $params) {
         if ($offreCree) {  // Offre créée
             redirectionInterne("offre/liste");  // Redirection vers la liste des offres
         } else {  // Erreur lors de la création de l'offre
-            redirectionInterne("offre/modifier");  // Redirection vers la page de création d'offre
+            redirectionInterne("offre/modifier/$idOffre");  // Redirection vers la page de création d'offre
         }
     } else {
         // if (DEBUG) var_dump($_POST);

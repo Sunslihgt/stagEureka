@@ -151,7 +151,7 @@ function getOffres(): array {
 }
 
 function getOffresFiltre(
-    string $nomEntreprise,
+    string $nomOffre,
     string $ville,
     int $dureeMin,
     int $dureeMax,
@@ -185,9 +185,9 @@ function getOffresFiltre(
         $filtres[":idEtudiant"] = $idEtudiant;
     }
 
-    if ($nomEntreprise !== "") {
-        $sql .= " AND comp.nameCompany LIKE :nomEntreprise";
-        $filtres[":nomEntreprise"] = "%" . $nomEntreprise . "%";
+    if ($nomOffre !== "") {
+        $sql .= " AND intern.title LIKE :nomOffre";
+        $filtres[":nomOffre"] = "%" . $nomOffre . "%";
     }
 
     if ($ville !== "") {
@@ -487,7 +487,6 @@ function modifierOffre(
         $pdo->rollBack();
         return false;
     }
-    // TODO: Vérifier fonctionnement fonction
 
     $pdo->commit();
 
@@ -498,9 +497,11 @@ function supprimerOffre(int $idOffre): bool {
     $pdo = connexionBDD();
 
     try {
-        $sql = "DELETE FROM InternshipOffer WHERE idInternshipOffer = ?";
+        $sql = "DELETE FROM InternshipOffer WHERE idInternshipOffer = :idOffre";
         $requete = $pdo->prepare($sql);
-        $requete->execute([$idOffre]);
+        $requete->execute([
+            ":idOffre" => $idOffre
+        ]);
     } catch (Exception $e) {
         return false;
     }
