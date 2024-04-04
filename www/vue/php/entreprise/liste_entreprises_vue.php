@@ -47,8 +47,18 @@ ob_start();
                     </div>
                 </div>
             </div>
+
+            <button type="reset" class="bouton-filtrage">Effacer</button>
             <button type="submit" class="bouton-filtrage">Filtrer</button>
         </div>
+
+        <?php
+        $nbResultats = count($entreprises);
+        $nbPages = (int) ceil($nbResultats / NB_RESULTATS_PAGE);
+        $page = isset($_POST["page"]) ? intval($_POST["page"]) : 1;
+        ?>
+        <input type="hidden" name="page" id="page" value="<?= $page ?>">
+        <input type="hidden" name="nb-pages" id="nb-pages" value="<?= ceil(count($entreprises) / NB_RESULTATS_PAGE); ?>">
     </form>
 
     <div class="affichage-cartes">
@@ -58,7 +68,8 @@ ob_start();
         </div>
 
         <div id="selection-entreprise">
-            <?php foreach ($entreprises as $entreprise) { ?>
+            <?php for ($i = ($page - 1) * NB_RESULTATS_PAGE; $i < min(count($entreprises), $page * NB_RESULTATS_PAGE); $i++) { ?>
+                <?php $entreprise = $entreprises[$i] ?>
                 <div class="carte carte-entreprise" id="carte-entreprise-<?= $entreprise->id ?>">
                     <div class="info-carte">
                         <div class="element-carte">
@@ -91,12 +102,12 @@ ob_start();
                             <p class="element-carte-titre">Pilotes</p>
                             <p class="etoiles-bleues">
                                 <?php if ($entreprise->notePilotes == -1) { ?>
-                                    <?php for ($i = 0; $i < 5; $i++) { ?>
+                                    <?php for ($j = 0; $j < 5; $j++) { ?>
                                         <i class="fa-solid fa-star" style="color: grey;"></i>
                                     <?php } ?>
                                 <?php } else { ?>
-                                    <?php for ($i = 0; $i < 5; $i++) { ?>
-                                        <i class="fa-<?= $i < $entreprise->notePilotes ? 'solid' : 'regular' ?> fa-star" title="<?= $entreprise->notePilotes ?>/5"></i>
+                                    <?php for ($j = 0; $j < 5; $j++) { ?>
+                                        <i class="fa-<?= $j < $entreprise->notePilotes ? 'solid' : 'regular' ?> fa-star" title="<?= $entreprise->notePilotes ?>/5"></i>
                                     <?php } ?>
                                 <?php } ?>
                             </p>
@@ -105,27 +116,27 @@ ob_start();
                             <p class="element-carte-titre">Etudiants</p>
                             <p class="etoiles-bleues">
                                 <?php if ($entreprise->noteEtudiants == -1) { ?>
-                                    <?php for ($i = 0; $i < 5; $i++) { ?>
+                                    <?php for ($j = 0; $j < 5; $j++) { ?>
                                         <i class="fa-solid fa-star" style="color: grey;"></i>
                                     <?php } ?>
                                 <?php } else { ?>
-                                    <?php for ($i = 0; $i < 5; $i++) { ?>
-                                        <i class="fa-<?= $i < $entreprise->noteEtudiants ? 'solid' : 'regular' ?> fa-star" title="<?= $entreprise->noteEtudiants ?>/5"></i>
+                                    <?php for ($j = 0; $j < 5; $j++) { ?>
+                                        <i class="fa-<?= $j < $entreprise->noteEtudiants ? 'solid' : 'regular' ?> fa-star" title="<?= $entreprise->noteEtudiants ?>/5"></i>
                                     <?php } ?>
                                 <?php } ?>
                             </p>
                         </div>
                         <div class="boutons-carte">
-                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/lire/<?= $entreprise->id ?>'">
+                            <button class="bouton-carte" title="Lire" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/lire/<?= $entreprise->id ?>'">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
                             <?php if (estAdmin() || estPilote()) { ?>
                                 <span></span>
-                                <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/modifier/<?= $entreprise->id ?>'">
+                                <button class="bouton-carte" title="Modifier" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/modifier/<?= $entreprise->id ?>'">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
                                 <span></span>
-                                <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/supprimer/<?= $entreprise->id ?>'">
+                                <button class="bouton-carte" title="Supprimer" onclick="location.href='<?= ADRESSE_SITE ?>/entreprise/supprimer/<?= $entreprise->id ?>'">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             <?php } ?>
@@ -138,13 +149,13 @@ ob_start();
             <!-- Pagination des résultats -->
             <div class="conteneur-pagination-cartes">
                 <div class="pagination-cartes" id="pagination">
-                    <button class="bouton-nav bouton-minimum"><i class="fa-solid fa-angles-left"></i></button>
-                    <button class="bouton-nav bouton-precedent"><i class="fa-solid fa-angle-left"></i></button>
-                    <button class="bouton-nav bouton-numero-precedent">1</button>
-                    <button class="bouton-nav bouton-numero-actuel">2</button>
-                    <button class="bouton-nav bouton-numero-suivant">3</button>
-                    <button class="bouton-nav bouton-suivant"><i class="fa-solid fa-angle-right"></i></button>
-                    <button class="bouton-nav bouton-extremum"><i class="fa-solid fa-angles-right"></i></button>
+                    <button class="bouton-nav" title="Page début" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
+                    <button class="bouton-nav" title="Page précédent" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
+                    <!-- <button class="bouton-nav" title="Page précédent" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
+                    <button class="bouton-nav" title="Page actuelle" id="pagination-numero-actuel" hidden><?= $page ?></button>
+                    <!-- <button class=" bouton-nav" title="Page suivante" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
+                    <button class="bouton-nav" title="Page suivante" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="bouton-nav" title="Page fin" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>
                 </div>
             </div>
         </div>
@@ -159,7 +170,9 @@ $contenu = ob_get_clean();
 $titreOnglet = "Entreprises StagEureka - Trouvez votre stage";
 $metaDescription = "Page de liste des entreprises du site StagEureka";
 $navigationSelectionee = "entreprises";
-$entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/filtre_etoile.js'></script>";
+$entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/filtre_etoile.js'></script>" .
+    "<script src='" . ADRESSE_SITE . "/vue/js/pagination.js'></script>" .
+    "<script src='" . ADRESSE_SITE . "/vue/js/effacer_filtres_liste.js' defer></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)

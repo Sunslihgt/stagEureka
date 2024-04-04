@@ -57,10 +57,10 @@ function getPilotes(): array {
         return [];
     }
 
-    // echo "<br>";
+    // if (DEBUG) echo "<br>";
     $pilotes = [];
     foreach ($reponseBdd as $lignePilote) {
-        // echo var_dump($lignePilote) . "<br>";
+        // if (DEBUG) echo var_dump($lignePilote) . "<br>";
         $pilotes[] = new Pilote(
             $lignePilote["idPilot"],
             $lignePilote["name"],
@@ -70,7 +70,7 @@ function getPilotes(): array {
         );
     }
 
-    // echo "<br>";
+    // if (DEBUG) echo "<br>";
     return $pilotes;
 }
 
@@ -165,7 +165,7 @@ function supprimerPilote(int $idPilote): bool{
             ":idPilote" => $idPilote
         ]);
     } catch (Exception $e) {
-        var_dump($e);
+        if (DEBUG) var_dump($e);
         return false;
     }
 

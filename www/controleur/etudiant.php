@@ -125,7 +125,7 @@ function afficherModifierEtudiant(array $params) {
 
     $idEtudiant = $params[1];
 
-    if (DEBUG) var_dump($_POST);
+    // if (DEBUG) var_dump($_POST);
     if (
         isset($_POST) && isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["mdp"]) &&
         isset($_POST["idClasse"]) && is_numeric($_POST["idClasse"]) && intval($_POST["idClasse"]) >= 0

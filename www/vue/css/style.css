@@ -554,7 +554,8 @@ main:has(.conteneur-connexion) {
 }
 
 select.case-standard {
-    width: 308px;
+    /* width: 308px; */
+    box-sizing: content-box;
     /* overflow-x: scroll; */
 }
 
@@ -1181,6 +1182,10 @@ textarea {
     /* box-shadow: 0 0 3px; */
     height: 30px;
     width: 300px;
+}
+
+#pagination-numero-actuel {
+    width: fit-content;
 }
 
 .bouton-nav {

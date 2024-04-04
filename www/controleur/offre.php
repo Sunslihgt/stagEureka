@@ -93,9 +93,9 @@ function afficherListeOffres(array $params): void {
         // Id de l'étudiant (pour les wishlists)
         $idEtudiant = estEtudiant() && $wishlist && $_SESSION["id"] ? $_SESSION["id"] : -1;
         
-        // echo "Filtres trouvés : <br>";
-        // var_dump($nomOffre, $ville, $dureeMin, $dureeMax, $remunerationMin, $remunerationMax, $wishlist, $gene, $info, $btp, $s3e, $idEtudiant);
-        // echo "<br>";
+        // if (DEBUG) echo "Filtres trouvés : <br>";
+        // if (DEBUG) var_dump($nomOffre, $ville, $dureeMin, $dureeMax, $remunerationMin, $remunerationMax, $wishlist, $gene, $info, $btp, $s3e, $idEtudiant);
+        // if (DEBUG) echo "<br>";
             
         // On récupère les offres filtrées
         $offres = getOffresFiltre(

@@ -77,13 +77,13 @@ function getEtudiants(): ?array {
     $reponseBdd = $requete->fetchAll(PDO::FETCH_ASSOC);
 
     $etudiants = [];
-    // var_dump($etudiants);
+    // if (DEBUG) var_dump($etudiants);
     if ($reponseBdd === false) {
         return null;
     }
 
     foreach ($reponseBdd as $ligneEtudiant) {
-        // echo var_dump($ligneEtudiant) . "<br>";
+        // if (DEBUG) echo var_dump($ligneEtudiant) . "<br>";
         $etudiant = new Etudiant(
             $ligneEtudiant["idStudent"],
             $ligneEtudiant["name"],
@@ -103,7 +103,7 @@ function getEtudiants(): ?array {
         $etudiants[] = $etudiant;
     }
 
-    // echo "<br>";
+    // if (DEBUG) echo "<br>";
 
     return $etudiants;
 }

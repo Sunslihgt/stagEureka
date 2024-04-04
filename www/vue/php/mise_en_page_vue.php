@@ -29,10 +29,12 @@ const OBJETS_NAVIGATION = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= $metaDescription ?? "Page du site StagEureka" ?> ">
+    <meta name="theme-color" content="#454acc">
     <!-- Affiche le titre de la page ou le nom du site -->
     <title><?= $titreOnglet ?? "StagEureka" ?></title>
     <link rel="stylesheet" href="<?= ADRESSE_SITE ?>/vue/css/style.css">
-    <link rel="icon" type="image/jpeg" href="<?= ADRESSE_SITE ?>/vue/ressources/images/StagEureka-logo_200x200.jpg">
+    <link rel="icon" type="image/jpeg" href="<?= ADRESSE_SITE ?>/vue/ressources/images/icone_512_rounded.png">
+    <!-- <link rel="icon" type="image/jpeg" href="<?= ADRESSE_SITE ?>/vue/ressources/images/StagEureka-logo_200x200.jpg"> -->
     <link rel="manifest" href="<?= ADRESSE_SITE ?>/pwa/manifest.json">
     <script src="<?= ADRESSE_SITE ?>/pwa/execution_service_worker.js"></script>
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>

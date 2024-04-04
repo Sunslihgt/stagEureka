@@ -25,14 +25,12 @@ ob_start();
         </div>
 
         <?php
-        // $nbResultats = count($pilotes);
-        // $nbPages = ceil($nbResultats / 5);
-
-        const NB_RESULTATS_PAGE = 5;
+        $nbResultats = count($pilotes);
+        $nbPages = ceil($nbResultats / NB_RESULTATS_PAGE);
         $page = isset($_POST["page"]) ? intval($_POST["page"]) : 1;
         ?>
         <input type="hidden" name="page" id="page" value="<?= $page ?>">
-        <input type="hidden" name="nb-pages" id="nb-pages" value="<?= ceil(count($pilotes) / 5); ?>">
+        <input type="hidden" name="nb-pages" id="nb-pages" value="<?= ceil(count($pilotes) / NB_RESULTATS_PAGE); ?>">
     </form>
 
     <div class="affichage-cartes">
@@ -60,15 +58,15 @@ ob_start();
                         </div> -->
 
                         <div class="boutons-carte">
-                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/lire/<?= $pilote->id ?>'">
+                            <button class="bouton-carte" title="Lire" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/lire/<?= $pilote->id ?>'">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
                             <span></span>
-                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/modifier/<?= $pilote->id ?>'">
+                            <button class="bouton-carte" title="Modifier" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/modifier/<?= $pilote->id ?>'">
                                 <i class="fa-solid fa-pen"></i>
                             </button>
                             <span></span>
-                            <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/supprimer/<?= $pilote->id ?>'">
+                            <button class="bouton-carte" title="Supprimer" onclick="location.href='<?= ADRESSE_SITE ?>/pilote/supprimer/<?= $pilote->id ?>'">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
@@ -79,13 +77,13 @@ ob_start();
             <!-- Pagination des résultats -->
             <div class="conteneur-pagination-cartes">
                 <div class="pagination-cartes" id="pagination">
-                    <button class="bouton-nav" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
-                    <button class="bouton-nav" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
-                    <!-- <button class="bouton-nav" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
-                    <button class="bouton-nav" id="pagination-numero-actuel" hidden><?= $page ?></button>
-                    <!-- <button class=" bouton-nav" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
-                    <button class="bouton-nav" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
-                    <button class="bouton-nav" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>
+                    <button class="bouton-nav" title="Page début" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
+                    <button class="bouton-nav" title="Page précédent" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
+                    <!-- <button class="bouton-nav" title="Page précédent" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
+                    <button class="bouton-nav" title="Page actuelle" id="pagination-numero-actuel" hidden><?= $page ?> / <?= $nbPages ?></button>
+                    <!-- <button class=" bouton-nav" title="Page suivante" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
+                    <button class="bouton-nav" title="Page suivante" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="bouton-nav" title="Page fin" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>
                 </div>
             </div>
         </div>

@@ -7,6 +7,8 @@ const ADRESSE_SITE = "http://localhost/stageureka/www";  // Pour la version loca
 
 const DEBUG = true;  // Affiche ou cache les erreurs
 
+const NB_RESULTATS_PAGE = 5;  // Nombre de résultats par page (pour la pagination)
+
 /**
  * Vérifie si l'utilisateur est connecté
  * @return bool

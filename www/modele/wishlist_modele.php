@@ -77,7 +77,7 @@ function retirerWishlist(int $idEtudiant, int $idOffre): bool {
             ":idInternshipOffer" => $idOffre
         ]);
     } catch (Exception $e) {
-        echo $e->getMessage();
+        if (DEBUG) echo $e->getMessage();
         return false;
     }
 

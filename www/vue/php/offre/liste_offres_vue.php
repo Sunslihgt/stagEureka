@@ -79,13 +79,12 @@ ob_start();
         </div>
 
         <?php
-        // $nbResultats = count($offres);
-        // $nbPages = ceil($nbResultats / 5);
-        const NB_RESULTATS_PAGE = 5;
+        $nbResultats = count($offres);
+        $nbPages = ceil($nbResultats / NB_RESULTATS_PAGE);
         $page = isset($_POST["page"]) ? intval($_POST["page"]) : 1;
         ?>
         <input type="hidden" name="page" id="page" value="<?= $page ?>">
-        <input type="hidden" name="nb-pages" id="nb-pages" value="<?= ceil(count($offres) / 5); ?>">
+        <input type="hidden" name="nb-pages" id="nb-pages" value="<?= ceil(count($offres) / NB_RESULTATS_PAGE); ?>">
     </form>
 
     <div class="affichage-cartes">
@@ -149,26 +148,22 @@ ob_start();
                             <div class="boutons-carte">
                                 <!-- Afficher/Cacher bouton wishlist -->
                                 <?php if (estEtudiant()) { ?>
-                                    <!-- <button class="bouton-carte" onclick="ajouterOffreWishlist(<?= $offre->id ?>)">
-                                        <i class="fa-solid fa-star"></i>
-                                    </button> -->
-
                                     <input type="checkbox" class="accessibilite-invisible checkboxes-wishlist" id="checkbox-wishlist-<?= $offre->id ?>" <?= in_array($offre->id, $wishlists) ? "checked" : "" ?>>
                                     <label for="checkbox-wishlist-<?= $offre->id ?>" class="bouton-carte" id="label-checkbox-wishlist-<?= $offre->id ?>"><i class="fa-<?= in_array($offre->id, $wishlists) ? "solid" : "regular" ?> fa-star"></i></label>
                                     <span></span>
                                 <?php } ?>
 
-                                <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/offre/lire/<?= $offre->id ?>'">
+                                <button class="bouton-carte" title="Lire" onclick="location.href='<?= ADRESSE_SITE ?>/offre/lire/<?= $offre->id ?>'">
                                     <i class="fa-solid fa-eye"></i>
                                 </button>
 
                                 <?php if (estAdmin() || estPilote()) { ?>
                                     <span></span>
-                                    <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/offre/modifier/<?= $offre->id ?>'">
+                                    <button class="bouton-carte" title="Modifier" onclick="location.href='<?= ADRESSE_SITE ?>/offre/modifier/<?= $offre->id ?>'">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
                                     <span></span>
-                                    <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/offre/supprimer/<?= $offre->id ?>'">
+                                    <button class="bouton-carte" title="Supprimer" onclick="location.href='<?= ADRESSE_SITE ?>/offre/supprimer/<?= $offre->id ?>'">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 <?php } ?>
@@ -193,13 +188,13 @@ ob_start();
             <!-- Pagination des résultats -->
             <div class="conteneur-pagination-cartes">
                 <div class="pagination-cartes" id="pagination">
-                    <button class="bouton-nav" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
-                    <button class="bouton-nav" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
-                    <!-- <button class="bouton-nav" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
-                    <button class="bouton-nav" id="pagination-numero-actuel" hidden><?= $page ?></button>
-                    <!-- <button class=" bouton-nav" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
-                    <button class="bouton-nav" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
-                    <button class="bouton-nav" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>
+                    <button class="bouton-nav" title="Page début" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
+                    <button class="bouton-nav" title="Page précédent" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
+                    <!-- <button class="bouton-nav" title="Page précédent" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
+                    <button class="bouton-nav" title="Page actuelle" id="pagination-numero-actuel" hidden><?= $page ?> / <?= $nbPages ?></button>
+                    <!-- <button class=" bouton-nav" title="Page suivante" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
+                    <button class="bouton-nav" title="Page suivante" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
+                    <button class="bouton-nav" title="Page fin" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>
                 </div>
             </div>
         </div>

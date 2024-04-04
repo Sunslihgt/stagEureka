@@ -1,34 +1,44 @@
 {
-    "name": "STAGEUREKA - PWA - SD 2024 A2 SN",
-    "short_name": "STAGEUREKA- PWA",
+    "name": "StagEureka",
+    "short_name": "StagEureka",
+    "description": "StagEureka est une plateforme mise à disposition des étudiants vous aider à trouver le stage qui vous correspond.",
+    "start_url": "../index.php",
+    "display": "standalone",
+    "dir": "ltr",
+    "lang": "fr-FR",
+    "orientation": "any",
+    "theme_color": "#454acc",
+    "background_color": "#ffffff",
     "icons": [
         {
-            "src": "http://localhost/stageureka/www/vue/ressources/images/logo_complet_clair_compresse.jpg",
-            "sizes": "600x166",
-            "type": "image/jpeg",
-            "form_factor": "any"
+            "purpose": "maskable",
+            "sizes": "512x512",
+            "src": "../vue/ressources/images/icone_512_maskable.png",
+            "type": "image/png"
         },
         {
-            "src": "http://localhost/stageureka/www/vue/ressources/images/logo_complet_sombre_compresse.jpg",
-            "sizes": "600x166",
-            "type": "image/jpeg",
-            "form_factor": "any"
-        },
-        {
-            "src": "http://localhost/stageureka/www/vue/ressources/images/logo_simple_clair_grand.png",
-            "sizes": "460x460",
-            "type": "image/png",
-            "form_factor": "any"
-        },
-        {
-            "src": "http://localhost/stageureka/www/vue/ressources/images/StagEureka-logo_200x200.jpg",
-            "sizes": "200x200",
-            "type": "image/jpeg",
-            "form_factor": "any"
+            "purpose": "any",
+            "sizes": "512x512",
+            "src": "../vue/ressources/images/icone_512_rounded.png",
+            "type": "image/png"
         }
     ],
-    "theme_color": "#000000",
-    "background_color": "#ffffff",
-    "display": "fullscreen",
-    "orientation": "portrait"
+    "shortcuts": [
+        {
+            "name": "Accueil",
+            "url": "../accueil",
+            "description": "Page d'accueil de StagEureka"
+        },
+        {
+            "name": "Offres de stage",
+            "url": "../offre",
+            "description": "Voir les offres de stage"
+        },
+        {
+            "name": "Candidatures",
+            "url": "../candidature/liste",
+            "description": "Voir les candidatures aux offres de stage"
+        }
+    ]
+
 }
