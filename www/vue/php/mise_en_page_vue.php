@@ -30,6 +30,7 @@ const OBJETS_NAVIGATION = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= $metaDescription ?? "Page du site StagEureka" ?> ">
     <meta name="theme-color" content="#454acc">
+    <meta name="robots" content="index, nofollow">
     <!-- Affiche le titre de la page ou le nom du site -->
     <title><?= $titreOnglet ?? "StagEureka" ?></title>
     <link rel="stylesheet" href="<?= ADRESSE_SITE ?>/vue/css/style.css">

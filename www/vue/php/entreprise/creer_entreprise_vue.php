@@ -56,7 +56,7 @@ ob_start();
                 <input class="bouton-principal" type="submit" value="Créer une entreprise">
             </div>
         </form>
-    </div>
+    </div><br><br>
 </main>
 
 <?php

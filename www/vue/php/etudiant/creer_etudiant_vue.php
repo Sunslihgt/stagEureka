@@ -8,10 +8,10 @@ ob_start();
 
 <main class="main-creation" id="main-creer-etudiant">
     <button name="fleche-retour" id="fleche-retour" value="fleche-retour" onclick="location.href='<?= ADRESSE_SITE ?>/etudiant/liste'"><i class="fa-solid fa-arrow-left fa-3x"></i></button>
-    
+
     <div class="conteneur-creation-etudiant">
         <h1>Création d'un compte étudiant</h1>
-        
+
         <form action="<?= ADRESSE_SITE ?>/etudiant/creer" method="post">
             <fieldset class="rectangle-gris">
                 <div class="ligne">
@@ -56,7 +56,7 @@ ob_start();
             <br>
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Créer un compte étudiant">
-            </div>
+            </div><br><br>
         </form>
     </div>
 </main>

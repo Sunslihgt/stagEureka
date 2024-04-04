@@ -36,7 +36,7 @@ ob_start();
             </div>
             <input type="hidden" name="confirmation" value="oui">
         </form>
-    </div>
+    </div><br><br>
 </main>
 
 <?php

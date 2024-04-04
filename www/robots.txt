@@ -1,0 +1,11 @@
+User-agent: *
+
+Disallow: /*/fichier/
+Disallow: /*/candidature/
+Disallow: /*/deconnexion/
+Disallow: /*/erreur/
+
+Disallow: /*/creer/
+Disallow: /*/modifier/
+Disallow: /*/supprimer/
+Disallow: /*/lire/

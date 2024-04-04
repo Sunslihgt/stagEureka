@@ -65,20 +65,6 @@ ob_start();
 
         </fieldset>
 
-        <?php if (estAdmin() || estPilote()) { ?>
-            <form action="<?= ADRESSE_SITE ?>/entreprise/modifier/<?= $entreprise->id ?>" method="get">
-                <div class="conteneur-bouton-principal bouton-supplementaire">
-                    <input class="bouton-principal" type="submit" value="Modifier l'entreprise">
-                </div>
-            </form>
-            
-            <form action="<?= ADRESSE_SITE ?>/entreprise/supprimer/<?= $entreprise->id ?>" method="get">
-                <div class="conteneur-bouton-principal bouton-supplementaire">
-                    <input class="bouton-principal" type="submit" value="Supprimer l'entreprise">
-                </div>
-            </form>
-        <?php } ?>
-
         <!-- </form> -->
     </div>
 </main>

@@ -54,15 +54,9 @@ ob_start();
 
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Modifier l'entreprise">
-            </div>
+            </div><br><br>
         </form>
-    </div>
-
-    <form action="<?= ADRESSE_SITE ?>/entreprise/supprimer/<?= $entreprise->id ?>" method="get">
-        <div class="conteneur-bouton-principal bouton-supplementaire">
-            <input class="bouton-principal" type="submit" value="Supprimer l'entreprise">
-        </div>
-    </form>
+    </div><br><br>
 </main>
 
 <?php

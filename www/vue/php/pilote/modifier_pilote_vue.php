@@ -49,7 +49,7 @@ ob_start();
             <br>
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Modifier le compte pilote">
-            </div>
+            </div><br><br>
         </div>
     </form>
 </main>

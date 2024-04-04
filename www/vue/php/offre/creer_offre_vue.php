@@ -100,7 +100,7 @@ ob_start();
 
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Créer une offre">
-            </div>
+            </div><br><br>
         </form>
     </div>
 </main>

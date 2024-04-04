@@ -34,7 +34,7 @@ ob_start();
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Créer un compte étudiant">
             </div>
-        </form> -->
+        </form><br><br> -->
     </div>
 </main>
 

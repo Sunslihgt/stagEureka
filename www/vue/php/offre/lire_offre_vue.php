@@ -92,20 +92,6 @@ ob_start();
                 <textarea class="case-description" name="description" id="description" rows="25" disabled><?= $offre->description ?></textarea><br><br>
             </div>
         </fieldset>
-
-        <?php if (estAdmin() || estPilote()) { ?>
-            <form action="<?= ADRESSE_SITE ?>/offre/modifier/<?= $offre->id ?>" method="get">
-                <div class="conteneur-bouton-principal bouton-supplementaire">
-                    <input class="bouton-principal" type="submit" value="Modifier l'offre">
-                </div>
-            </form>
-
-            <form action="<?= ADRESSE_SITE ?>/offre/supprimer/<?= $offre->id ?>" method="get">
-                <div class="conteneur-bouton-principal bouton-supplementaire">
-                    <input class="bouton-principal" type="submit" value="Supprimer l'offre">
-                </div>
-            </form>
-        <?php } ?>
     </div>
 </main>
 

@@ -50,7 +50,7 @@ ob_start();
             <br>
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Supprimer le compte pilote">
-            </div>
+            </div><br><br>
             <input type="hidden" name="confirmation" value="oui">
         </form>
     </div>

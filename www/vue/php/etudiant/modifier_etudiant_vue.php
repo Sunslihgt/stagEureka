@@ -57,12 +57,12 @@ ob_start();
             <br>
             <div class="conteneur-bouton-principal">
                 <input class="bouton-principal" type="submit" value="Modifier le compte étudiant">
-            </div>
+            </div><br><br>
 
             <!-- <form action="<?= ADRESSE_SITE ?>/etudiant/supprimer/<?= $etudiant->id ?>" method="get">
         <div class="conteneur-bouton-principal bouton-supplementaire">
             <input class="bouton-principal" type="submit" value="Supprimer le compte étudiant">
-        </div>
+        </div><br><br>
     </form> -->
 
         </div>

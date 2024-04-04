@@ -145,7 +145,7 @@ ob_start();
                 </div>
             <?php } ?>
 
-            <?php if (count($etudiants) == 0) { ?>
+            <?php if (count($entreprises) == 0) { ?>
                 <div class="carte carte-etudiant">
                     <div class="info-carte">
                         <div class="element-partition titre-image-etudiant">

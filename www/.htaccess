@@ -9,7 +9,7 @@ RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 # Si le fichier existe
 RewriteCond %{REQUEST_FILENAME} -f
 # Et si le fichier n'est pas du type .png, .jpg, .jpeg, .js, ou .css
-RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|js|css|ico|json)$
+RewriteCond %{REQUEST_URI} !\.(png|jpg|jpeg|js|css|ico|json|txt)$
 # On réécrit l'url
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 

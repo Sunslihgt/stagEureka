@@ -45,18 +45,10 @@ ob_start();
 
             <div class="conteneur-bouton-principal bouton-supplementaire">
                 <input class="bouton-principal" type="submit" value="Supprimer l'entreprise">
-            </div>
+            </div><br><br>
 
             <input type="hidden" name="confirmation" value="oui">
         </form>
-
-        <?php if (estAdmin() || estPilote()) { ?>
-            <form action="<?= ADRESSE_SITE ?>/entreprise/modifier/<?= $entreprise->id ?>" method="get">
-                <div class="conteneur-bouton-principal bouton-supplementaire">
-                    <input class="bouton-principal" type="submit" value="Modifier l'entreprise">
-                </div>
-            </form>
-        <?php } ?>
     </div>
 </main>
 
