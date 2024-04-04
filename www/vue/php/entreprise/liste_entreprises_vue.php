@@ -145,6 +145,16 @@ ob_start();
                 </div>
             <?php } ?>
 
+            <?php if (count($etudiants) == 0) { ?>
+                <div class="carte carte-etudiant">
+                    <div class="info-carte">
+                        <div class="element-partition titre-image-etudiant">
+                            <div class="nom-etudiant-titre">Aucun résultat trouvé</div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
 
             <!-- Pagination des résultats -->
             <div class="conteneur-pagination-cartes">
@@ -152,7 +162,7 @@ ob_start();
                     <button class="bouton-nav" title="Page début" id="pagination-debut" hidden><i class="fa-solid fa-angles-left"></i></button>
                     <button class="bouton-nav" title="Page précédent" id="pagination-precedent" hidden><i class="fa-solid fa-angle-left"></i></button>
                     <!-- <button class="bouton-nav" title="Page précédent" id="pagination-numero-precedent" hidden><?= $page - 1 ?></button> -->
-                    <button class="bouton-nav" title="Page actuelle" id="pagination-numero-actuel" hidden><?= $page ?></button>
+                    <button class="bouton-nav" title="Page actuelle" id="pagination-numero-actuel" hidden><?= $page ?> / <?= $nbPages ?></button>
                     <!-- <button class=" bouton-nav" title="Page suivante" id="pagination-numero-suivant" hidden><?= $page + 1 ?></button> -->
                     <button class="bouton-nav" title="Page suivante" id="pagination-suivant" hidden><i class="fa-solid fa-angle-right"></i></button>
                     <button class="bouton-nav" title="Page fin" id="pagination-fin" hidden><i class="fa-solid fa-angles-right"></i></button>

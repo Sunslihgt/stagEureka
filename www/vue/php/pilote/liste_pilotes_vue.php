@@ -74,6 +74,16 @@ ob_start();
                 </div>
             <?php } ?>
 
+            <?php if (count($pilotes) == 0) { ?>
+                <div class="carte carte-pilote">
+                    <div class="info-carte">
+                        <div class="element-partition titre-image-pilote">
+                            <div class="nom-pilote-titre">Aucun résultat trouvé</div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
             <!-- Pagination des résultats -->
             <div class="conteneur-pagination-cartes">
                 <div class="pagination-cartes" id="pagination">

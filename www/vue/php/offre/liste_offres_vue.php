@@ -190,8 +190,6 @@ ob_start();
                 </div>
             <?php } ?>
 
-
-
             <!-- Pagination des résultats -->
             <div class="conteneur-pagination-cartes">
                 <div class="pagination-cartes" id="pagination">
