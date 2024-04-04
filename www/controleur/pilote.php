@@ -2,7 +2,7 @@
 require_once "outils.php";
 require_once "modele/pilote_modele.php";
 
-// var_dump($params);
+// if (DEBUG) var_dump($params);
 
 if (count($params) == 0 || $params[0] == "") {
     redirectionInterne("pilote/liste");
@@ -78,8 +78,8 @@ function afficherCreerPilote(array $params) {
         exit();
     }
 
-    if (DEBUG) var_dump($_POST);
-    if (isset($_POST) && isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["mdp"])) {
+    // if (DEBUG) var_dump($_POST);
+    if (isset($_POST) && isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["mdp"]) && strlen($_POST["mdp"]) >= 4) {
         $nom = $_POST["nom"];
         $prenom = $_POST["prenom"];
         $email = $_POST["email"];
@@ -104,7 +104,6 @@ function afficherModifierPilote(array $params) {
     }
 
     $idPilote = $params[1];
-    // $idPilote = intval($params[1]);
     // if (DEBUG) echo var_dump($idPilote) . "<br>";
 
     // if (DEBUG) echo var_dump($_POST) . "<br>";

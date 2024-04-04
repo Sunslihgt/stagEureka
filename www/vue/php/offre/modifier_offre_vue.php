@@ -12,7 +12,7 @@ ob_start();
     </button>
 
     <div class="conteneur-creation-offre">
-        <h1>modification d'une offre</h1>
+        <h1>Modification d'une offre</h1>
         <form action="<?= ADRESSE_SITE ?>/offre/modifier/<?= $offre->id ?>" method="post">
             <fieldset class="rectangle-gris">
 

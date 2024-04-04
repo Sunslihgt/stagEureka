@@ -924,7 +924,8 @@ textarea {
 }
 
 .block-recherche {
-    color: var(--background-color);
+    /* color: var(--background-color); */
+    color: white;
     background-color: var(--accent-color-1);
     padding: 15px;
     font-weight: bold;
@@ -955,8 +956,8 @@ textarea {
 }
 
 #block-mineure .case-mineure:not(:checked) + .label-mineure {
-    background-color: #d6d6d6;
-    border-color: #d6d6d6;
+    background-color: #9f9f9f;
+    border-color: #9f9f9f;
     color: var(--primary-color);
 }
 
@@ -1014,8 +1015,10 @@ textarea {
     margin: 0 auto;
     margin-top: 50px;
     display: block;
-    border: 1px solid var(--background-color);
-    background-color: var(--background-color);
+    /* border: 1px solid var(--background-color); */
+    /* background-color: var(--background-color); */
+    border: 1px solid white;
+    background-color: white;
     border-radius: 4px;
     padding: 10px 25px;
     cursor: pointer;
@@ -1153,7 +1156,8 @@ textarea {
 .bouton-carte {
     cursor: pointer;
     color: var(--accent-color-1);
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
+    background-color: white;
     border-radius: 100%;
     border: 0px;
     font-size: large;
@@ -1189,7 +1193,7 @@ textarea {
     column-gap: 12px;
     /* background: var(--background-color); */
     background-color: var(--background-color-2);
-    border: 2px solid black;
+    border: 2px solid var(--primary-color);
     /* box-shadow: 0 0 3px; */
     height: 30px;
     width: 300px;
@@ -1200,16 +1204,16 @@ textarea {
 }
 
 .bouton-nav {
-  border: none;
-  height: 30px;
-  width: 30px;
-  font-size: 15px;
-  color: var(--primary-color);
-  /* background-color: var(--background-color); */
-  border-color: var(--primary-color) ;
-  border-radius: 6px;
-  cursor: pointer;
-  column-gap: 12px;
+    border: none;
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+    color: black;
+    /* background-color: var(--background-color); */
+    border-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    column-gap: 12px;
 }
 
 .bouton-nav:hover,
@@ -1551,4 +1555,3 @@ textarea {
         flex-direction: column;
     }
 }
-

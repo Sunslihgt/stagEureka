@@ -86,7 +86,7 @@ function afficherCreerEtudiant(array $params) {
         isset($_POST) && isset($_POST["nom"]) &&
         isset($_POST["prenom"]) &&
         isset($_POST["email"]) &&
-        isset($_POST["mdp"]) &&
+        isset($_POST["mdp"]) && strlen($_POST["mdp"]) >= 4 &&
         isset($_POST["idClasse"]) && is_numeric($_POST["idClasse"]) && intval($_POST["idClasse"]) >= 0  // Vérifie que l'id de l'étudiant est valide (entier positif)
     ) {
         $nom = $_POST["nom"];
