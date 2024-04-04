@@ -17,7 +17,7 @@ const OBJETS_NAVIGATION = [
     "offres" => "nav-offres",
     "entreprises" => "nav-entreprises",
     "etudiants" => "nav-etudiants",
-    "pilotes" => "nav-pilotes",
+    "pilotes" => "nav-pilotes"
 ];
 
 ?>

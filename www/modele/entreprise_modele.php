@@ -6,6 +6,9 @@ require_once "note_entreprise_modele.php";
 require_once "adresse_modele.php";
 
 
+/**
+ * Représente une entreprise
+ */
 class Entreprise {
     public int $id;
     public string $nom;

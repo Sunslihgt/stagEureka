@@ -23,3 +23,6 @@ SELECT * FROM Pilot;
 
 SELECT * FROM wishlist;
 SELECT * FROM wishlist w INNER JOIN InternshipOffer intern on (w.idInternshipOffer = intern.idInternshipOffer);
+
+SELECT * FROM Candidacy;
+DELETE FROM Candidacy;

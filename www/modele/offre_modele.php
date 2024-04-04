@@ -6,6 +6,9 @@ require_once "entreprise_modele.php";
 require_once "adresse_modele.php";
 
 
+/**
+ * Représente une offre de stage
+ */
 class Offre {
     public int $id;
     public string $titre;
@@ -49,11 +52,19 @@ class Offre {
     }
 }
 
+/**
+ * Liste des mineures
+ */
 const MINEURES = [
     "GENE", "INFO", "BTP", "S3E"
 ];
 
 
+/**
+ * Récupère une offre de stage
+ * @param int $idOffre L'identifiant de l'offre
+ * @return Offre|null L'offre si elle existe, null sinon
+ */
 function getOffre(int $idOffre): ?Offre {
     $pdo = connexionBDD();
     

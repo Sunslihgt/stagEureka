@@ -2,7 +2,9 @@
 // require_once "outils.php";
 require_once "connexion_bdd.php";
 
-
+/**
+ * Représente une classe
+ */
 class Classe {
     public int $id;
     public string $nom;
@@ -21,6 +23,10 @@ class Classe {
     }
 }
 
+/**
+ * Récupère toutes les classes
+ * @return array Les classes
+ */
 function getClasses(): array {
     $pdo = connexionBDD();
 
@@ -49,6 +55,11 @@ function getClasses(): array {
     return $classes;
 }
 
+/**
+ * Récupère une classe
+ * @param int $id L'identifiant de la classe
+ * @return Classe|null La classe si elle existe, null sinon
+ */
 function getClasse(int $id): ?Classe {
     $pdo = connexionBDD();
 
@@ -78,6 +89,11 @@ function getClasse(int $id): ?Classe {
     );
 }
 
+/**
+ * Récupère les classes d'un pilote
+ * @param int $idPilote L'identifiant du pilote
+ * @return array|null Les classes si elles existent, null sinon
+ */
 function getClassesPilote(int $idPilote): ?array {
     $pdo = connexionBDD();
 

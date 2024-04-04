@@ -2,6 +2,10 @@
 // require_once "outils.php";
 require_once "connexion_bdd.php";
 
+
+/**
+ * Représente une note d'un étudiant
+ */
 class NoteEtudiant {
     public int $idEntreprise;
     public int $idEtudiant;

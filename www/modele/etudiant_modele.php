@@ -3,6 +3,10 @@
 require_once "connexion_bdd.php";
 require_once "modele/classe_modele.php";
 
+
+/**
+ * Représente un étudiant
+ */
 class Etudiant {
     public int $id;
     public string $nom;
@@ -26,6 +30,11 @@ class Etudiant {
     }
 }
 
+/**
+ * Récupère un étudiant
+ * @param int $idEtudiant L'identifiant de l'étudiant
+ * @return Etudiant|null L'étudiant si il existe, null sinon
+ */
 function getEtudiant(int $idEtudiant): ?etudiant {
     $pdo = connexionBDD();
 
@@ -64,6 +73,10 @@ function getEtudiant(int $idEtudiant): ?etudiant {
     return $etudiant;
 }
 
+/**
+ * Récupère tous les étudiants
+ * @return array|null Les étudiants si ils existent, null sinon
+ */
 function getEtudiants(): ?array {
     $pdo = connexionBDD();
 
@@ -108,6 +121,14 @@ function getEtudiants(): ?array {
     return $etudiants;
 }
 
+/**
+ * Récupère les étudiants en fonction de filtres
+ * @param string $nom Le nom de l'étudiant
+ * @param string $prenom Le prénom de l'étudiant
+ * @param string $ville La ville de la classe de l'étudiant
+ * @param string $nomClasse Le nom de la classe de l'étudiant
+ * @return array Les étudiants correspondant aux filtres
+ */
 function getEtudiantsFiltres(string $nom, string $prenom, string $ville, string $nomClasse) : array {
     $pdo = connexionBDD();
 
@@ -164,6 +185,15 @@ function getEtudiantsFiltres(string $nom, string $prenom, string $ville, string 
     return $etudiants;
 }
 
+/**
+ * Crée un étudiant
+ * @param string $nom Le nom de l'étudiant
+ * @param string $prenom Le prénom de l'étudiant
+ * @param string $mdp Le mot de passe de l'étudiant
+ * @param string $email L'email de l'étudiant
+ * @param int $idClass L'identifiant de la classe de l'étudiant
+ * @return int|null L'identifiant de l'étudiant créé, null sinon
+ */
 function creerEtudiant(string $nom, string $prenom, string $mdp, string $email, int $idClass): ?int {
     $pdo = connexionBDD();
 
@@ -188,7 +218,16 @@ function creerEtudiant(string $nom, string $prenom, string $mdp, string $email, 
 }
 
 
-
+/**
+ * Modifie un étudiant
+ * @param int $id L'identifiant de l'étudiant
+ * @param string $nom Le nom de l'étudiant
+ * @param string $prenom Le prénom de l'étudiant
+ * @param string $email L'email de l'étudiant
+ * @param string $mdp Le mot de passe de l'étudiant
+ * @param int $idClasse L'identifiant de la classe de l'étudiant
+ * @return bool Vrai si l'étudiant a été modifié, faux sinon
+ */
 function modifierEtudiant(int $id, string $nom, string $prenom, string $email, string $mdp, int $idClasse): bool {
     $pdo = connexionBDD();
 
@@ -214,6 +253,11 @@ function modifierEtudiant(int $id, string $nom, string $prenom, string $email, s
     return true;
 }
 
+/**
+ * Supprime un étudiant
+ * @param int $id L'identifiant de l'étudiant
+ * @return bool Vrai si l'étudiant a été supprimé, faux sinon
+ */
 function supprimerEtudiant(int $id): bool {
     $pdo = connexionBDD();
 

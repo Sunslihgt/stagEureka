@@ -77,13 +77,6 @@ function routageGlobal(): void {
                     redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
                 }
                 break;
-            case "candidature":
-                if (estConnecte()) {
-                    include_once "controleur/candidature.php";
-                } else {
-                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
-                }
-                break;
             case "connexion":
                 if (!estConnecte()) {
                     include_once "controleur/connexion.php";
@@ -109,6 +102,20 @@ function routageGlobal(): void {
                 } else {
                     http_response_code(401);
                     // redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
+                break;
+            case "candidature":
+                if (estConnecte()) {
+                    include_once "controleur/candidature.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
+                break;
+            case "fichier":
+                if (estConnecte()) {
+                    include_once "controleur/fichier.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
                 }
                 break;
             case "erreur":  // Contrôleur d'erreur
