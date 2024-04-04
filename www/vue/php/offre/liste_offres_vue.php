@@ -91,7 +91,10 @@ ob_start();
     <div class="affichage-cartes">
         <div class="haut-page-liste-resultats">
             <h1 id="haut-h1">Liste des Offres</h1>
-            <button id="haut-bouton" onclick="location.href='<?= ADRESSE_SITE ?>/offre/creer'">Ajouter une Offre</button>
+            <div>
+                <button id="haut-bouton" onclick="location.href='<?= ADRESSE_SITE ?>/offre/creer'">Ajouter une Offre</button>
+                <button id="haut-bouton" onclick="location.href='<?= ADRESSE_SITE ?>/candidature/liste'">Candidatures</button>
+            </div>
         </div>
 
         <div id="selection-entreprise">
@@ -149,12 +152,12 @@ ob_start();
                             <div class="boutons-carte">
                                 <!-- Afficher/Cacher bouton wishlist -->
                                 <?php if (estEtudiant()) { ?>
-                                    <!-- <button class="bouton-carte" onclick="ajouterOffreWishlist(<?= $offre->id ?>)">
-                                        <i class="fa-solid fa-star"></i>
-                                    </button> -->
-
                                     <input type="checkbox" class="accessibilite-invisible checkboxes-wishlist" id="checkbox-wishlist-<?= $offre->id ?>" <?= in_array($offre->id, $wishlists) ? "checked" : "" ?>>
                                     <label for="checkbox-wishlist-<?= $offre->id ?>" class="bouton-carte" id="label-checkbox-wishlist-<?= $offre->id ?>"><i class="fa-<?= in_array($offre->id, $wishlists) ? "solid" : "regular" ?> fa-star"></i></label>
+                                    <span></span>
+                                    <button class="bouton-carte" onclick="location.href='<?= ADRESSE_SITE ?>/candidature/creer/<?= $offre->id ?>'">
+                                        <i class="fa-solid fa-envelope-open-text"></i>
+                                    </button>
                                     <span></span>
                                 <?php } ?>
 

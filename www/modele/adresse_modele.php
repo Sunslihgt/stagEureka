@@ -2,7 +2,9 @@
 // require_once "outils.php";
 require_once "connexion_bdd.php";
 
-
+/**
+ * Représente une adresse
+ */
 class Adresse {
     public int $id;
     public int $numero;
@@ -19,6 +21,10 @@ class Adresse {
     }
 }
 
+/**
+ * Récupère toutes les adresses
+ * @return array|null Les adresses si elles existent, null sinon
+ */
 function getAdresses(): ?array {
     $pdo = connexionBDD();
 
@@ -45,6 +51,11 @@ function getAdresses(): ?array {
     return $adresses;
 }
 
+/**
+ * Récupère une adresse
+ * @param int $id L'identifiant de l'adresse
+ * @return Adresse|null L'adresse si elle existe, null sinon
+ */
 function getAdresse(int $id): ?Adresse {
     $pdo = connexionBDD();
 
@@ -71,6 +82,11 @@ function getAdresse(int $id): ?Adresse {
     );
 }
 
+/**
+ * Récupère les adresses d'une entreprise
+ * @param int $idEntreprise L'identifiant de l'entreprise
+ * @return array|null Les adresses si elles existent, null sinon
+ */
 function getAdressesEntreprise(int $idEntreprise): ?array {
     $pdo = connexionBDD();
 

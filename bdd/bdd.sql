@@ -104,11 +104,12 @@ CREATE TABLE InternshipOffer(
 );
 
 CREATE TABLE Candidacy(
+   idCandidacy INT NOT NULL AUTO_INCREMENT,
    idStudent INT NOT NULL,
    idInternshipOffer INT NOT NULL,
    CV BLOB,
    coverLetter TEXT,
-   PRIMARY KEY(idStudent, idInternshipOffer),
+   PRIMARY KEY(idCandidacy),
    FOREIGN KEY(idStudent) REFERENCES Student(idStudent),
    FOREIGN KEY(idInternshipOffer) REFERENCES InternshipOffer(idInternshipOffer)
 );

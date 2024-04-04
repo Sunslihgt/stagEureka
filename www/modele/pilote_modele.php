@@ -3,6 +3,10 @@ require_once "outils.php";
 require_once "connexion_bdd.php";
 require_once "modele/classe_modele.php";
 
+
+/**
+ * Représente un pilote
+ */
 class Pilote {
     public int $id;
     public string $nom;
@@ -19,6 +23,11 @@ class Pilote {
     }
 }
 
+/**
+ * Récupère un pilote
+ * @param int $idPilote L'identifiant du pilote
+ * @return Pilote|null Le pilote si il existe, null sinon
+ */
 function getPilote(int $idPilote){
     $pdo = connexionBDD();
     $sql = "SELECT * FROM Pilot WHERE idPilot = :id";
@@ -44,6 +53,10 @@ function getPilote(int $idPilote){
     return $pilote;
 }
 
+/**
+ * Récupère tous les pilotes
+ * @return array Les pilotes
+ */
 function getPilotes(): array {
     $pdo = connexionBDD();
 
@@ -74,6 +87,12 @@ function getPilotes(): array {
     return $pilotes;
 }
 
+/**
+ * Récupère les pilotes en fonction de filtres
+ * @param string $nom Le nom du pilote
+ * @param string $prenom Le prénom du pilote
+ * @return array Les pilotes
+ */
 function getPilotesFiltres(string $nom, string $prenom): array {
     $pdo = connexionBDD();
 
@@ -111,6 +130,14 @@ function getPilotesFiltres(string $nom, string $prenom): array {
     return $pilotes;
 }
 
+/**
+ * Crée un pilote
+ * @param string $nom Le nom du pilote
+ * @param string $prenom Le prénom du pilote
+ * @param string $email L'email du pilote
+ * @param string $mdp Le mot de passe du pilote
+ * @return int|null L'identifiant du pilote créé, null sinon
+ */
 function creerPilote(string $nom, string $prenom, string $email, string $mdp): ?int{
     $hash_mdp = password_hash($mdp, PASSWORD_DEFAULT);
     $pdo = connexionBDD();
@@ -132,6 +159,15 @@ function creerPilote(string $nom, string $prenom, string $email, string $mdp): ?
     return $idPilote;
 }
 
+/**
+ * Modifie un pilote
+ * @param int $idPilote L'identifiant du pilote
+ * @param string $nom Le nom du pilote
+ * @param string $prenom Le prénom du pilote
+ * @param string $email L'email du pilote
+ * @param string $mdp Le mot de passe du pilote
+ * @return bool Vrai si le pilote a été modifié, faux sinon
+ */
 function ModifierPilote(int $idPilote, string $nom, string $prenom, string $email, string $mdp): bool {
     $hash_mdp = password_hash($mdp, PASSWORD_DEFAULT);
 
@@ -155,6 +191,11 @@ function ModifierPilote(int $idPilote, string $nom, string $prenom, string $emai
     return true;
 }
 
+/**
+ * Supprime un pilote
+ * @param int $idPilote L'identifiant du pilote
+ * @return bool Vrai si le pilote a été supprimé, faux sinon
+ */
 function supprimerPilote(int $idPilote): bool{
     $pdo = connexionBDD();
 
