@@ -33,9 +33,12 @@ const OBJETS_NAVIGATION = [
     <title><?= $titreOnglet ?? "StagEureka" ?></title>
     <link rel="stylesheet" href="<?= ADRESSE_SITE ?>/vue/css/style.css">
     <link rel="icon" type="image/jpeg" href="<?= ADRESSE_SITE ?>/vue/ressources/images/StagEureka-logo_200x200.jpg">
+    <link rel="manifest" href="<?= ADRESSE_SITE ?>/pwa/manifest.json">
+    <script src="<?= ADRESSE_SITE ?>/pwa/execution_service_worker.js"></script>
     <script src="https://kit.fontawesome.com/abdb6c54cc.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="<?= ADRESSE_SITE ?>/vue/js/theme.js"></script>
+
     <?= $entetesSuplementaires ?? "" ?>
 </head>
 
