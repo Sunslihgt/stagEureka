@@ -91,6 +91,19 @@ function routageGlobal(): void {
                     redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
                 }
                 break;
+            case "wishlist":
+                if (estConnecte()) {
+                    if (estEtudiant()) {
+                        include_once "controleur/wishlist.php";
+                    } else {
+                        http_response_code(401);
+                        // redirectionErreur(401, "Vous-devez-être-un-étudiant-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                    }
+                } else {
+                    http_response_code(401);
+                    // redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
+                break;
             case "erreur":  // Contrôleur d'erreur
                 $erreurAffichee = include_once "controleur/erreur.php";
                 if (!$erreurAffichee) {  // Contrôleur d'erreur non trouvé

@@ -37,8 +37,9 @@ ob_start();
                             <label for="localisation">Localisation :</label><br>
                             <input class="case-court" type="number" name="numeroRue" placeholder="N° rue" required>
                             <input class="case-standard" type="text" name="rue" id="champ-rue" placeholder="Rue" required><br>
-                            <input class="case-standard" type="text" name="ville" placeholder="Ville" required><br>
-                            <input class="case-standard" type="number" name="codePostal" placeholder="Code postal" maxlength="5" required><br><br>
+                            <input class="case-standard" type="number" name="codePostal" id="codePostal" placeholder="Code postal" maxlength="5" required><br>
+                            <!-- <select class="case-standard" name="ville" id="ville"></select><br><br>    -->
+                            <input class="case-standard" type="text" name="ville" placeholder="Ville" required><br><br>
                         </div>
 
                         <div class="div-label-input-horizontal">
@@ -112,7 +113,9 @@ $contenu = ob_get_clean();
 $titreOnglet = "Créer offre de stage StagEureka - Trouvez votre stage";
 $metaDescription = "Page de création d'offre de stage du site StagEureka";
 $navigationSelectionee = "offres";
-$entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/image_offre_creation_modification.js' defer></script>";
+$entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/image_offre_creation_modification.js' defer></script>" .
+    "<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'></script>" .
+    "<script src='" . ADRESSE_SITE . "/vue/js/autocompletion_code_postal.js' defer></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)

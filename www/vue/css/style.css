@@ -1008,6 +1008,7 @@ textarea {
     padding: 10px 25px;
     cursor: pointer;
     font-size: 18px;
+    width: 140px;
 }
 
 .bouton-filtrage:hover {
@@ -1018,8 +1019,17 @@ textarea {
 
 .bouton-filtrage[type="reset"] {
     margin-top: 6px;
-    background-color: rgb(255, 0, 0);
+    background-color: red;
+    border: 1px solid red;
     color: var(--background-color);
+}
+
+.bouton-filtrage[type="reset"]:hover {
+    border: 1px solid white;
+}
+
+.bouton-filtrage[type="submit"] {
+    margin-top: 6px;
 }
 
 .affichage-cartes {
@@ -1214,6 +1224,10 @@ textarea {
 /* Recentrer l'icône d'étoile dans les cartes */
 .affichage-cartes .fa-star {
     transform: translate(-4%, 0);
+}
+
+.contenu-offre .fa-star {
+    transform: translate(0%, 20%);
 }
 
 /* Titre et bouton ajouter élément en 2 lignes */

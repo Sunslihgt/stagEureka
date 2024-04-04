@@ -97,3 +97,8 @@ INSERT INTO grade (idStudent, idCompany, studentGrade) VALUES
 INSERT INTO rate (idPilot, idCompany, pilotGrade) VALUES
 (1, 1, 1),
 (2, 2, 2);
+
+-- Wishlist des étudiants
+INSERT INTO wishlist (idStudent, idInternshipOffer) VALUES
+(1, 1),
+(2, 2);

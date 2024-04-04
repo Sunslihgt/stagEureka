@@ -44,11 +44,20 @@ switch ($codeErreur) {
     case 409:
         $messageErreur = "Conflit avec la ressource actuelle";
         break;
+    case 418:
+        $messageErreur = "Je suis une théière";
+        break;
     case 500:
         $messageErreur = "Erreur interne du serveur";
         break;
     case 501:
         $messageErreur = "Fonctionnalité non implémentée";
+        break;
+    case 502:
+        $messageErreur = "Mauvaise passerelle";
+        break;
+    case 503:
+        $messageErreur = "Service indisponible";
         break;
     default:
         $messageErreur = "Une erreur inattendue est survenue";

@@ -149,9 +149,12 @@ ob_start();
                             <div class="boutons-carte">
                                 <!-- Afficher/Cacher bouton wishlist -->
                                 <?php if (estEtudiant()) { ?>
-                                    <button class="bouton-carte">
+                                    <!-- <button class="bouton-carte" onclick="ajouterOffreWishlist(<?= $offre->id ?>)">
                                         <i class="fa-solid fa-star"></i>
-                                    </button>
+                                    </button> -->
+
+                                    <input type="checkbox" class="accessibilite-invisible checkboxes-wishlist" id="checkbox-wishlist-<?= $offre->id ?>" <?= in_array($offre->id, $wishlists) ? "checked" : "" ?>>
+                                    <label for="checkbox-wishlist-<?= $offre->id ?>" class="bouton-carte" id="label-checkbox-wishlist-<?= $offre->id ?>"><i class="fa-<?= in_array($offre->id, $wishlists) ? "solid" : "regular" ?> fa-star"></i></label>
                                     <span></span>
                                 <?php } ?>
 
@@ -214,7 +217,8 @@ $navigationSelectionee = "offres";
 $entetesSuplementaires = "<script src='" . ADRESSE_SITE . "/vue/js/image_offre_liste.js' defer></script>" .
     "<script src='" . ADRESSE_SITE . "/vue/js/filtre_wishlist.js'></script>" .
     "<script src='" . ADRESSE_SITE . "/vue/js/pagination.js'></script>" .
-    "<script src='" . ADRESSE_SITE . "/vue/js/effacer_filtres_liste.js' defer></script>";
+    "<script src='" . ADRESSE_SITE . "/vue/js/effacer_filtres_liste.js' defer></script>" .
+    "<script src='" . ADRESSE_SITE . "/vue/js/ajouter_wishlist_offre.js'></script>";
 
 // Inclut le template de mise en page
 // (Affiche la page avec le contenu html généré précédemment et les variables déclarées ci-dessus)

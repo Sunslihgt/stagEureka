@@ -2,6 +2,7 @@
 require_once "outils.php";
 require_once "modele/offre_modele.php";
 require_once "modele/adresse_modele.php";
+require_once "modele/wishlist_modele.php";
 
 // if (DEBUG) echo var_dump($offres) . "<br>";
 // if (DEBUG) var_dump($_POST);
@@ -103,10 +104,24 @@ function afficherListeOffres(array $params): void {
             $gene, $info, $btp, $s3e, $idEtudiant
         );
 
+        $wishlists = [];
+        if (estEtudiant() && isset($_SESSION["id"]) && is_numeric($_SESSION["id"]) && intval($_SESSION["id"]) >= 0) {
+            $idEtudiant = $_SESSION["id"];
+            $wishlists = getWishlistsEtudiant($idEtudiant);
+        }
+        // if (DEBUG) var_dump($wishlists);
+        
         require_once "vue/php/offre/liste_offres_vue.php";
     } else {  // Pas de filtres
         $offres = getOffres();
-
+        
+        $wishlists = [];
+        if (estEtudiant() && isset($_SESSION["id"]) && is_numeric($_SESSION["id"]) && intval($_SESSION["id"]) >= 0) {
+            $idEtudiant = $_SESSION["id"];
+            $wishlists = getWishlistsEtudiant($idEtudiant);
+        }
+        // if (DEBUG) var_dump($wishlists);
+        
         require_once "vue/php/offre/liste_offres_vue.php";
     }
 }
