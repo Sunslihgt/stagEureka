@@ -1,7 +1,6 @@
 USE stageureka_mysql;
 
 -- Suppression des tables existantes
-DROP TABLE IF EXISTS came_from;
 DROP TABLE IF EXISTS is_settle;
 DROP TABLE IF EXISTS rate;
 DROP TABLE IF EXISTS grade;
@@ -73,15 +72,6 @@ CREATE TABLE Student(
    FOREIGN KEY(idClass) REFERENCES Class(idClass)
 );
 
-CREATE TABLE Candidacy(
-   idCandidacy INT NOT NULL AUTO_INCREMENT,
-   CV BLOB,
-   coverLetter TEXT,
-   idStudent INT NOT NULL,
-   PRIMARY KEY(idCandidacy),
-   FOREIGN KEY(idStudent) REFERENCES Student(idStudent)
-);
-
 CREATE TABLE Address(
    idAddress INT NOT NULL AUTO_INCREMENT,
    streetNumber INT NOT NULL,
@@ -111,6 +101,16 @@ CREATE TABLE InternshipOffer(
    PRIMARY KEY(idInternshipOffer),
    FOREIGN KEY(idAddress) REFERENCES Address(idAddress),
    FOREIGN KEY(idCompany) REFERENCES Company(idCompany)
+);
+
+CREATE TABLE Candidacy(
+   idStudent INT NOT NULL,
+   idInternshipOffer INT NOT NULL,
+   CV BLOB,
+   coverLetter TEXT,
+   PRIMARY KEY(idStudent, idInternshipOffer),
+   FOREIGN KEY(idStudent) REFERENCES Student(idStudent),
+   FOREIGN KEY(idInternshipOffer) REFERENCES InternshipOffer(idInternshipOffer)
 );
 
 CREATE TABLE wishlist(
@@ -147,10 +147,3 @@ CREATE TABLE is_settle(
    FOREIGN KEY(idAddress) REFERENCES Address(idAddress)
 );
 
-CREATE TABLE came_from(
-   idInternshipOffer INT NOT NULL,
-   idCandidacy INT NOT NULL,
-   PRIMARY KEY(idInternshipOffer, idCandidacy),
-   FOREIGN KEY(idInternshipOffer) REFERENCES InternshipOffer(idInternshipOffer),
-   FOREIGN KEY(idCandidacy) REFERENCES Candidacy(idCandidacy)
-);

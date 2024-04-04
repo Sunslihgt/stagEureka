@@ -79,14 +79,14 @@ INSERT INTO is_settle (idCompany, idAddress) VALUES
 (2, 2);
 
 -- Candidatures
-INSERT INTO Candidacy (CV, coverLetter, idStudent) VALUES
-("url_cv", "Lettre de motivation", 1),
-("url_cv", "Lettre de motivation", 2);
+INSERT INTO Candidacy (idStudent, idInternshipOffer, CV, coverLetter) VALUES
+(1, 1, "url_cv", "Lettre de motivation..."),
+(2, 2, "url_cv", "Lettre de motivation...");
 
 -- Provenance des candidatures
-INSERT INTO came_from (idInternshipOffer, idCandidacy) VALUES
-(1, 1),
-(2, 2);
+-- INSERT INTO came_from (idInternshipOffer, idCandidacy) VALUES
+-- (1, 1),
+-- (2, 2);
 
 -- Notes des étudiants
 INSERT INTO grade (idStudent, idCompany, studentGrade) VALUES

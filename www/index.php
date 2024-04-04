@@ -77,6 +77,13 @@ function routageGlobal(): void {
                     redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
                 }
                 break;
+            case "candidature":
+                if (estConnecte()) {
+                    include_once "controleur/candidature.php";
+                } else {
+                    redirectionErreur(401, "Vous-devez-être-connecté-pour-accéder-à-cette-page");  // Erreur 401: Non autorisé
+                }
+                break;
             case "connexion":
                 if (!estConnecte()) {
                     include_once "controleur/connexion.php";

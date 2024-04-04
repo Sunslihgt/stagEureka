@@ -6,13 +6,13 @@ include_once "outils.php";
 ob_start();
 ?>
 
-<main class="main-creation" id="main-creer-etudiant">
-    <button name="fleche-retour" id="fleche-retour" value="fleche-retour" onclick="location.href='<?= ADRESSE_SITE ?>/etudiant/liste'"><i class="fa-solid fa-arrow-left fa-3x"></i></button>
+<main class="main-creation" id="main-creer-candidature">
+    <button name="fleche-retour" id="fleche-retour" value="fleche-retour" onclick="location.href='<?= ADRESSE_SITE ?>/offre/liste'"><i class="fa-solid fa-arrow-left fa-3x"></i></button>
     
     <div class="conteneur-creation-etudiant">
-        <h1>Création d'un compte étudiant</h1>
+        <h1>Création d'une candidature</h1>
         
-        <form action="<?= ADRESSE_SITE ?>/etudiant/creer" method="post">
+        <form action="<?= ADRESSE_SITE ?>/candidature/creer/<?= $offre->id ?>" method="post">
             <fieldset class="rectangle-gris">
                 <div class="ligne">
                     <div class="colonne">
