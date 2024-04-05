@@ -1071,7 +1071,7 @@ textarea {
     padding: 16px;
     border-color: var(--background-color);
     background-color: var(--accent-color-1);
-    color: var(--background-color);
+    color: white;
     font-weight: bold;
     font-size: large;
     border-radius: 15px;

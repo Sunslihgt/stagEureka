@@ -58,9 +58,10 @@ function afficherListeEntreprises(array $params): void {
         $localisationFiltre = isset($_POST["localisation-filtre"]) ? $_POST["localisation-filtre"] : "";
         $notePiloteFiltre = isset($_POST["note-pilote-filtre"]) && is_numeric($_POST["note-pilote-filtre"]) ? intval($_POST["note-pilote-filtre"]) : -1;
         $noteEtudiantFiltre = isset($_POST["note-etudiant-filtre"]) && is_numeric($_POST["note-etudiant-filtre"]) ? intval($_POST["note-etudiant-filtre"]) : -1;
-        
+        $filtreVisible = estEtudiant() ? true : false;
+
         // On récupère les entreprises filtrées
-        $entreprises = getEntreprisesFiltre($nomEntrepriseFiltre, $localisationFiltre, $notePiloteFiltre, $noteEtudiantFiltre);
+        $entreprises = getEntreprisesFiltre($nomEntrepriseFiltre, $localisationFiltre, $notePiloteFiltre, $noteEtudiantFiltre, $filtreVisible);
 
         require_once "vue/php/entreprise/liste_entreprises_vue.php";
     } else {  // Pas de filtres

@@ -125,10 +125,15 @@ function getEntreprises(bool $cacherInvisible): array {
  * @param int $noteEtudiantFiltre Note des étudiants à filtrer
  * @return array|null Tableau d'entreprises filtrées ou null si une erreur survient
  */
-function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationFiltre, int $notePiloteFiltre, int $noteEtudiantFiltre): ?array {
+function getEntreprisesFiltre(string $nomEntrepriseFiltre, string $localisationFiltre, int $notePiloteFiltre, int $noteEtudiantFiltre, bool $visible): ?array {
     $pdo = connexionBDD();
 
-    $requete = $pdo->prepare("SELECT * FROM Company WHERE nameCompany LIKE :nomEntrepriseFiltre AND visible = 1");
+    $sql = "SELECT * FROM Company WHERE nameCompany LIKE :nomEntrepriseFiltre";
+    if ($visible) {
+        $sql .= " AND visible = 1";
+    }
+
+    $requete = $pdo->prepare($sql);
     $requete->execute([
         ":nomEntrepriseFiltre" => "%" . $nomEntrepriseFiltre . "%"
     ]);
